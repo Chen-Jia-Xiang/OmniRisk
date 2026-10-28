@@ -224,6 +224,12 @@ std::optional<DetectorFrame> DynObjFilter::filter(PointCloudXYZI::Ptr feats_undi
     int num_build = 0, num_search_0 = 0, num_research = 0;
     if (feats_undistort == NULL) return std::nullopt;
     int size = feats_undistort->points.size();
+    if (size > points_num_perframe) {
+        ROS_ERROR_STREAM_THROTTLE(1.0,
+            "Dropping cloud with " << size << " points: dyn_obj/points_num_perframe="
+            << points_num_perframe << "; increase this parameter to fit the sensor frame.");
+        return std::nullopt;
+    }
     last_raw_dyn_labels.assign(size, static_cast<uint8_t>(STATIC));
     if (case1_trace_all_en) {
         last_case1_replay_traces.assign(size, std::string());

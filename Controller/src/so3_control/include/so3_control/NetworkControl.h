@@ -30,10 +30,11 @@ public:
     NetworkControl(ros::NodeHandle &node){
         nh_ = node;
 
-        so3_controller_.setMass(mass_);
         disturbance_observer_ = HGDO(control_dt_);
 
         nh_.param("is_simulation", is_simulation_, false);
+        nh_.param("mass", mass_, is_simulation_ ? 0.98 : 0.77);
+        so3_controller_.setMass(mass_);
         nh_.param("use_disturbance_observer", use_disturbance_observer_, false);
         nh_.param("hover_thrust", hover_thrust_, 0.4);
         nh_.param("kx_xy", kx_xy, 5.7);
@@ -129,7 +130,7 @@ private:
     // mavros interface
     bool takeoff_land_srv_handle(quadrotor_msgs::SetTakeoffLand::Request &req,
                                  quadrotor_msgs::SetTakeoffLand::Response &res){
-        std::thread t(&NetworkControl::takeoff_land_thread, this, std::ref(req));
+        std::thread t(&NetworkControl::takeoff_land_thread, this, req);
         t.detach();
         res.res = true;
         return true;
@@ -137,7 +138,7 @@ private:
 
     bool arm_disarm_vehicle(bool arm);
 
-    void takeoff_land_thread(quadrotor_msgs::SetTakeoffLand::Request &req);
+    void takeoff_land_thread(quadrotor_msgs::SetTakeoffLand::Request req);
 
     void simulateTakeoff() {
         ros::ServiceClient client = nh_.serviceClient<quadrotor_msgs::SetTakeoffLand>("takeoff_land");

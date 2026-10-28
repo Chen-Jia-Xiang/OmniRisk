@@ -1,0 +1,226 @@
+add_ceiling: 0
+add_wall_x: 1
+add_wall_y: 1
+arena_ceiling: 1
+arena_walls: 1
+attenuation: 0.1
+camera:
+  cx: 80.0
+  cy: 45.0
+  fx: 80.0
+  fy: 80.0
+  image_height: 90
+  image_width: 160
+  max_depth_dist: 20.0
+  normalize_depth: false
+  pitch: -0.0
+collision_check:
+  drone_radius: 0.2
+  enabled: true
+complexity: 0.02
+cylinder_dataset:
+  cylinder_count_max: 4
+  cylinder_count_min: 1
+  cylinder_drone_clearance_margin: 0.2
+  cylinder_height_max: 5.0
+  cylinder_height_min: 1.0
+  cylinder_radius_max: 0.6
+  cylinder_radius_min: 0.25
+  cylinder_speed_max: 3.0
+  cylinder_speed_min: 0.5
+  cylinder_static_clearance: 0.4
+  enabled: true
+  min_cylinder_distance: 0.6
+  trajectory_check_dt: 0.05
+  validate_future_seconds: 0.3
+depth_fps: 33
+depth_topic: /depth_image
+env_num: 1
+expand_x_times: 0
+expand_y_times: 0
+fill: 0.1
+fractal: 1
+image_num: 10000
+lidar:
+  horizontal_num: 360
+  horizontal_resolution: 1.0
+  max_lidar_dist: 20.0
+  vertical_angle_end: 52.0
+  vertical_angle_start: -7.0
+  vertical_lines: 96
+lidar_fps: 10
+lidar_topic: /lidar_points
+max_windows: 2
+maze_type: 8
+obstacle_number: 100
+occupy_threshold: 0
+odom_topic: /sim/odom
+pitch_range: 30
+ply_file: src/pointcloud/forest.ply
+ply_res: 0.1
+pole_number: 0
+pole_radius_max: 0.5
+pole_radius_min: 0.15
+random_map: true
+render_depth: false
+render_lidar: true
+resolution: 0.1
+road_width: 3
+roll_range: 30
+room_number: 4
+safe_dist: 0.5
+save_path: ../dataset/
+seed: 3
+sim_dynamic:
+  cylinder_count: 4
+  cylinder_height_max: 2.5
+  cylinder_height_min: 1.5
+  cylinder_radius_max: 0.25
+  cylinder_radius_min: 0.25
+  cylinder_speed_max: 2.5
+  cylinder_speed_min: 0.5
+  enabled: true
+  sphere_count: 0
+  sphere_radius: 0.5
+  sphere_speed_max: 4.0
+  sphere_speed_min: 2.0
+  update_hz: 100
+  z_max: 2.5
+  z_min: 0.5
+sim_scenario:
+  enabled: true
+  scenario: head_on
+  scenarios:
+    head_on:
+    - aim_up: 0
+      bearing_deg: 0
+      elev_deg: 0
+      lead_time: 2.5
+      speed: 3.5
+    multi:
+    - bearing_deg: 0
+      elev_deg: 0
+      lead_time: 2.0
+      spawn_delay: 0.0
+      speed: 3.5
+    - bearing_deg: 120
+      elev_deg: 30
+      lead_time: 2.0
+      spawn_delay: 1.0
+      speed: 3.0
+    - bearing_deg: 240
+      elev_deg: 0
+      lead_time: 2.0
+      spawn_delay: 2.0
+      speed: 3.5
+    - bearing_deg: 60
+      elev_deg: 35
+      lead_time: 2.0
+      spawn_delay: 3.0
+      speed: 3.0
+    - bearing_deg: 180
+      elev_deg: 0
+      lead_time: 2.0
+      spawn_delay: 4.0
+      speed: 3.5
+    - bearing_deg: 300
+      elev_deg: 25
+      lead_time: 2.0
+      spawn_delay: 5.0
+      speed: 3.0
+    side:
+    - aim_up: 0.4
+      bearing_deg: 180
+      elev_deg: 0
+      lead_time: 4.5
+      offset: 0.2
+      speed: 4.5
+  sphere_radius: 0.2
+swarm_dataset:
+  bucket_dispatch:
+    enabled: true
+    ratios:
+      all_blocked: 0.05
+      intercept: 0.4
+      near_miss: 0.28
+      no_dynamic: 0.12
+      no_threat: 0.15
+  camera_clearance: 0.5
+  center_margin_xy: 4.0
+  center_z_range:
+  - 1.0
+  - 4.0
+  cpa:
+    all_blocked_count_max: 6
+    all_blocked_count_min: 4
+    cpa_time_max: 0.5
+    cpa_time_min: 0.3
+    cyl_radius_max: 0.6
+    cyl_radius_min: 0.3
+    cyl_z_max: 2.0
+    cyl_z_min: 0.5
+    distractor_min_miss: 2.0
+    goal_length: 10.0
+    goal_pitch_std: 10.0
+    goal_yaw_std: 45.0
+    heading_vel_std_deg: 25.0
+    max_resample: 120
+    max_spawn_distance: 3.0
+    miss_all_blocked_max: 0.15
+    miss_all_blocked_min: 0.0
+    miss_intercept_max: 0.3
+    miss_intercept_min: 0.0
+    miss_near_miss_max: 1.0
+    miss_near_miss_min: 0.3
+    miss_no_threat_max: 2.5
+    miss_no_threat_min: 1.0
+    rear_angle_threshold_deg: 120.0
+    rear_speed_max: 8.0
+    speed_max: 4.0
+    speed_min: 1.5
+    sphere_dir_angle_max_deg: 180.0
+    sphere_dir_angle_min_deg: 0.0
+    vel_max: 6.0
+    vel_norm_cap_factor: 1.2
+    vx_mean_unit: 0.4
+    vx_std_unit: 2.0
+    vy_mean_unit: 0.0
+    vy_std_unit: 1.2
+    vz_mean_unit: 0.0
+    vz_std_unit: 0.3
+  depth_margin: 0.8
+  drone_clearance_margin: 0.1
+  dynamic_speed_max: 3.0
+  dynamic_speed_min: 0.2
+  enabled: true
+  frame_dt: 0.1
+  history_frames: 1
+  image_border: 8
+  max_attempts_per_obstacle: 150
+  min_center_distance: 0.6
+  sample_step: 0.05
+  sphere_count_max: 3
+  sphere_count_min: 1
+  sphere_radius: 0.5
+  static_clearance: 0.5
+  visible_depth_max: 16.0
+  visible_depth_min: 0.5
+tree_dist: 4
+tree_file: /workspace/OmniRisk/Simulator/src/pointcloud/tree.ply
+wall_ceiling: 1
+wall_number: 100
+wall_thick: 0.5
+wall_width_max: 6.0
+wall_width_min: 0.5
+width_max: 1.5
+width_min: 0.6
+window_size_max: 2.8
+window_size_min: 2.0
+x_length: 60
+x_range: 40
+y_length: 60
+y_range: 40
+z_length: 15
+z_range:
+- 0.5
+- 4

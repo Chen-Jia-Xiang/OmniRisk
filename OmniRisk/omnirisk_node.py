@@ -456,6 +456,11 @@ class OmniRiskNode:
         while not self.odom_init and not rospy.is_shutdown():
             rospy.sleep(0.2)
         rospy.sleep(2.0)   # let the controller receive odom / become armable
+        with self.odom_lock:
+            already_airborne = self.odom.pose.pose.position.z > self.takeoff_alt_min
+        if already_airborne:
+            rospy.loginfo("[auto_takeoff] already airborne; skipping takeoff request")
+            return
         try:
             call = rospy.ServiceProxy(self.takeoff_service, SetTakeoffLand)
             res = call(takeoff=True, takeoff_altitude=self.hover_height)
@@ -2385,4 +2390,7 @@ if __name__ == "__main__":
         settings['odom_topic'] = args.odom_topic
     if args.lidar_topic is not None:
         settings['lidar_topic'] = args.lidar_topic
+        if args.lidar_topic == '/lidar_points':
+            # The simulator publishes points in the sensor/body frame.
+            settings['lidar_points_in_world_frame'] = False
     OmniRiskNode(settings, weight)

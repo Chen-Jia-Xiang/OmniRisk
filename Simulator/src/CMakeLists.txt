@@ -24,7 +24,8 @@ message(WARNING "OpenCV_VERSION: ${OpenCV_VERSION}")
 # CUDA
 find_package(CUDA REQUIRED)
 # Query the GPU architecture
-cuda_select_nvcc_arch_flags(ARCH_FLAGS)
+set(OMNIRISK_CUDA_ARCH "Auto" CACHE STRING "CUDA architecture, e.g. 7.5 for RTX 2060")
+cuda_select_nvcc_arch_flags(ARCH_FLAGS ${OMNIRISK_CUDA_ARCH})
 if("${ARCH_FLAGS}" STREQUAL "")
   message(FATAL_ERROR
     "Failed to automatically detect CUDA architecture. "

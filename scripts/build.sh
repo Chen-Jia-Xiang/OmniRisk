@@ -14,7 +14,7 @@ ROS_WS="$ROOT_DIR/ros_ws"
 VENV="$ROOT_DIR/omnirisk_env"
 PY="$VENV/bin/python"
 DEPS_DIR="$HOME/.cache/omnirisk"
-NPROC=$(nproc)
+NPROC=${BUILD_JOBS:-$(nproc)}
 
 JETSON_TORCH_WHL="https://developer.download.nvidia.com/compute/redist/jp/v512/pytorch/torch-2.1.0a0+41361538.nv23.06-cp38-cp38-linux_aarch64.whl"
 
@@ -69,6 +69,7 @@ if [[ $BUILD_ONLY -eq 0 ]]; then
     echo ""
     echo ">>> [2/5] Setting up Python venv: $VENV"
     [[ -x "$PY" ]] || python3 -m venv "$VENV"
+    "$PY" -m pip --version >/dev/null 2>&1 || "$PY" -m ensurepip --upgrade
     "$PY" -m pip install --upgrade pip
     "$PY" -m pip install -r "$ROOT_DIR/OmniRisk/requirements.txt"
 
@@ -106,10 +107,9 @@ if [[ $BUILD_ONLY -eq 0 ]]; then
     SDK_DIR="$ROS_WS/src/Livox-SDK2"
     mkdir -p "$SDK_DIR/build"
     cd "$SDK_DIR/build"
-    cmake .. -DCMAKE_BUILD_TYPE=Release
+    cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="$SDK_DIR/install"
     make -j"$NPROC"
-    sudo make install
-    sudo ldconfig
+    make install
 else
     echo ">>> [1-3/5] Skipping apt / venv / Livox-SDK2 (--build-only)."
 fi
@@ -124,6 +124,7 @@ source /opt/ros/noetic/setup.bash
 # ── Step 4: ros_ws ──
 echo ""
 echo ">>> [4/5] Building ros_ws..."
+cp "$ROS_WS/src/livox_ros_driver2/package_ROS1.xml" "$ROS_WS/src/livox_ros_driver2/package.xml"
 cd "$ROS_WS"
 catkin_make -DCMAKE_BUILD_TYPE=Release -DROS_EDITION=ROS1 -j"$NPROC"
 

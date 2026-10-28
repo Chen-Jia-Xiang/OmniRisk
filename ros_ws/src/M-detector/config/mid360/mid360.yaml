@@ -24,7 +24,7 @@ dyn_obj:
     # Point cloud buffer and depth image management
     buffer_delay: 0.05
     buffer_size: 100000
-    points_num_perframe: 30000
+    points_num_perframe: 40000
     depth_map_dur: 0.1
     max_depth_map_num: 10
     max_pixel_points: 20

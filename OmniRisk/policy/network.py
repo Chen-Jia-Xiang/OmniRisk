@@ -33,6 +33,19 @@ class OmniRiskNetwork(nn.Module):
         # Dynamic head: depth feature + dynamic feature + obs → dynamic score(1).
         self.dynamic_head = ScoreHead(2 * hidden_state + observation_dim, 1)
 
+    def _load_from_state_dict(self, state_dict, prefix, local_metadata, strict,
+                              missing_keys, unexpected_keys, error_msgs):
+        # Released checkpoints used yopo_head for the current static head.
+        legacy_prefix = prefix + 'yopo_head.'
+        for key in list(state_dict):
+            if key.startswith(legacy_prefix):
+                current_key = prefix + 'static_head.' + key[len(legacy_prefix):]
+                if current_key not in state_dict:
+                    state_dict[current_key] = state_dict.pop(key)
+        super()._load_from_state_dict(
+            state_dict, prefix, local_metadata, strict,
+            missing_keys, unexpected_keys, error_msgs)
+
     def forward(self, depth: torch.Tensor, mask: torch.Tensor,
                 vel_img: torch.Tensor, obs: torch.Tensor) -> torch.Tensor:
         """

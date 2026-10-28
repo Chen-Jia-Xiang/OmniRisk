@@ -1,0 +1,803 @@
+... logging to /tmp/omnirisk-validation/roslog/976e04e4-d28c-11f1-bf3d-4d2bc066a010/roslaunch-cjx-PC-82437.log
+Checking log directory for disk usage. This may take a while.
+Press Ctrl-C to interrupt
+Done checking log file disk usage. Usage is <1GB.
+]2;/home/cjx/OmniRisk/ros_ws/src/M-detector/launch/detector_mid360.launch
+[1mstarted roslaunch server http://cjx-PC:36327/[0m
+
+SUMMARY
+========
+
+PARAMETERS
+ * /dyn_obj/acc_thr2: 8.0
+ * /dyn_obj/acc_thr3: 10.0
+ * /dyn_obj/blind_dis: 0.05
+ * /dyn_obj/buffer_delay: 0.05
+ * /dyn_obj/buffer_size: 100000
+ * /dyn_obj/case1_interp_en: True
+ * /dyn_obj/case2_interp_en: False
+ * /dyn_obj/case3_interp_en: False
+ * /dyn_obj/cluster_Voxel_revolusion: 0.1
+ * /dyn_obj/cluster_coupled: True
+ * /dyn_obj/cluster_extend_pixel: 4
+ * /dyn_obj/cluster_future: False
+ * /dyn_obj/cluster_map_origin_x: -10.0
+ * /dyn_obj/cluster_map_origin_y: -10.0
+ * /dyn_obj/cluster_map_origin_z: -0.5
+ * /dyn_obj/cluster_map_range_x: 20.0
+ * /dyn_obj/cluster_map_range_y: 20.0
+ * /dyn_obj/cluster_map_range_z: 3.5
+ * /dyn_obj/cluster_min_pixel_number: 2
+ * /dyn_obj/cluster_out_file: 
+ * /dyn_obj/cluster_thrustable_thresold: 0.85
+ * /dyn_obj/dataset: 3
+ * /dyn_obj/debug_publish: False
+ * /dyn_obj/debug_x: 7.2065
+ * /dyn_obj/debug_y: -3.1844
+ * /dyn_obj/debug_z: -0.89005
+ * /dyn_obj/depth_cons_depth_max_thr1: 1.0
+ * /dyn_obj/depth_cons_depth_max_thr2: 0.5
+ * /dyn_obj/depth_cons_depth_max_thr3: 1.0
+ * /dyn_obj/depth_cons_depth_thr1: 0.5
+ * /dyn_obj/depth_cons_depth_thr2: 0.1
+ * /dyn_obj/depth_cons_depth_thr3: 0.3
+ * /dyn_obj/depth_cons_hor_thr1: 0.05
+ * /dyn_obj/depth_cons_hor_thr2: 0.03
+ * /dyn_obj/depth_cons_hor_thr3: 0.03
+ * /dyn_obj/depth_cons_ver_thr1: 0.05
+ * /dyn_obj/depth_cons_ver_thr2: 0.06
+ * /dyn_obj/depth_cons_ver_thr3: 0.03
+ * /dyn_obj/depth_map_dur: 0.1
+ * /dyn_obj/depth_thr1: 0.5
+ * /dyn_obj/dyn_filter_en: True
+ * /dyn_obj/enlarge_angle: 2.0
+ * /dyn_obj/enlarge_depth: 3.0
+ * /dyn_obj/enlarge_z_thr1: 3.0
+ * /dyn_obj/enter_max_thr1: 0.2
+ * /dyn_obj/enter_min_thr1: 0.2
+ * /dyn_obj/fov_cut: -20.0
+ * /dyn_obj/fov_down: -7
+ * /dyn_obj/fov_left: 180.0
+ * /dyn_obj/fov_right: -180.0
+ * /dyn_obj/fov_up: 52
+ * /dyn_obj/frame_dur: 0.05
+ * /dyn_obj/frame_id: world
+ * /dyn_obj/hor_resolution_max: 0.06
+ * /dyn_obj/input_queue_size: 3
+ * /dyn_obj/interp_bg: 0.8
+ * /dyn_obj/interp_hor_thr: 0.03
+ * /dyn_obj/interp_kd1: 0.5
+ * /dyn_obj/interp_kp1: 0.1
+ * /dyn_obj/interp_start_depth1: 10
+ * /dyn_obj/interp_static_max: 10.0
+ * /dyn_obj/interp_thr1: 0.5
+ * /dyn_obj/interp_thr2: 0.25
+ * /dyn_obj/interp_thr3: 0.05
+ * /dyn_obj/interp_ver_thr: 0.03
+ * /dyn_obj/k_depth2: 0.005
+ * /dyn_obj/map_cons_depth_thr1: 0.3
+ * /dyn_obj/map_cons_depth_thr2: 0.3
+ * /dyn_obj/map_cons_depth_thr3: 0.3
+ * /dyn_obj/map_cons_hor_dis1: 0.3
+ * /dyn_obj/map_cons_hor_thr1: 0.04
+ * /dyn_obj/map_cons_hor_thr2: 0.02
+ * /dyn_obj/map_cons_hor_thr3: 0.03
+ * /dyn_obj/map_cons_ver_dis1: 0.6
+ * /dyn_obj/map_cons_ver_thr1: 0.04
+ * /dyn_obj/map_cons_ver_thr2: 0.06
+ * /dyn_obj/map_cons_ver_thr3: 0.03
+ * /dyn_obj/max_depth_map_num: 10
+ * /dyn_obj/max_pixel_points: 20
+ * /dyn_obj/near_range_case1_occluded_map_thr: 2
+ * /dyn_obj/near_range_case3_occluded_times_thr: 2
+ * /dyn_obj/near_range_cluster_trustable_threshold: 0.5
+ * /dyn_obj/near_range_fast_confirm_distance: 4.0
+ * /dyn_obj/near_range_fast_confirm_en: True
+ * /dyn_obj/occ_depth_thr2: 0.2
+ * /dyn_obj/occ_depth_thr3: 0.1
+ * /dyn_obj/occ_hor_thr2: 0.02
+ * /dyn_obj/occ_hor_thr3: 0.03
+ * /dyn_obj/occ_ver_thr2: 0.06
+ * /dyn_obj/occ_ver_thr3: 0.03
+ * /dyn_obj/occluded_map_thr1: 4
+ * /dyn_obj/occluded_times_thr2: 4
+ * /dyn_obj/occluded_times_thr3: 4
+ * /dyn_obj/odom_topic: /sim/odom
+ * /dyn_obj/odom_visual_child_frame_id: 
+ * /dyn_obj/odom_visual_frame_id: world
+ * /dyn_obj/odom_visual_lidar_offset_x: 0.0
+ * /dyn_obj/odom_visual_lidar_offset_y: 0.0
+ * /dyn_obj/odom_visual_lidar_offset_z: 0.0
+ * /dyn_obj/odom_visual_publish_tf: False
+ * /dyn_obj/out_file: 
+ * /dyn_obj/out_file_origin: 
+ * /dyn_obj/pc_topic: /cloud_registered...
+ * /dyn_obj/pending_queue_size: 2
+ * /dyn_obj/point_index: -1
+ * /dyn_obj/points_in_world_frame: False
+ * /dyn_obj/points_num_perframe: 40000
+ * /dyn_obj/points_topic: /lidar_points
+ * /dyn_obj/pose_log: False
+ * /dyn_obj/pose_log_file: 
+ * /dyn_obj/publish_frame_out: False
+ * /dyn_obj/publish_point_out: False
+ * /dyn_obj/publish_std_points: True
+ * /dyn_obj/self_x_b: 0
+ * /dyn_obj/self_x_f: 0
+ * /dyn_obj/self_y_l: 0
+ * /dyn_obj/self_y_r: 0
+ * /dyn_obj/sync_max_interval: 0.01
+ * /dyn_obj/sync_queue_size: 5
+ * /dyn_obj/time_breakdown_file: 
+ * /dyn_obj/time_file: 
+ * /dyn_obj/tracker/association_mahalanobis_gate_sq: 11.34
+ * /dyn_obj/tracker/association_padding: 0.5
+ * /dyn_obj/tracker/ballistic_model_en: True
+ * /dyn_obj/tracker/bbox_size_prior_en: True
+ * /dyn_obj/tracker/bbox_size_prior_max: 0.7
+ * /dyn_obj/tracker/bbox_size_prior_min: 0.05
+ * /dyn_obj/tracker/cluster_max_points: 10000
+ * /dyn_obj/tracker/cluster_min_points: 2
+ * /dyn_obj/tracker/cluster_min_points_process: 1
+ * /dyn_obj/tracker/cluster_tolerance: 0.5
+ * /dyn_obj/tracker/debug_association_rejects: False
+ * /dyn_obj/tracker/debug_bbox_prior_rejects: False
+ * /dyn_obj/tracker/debug_distance_rejects: False
+ * /dyn_obj/tracker/debug_print_association_matrix: False
+ * /dyn_obj/tracker/debug_print_detections: False
+ * /dyn_obj/tracker/debug_static_support: False
+ * /dyn_obj/tracker/debug_track_lifecycle: False
+ * /dyn_obj/tracker/default_dt: 0.05
+ * /dyn_obj/tracker/duplicate_guard_bbox_gap: 0.05
+ * /dyn_obj/tracker/duplicate_guard_distance: 0.25
+ * /dyn_obj/tracker/duplicate_guard_en: True
+ * /dyn_obj/tracker/dynamic_position_variance: 0.1
+ * /dyn_obj/tracker/enabled: True
+ * /dyn_obj/tracker/gravity_world_x: 0.0
+ * /dyn_obj/tracker/gravity_world_y: 0.0
+ * /dyn_obj/tracker/gravity_world_z: -9.81
+ * /dyn_obj/tracker/init_window_size: 6
+ * /dyn_obj/tracker/lost_track_prediction_time: 0.1
+ * /dyn_obj/tracker/marker_bbox_min_size: 0.1
+ * /dyn_obj/tracker/marker_bbox_scale: 1.1
+ * /dyn_obj/tracker/marker_velocity_arrow_scale: 1.0
+ * /dyn_obj/tracker/marker_velocity_max_arrow_length: 2.0
+ * /dyn_obj/tracker/marker_velocity_min_speed: 0.05
+ * /dyn_obj/tracker/marker_velocity_text_size: 0.35
+ * /dyn_obj/tracker/markers_topic: /m_detector/confi...
+ * /dyn_obj/tracker/max_center_distance: 1.0
+ * /dyn_obj/tracker/max_prediction_horizon: 0.1
+ * /dyn_obj/tracker/max_target_acceleration: 6.0
+ * /dyn_obj/tracker/max_target_speed: 15.0
+ * /dyn_obj/tracker/min_init_hits: 1
+ * /dyn_obj/tracker/min_iou: -1
+ * /dyn_obj/tracker/near_range_fast_confirm_distance: 6.0
+ * /dyn_obj/tracker/near_range_fast_confirm_en: True
+ * /dyn_obj/tracker/near_range_fast_confirm_hits: 2
+ * /dyn_obj/tracker/point_out_duplicate_distance: 0.25
+ * /dyn_obj/tracker/point_out_dynamic_support_en: True
+ * /dyn_obj/tracker/predicted_tracks_topic: /m_detector/predi...
+ * /dyn_obj/tracker/process_acceleration_stddev: 3.0
+ * /dyn_obj/tracker/static_support_bbox_expand_ratio: 0.6
+ * /dyn_obj/tracker/static_support_bbox_padding: 0.05
+ * /dyn_obj/tracker/static_support_cluster_max_points: 300
+ * /dyn_obj/tracker/static_support_cluster_tolerance: 0.35
+ * /dyn_obj/tracker/static_support_en: False
+ * /dyn_obj/tracker/static_support_hold_time: 0.3
+ * /dyn_obj/tracker/static_support_max_residual: 0.3
+ * /dyn_obj/tracker/static_support_min_activation_speed: 0.3
+ * /dyn_obj/tracker/static_support_min_points: 3
+ * /dyn_obj/tracker/static_support_position_variance: 0.5
+ * /dyn_obj/tracker/target_distance_filter_en: True
+ * /dyn_obj/tracker/target_ground_filter_en: True
+ * /dyn_obj/tracker/target_max_bbox_volume: 0.04
+ * /dyn_obj/tracker/target_max_xy_distance: 7.0
+ * /dyn_obj/tracker/target_max_z_distance: 1.5
+ * /dyn_obj/tracker/target_min_bbox_volume: 0.000125
+ * /dyn_obj/tracker/target_min_speed: 3
+ * /dyn_obj/tracker/target_min_world_z: 0.05
+ * /dyn_obj/tracker/target_origin_bbox_filter_en: True
+ * /dyn_obj/tracker/target_origin_bbox_max_x: 6.0
+ * /dyn_obj/tracker/target_origin_bbox_max_y: 6.0
+ * /dyn_obj/tracker/target_origin_bbox_max_z: 2.0
+ * /dyn_obj/tracker/target_origin_bbox_min_x: -6.0
+ * /dyn_obj/tracker/target_origin_bbox_min_y: -6.0
+ * /dyn_obj/tracker/target_origin_bbox_min_z: -0.1
+ * /dyn_obj/tracker/target_speed_filter_en: True
+ * /dyn_obj/tracker/target_speed_filter_grace_time: 0.2
+ * /dyn_obj/tracker/target_volume_filter_en: True
+ * /dyn_obj/tracker/tentative_tracks_topic: /m_detector/tenta...
+ * /dyn_obj/tracker/track_history_size: 10
+ * /dyn_obj/tracker/track_lifetime_frames: 12
+ * /dyn_obj/tracker/tracks_topic: /m_detector/confi...
+ * /dyn_obj/v_min_thr2: 0.25
+ * /dyn_obj/v_min_thr3: 0.25
+ * /dyn_obj/ver_resolution_max: 0.06
+ * /rosdistro: noetic
+ * /rosversion: 1.17.4
+
+NODES
+  /
+    dynfilter (m_detector/dynfilter)
+[INFO] [1793164325.408726496]: dynfilter subscribing points_topic=/lidar_points odom_topic=/sim/odom
+[INFO] [1793164325.409507225]: odometry visualization: frame_id=world child_frame_id=<use original/base_link> publish_tf=0 lidar_offset=[0,0,0]
+[INFO] [1793164325.473564877]: M-detector point input frame: body/local output frame_id=world
+[INFO] [1793164325.786450128]: DynObjCluster map configured: origin=(-10, -10, -0.5), range=(20, 20, 3.5), voxel=0.1, grid_edges=(200, 200, 35), grid_size=1400000
+clustering init begin, please wait------------1400000
+clustering init finish------------
+[WARN] [1793164325.900990684]: Integrated tracker running with non-world-frame input: points_in_world_frame=0 frame_id=world
+[INFO] [1793164325.901076186]: frame_tracker ballistic model enabled: gravity_world=(0.000, 0.000, -9.810)
+[INFO] [1793164325.902948058]: Integrated tracker enabled: tracks_topic=/m_detector/confirmed_tracks markers_topic=/m_detector/confirmed_track_markers
+[INFO] [1793164325.908965164]: dynfilter subscribed with bounded pending synchronization: input_queue=3 sync_queue=5 pending_queue=2 max_interval_ms=10
+[INFO] [1793164326.079940308]: Processed dynfilter frame 0, input points: 7920, current compute: 11.088 ms, average compute: 11.088 ms
+[INFO] [1793164326.207826781]: Processed dynfilter frame 1, input points: 7920, current compute: 39.568 ms, average compute: 25.328 ms
+[INFO] [1793164326.316377544]: Processed dynfilter frame 2, input points: 7920, current compute: 38.502 ms, average compute: 29.719 ms
+[INFO] [1793164326.391437692]: Processed dynfilter frame 3, input points: 7920, current compute: 23.386 ms, average compute: 28.136 ms
+[INFO] [1793164326.498671151]: Processed dynfilter frame 4, input points: 7920, current compute: 21.813 ms, average compute: 26.871 ms
+[INFO] [1793164326.597867268]: Processed dynfilter frame 5, input points: 7920, current compute: 21.085 ms, average compute: 25.907 ms
+[INFO] [1793164326.719193159]: Processed dynfilter frame 6, input points: 7920, current compute: 41.104 ms, average compute: 28.078 ms
+[INFO] [1793164326.808827416]: Processed dynfilter frame 7, input points: 7920, current compute: 30.540 ms, average compute: 28.386 ms
+[INFO] [1793164326.904196177]: Processed dynfilter frame 8, input points: 7920, current compute: 36.377 ms, average compute: 29.274 ms
+[INFO] [1793164327.012881217]: Processed dynfilter frame 9, input points: 7920, current compute: 44.639 ms, average compute: 30.810 ms
+[INFO] [1793164327.109087525]: Processed dynfilter frame 10, input points: 7920, current compute: 40.246 ms, average compute: 31.668 ms
+[INFO] [1793164327.195331691]: Processed dynfilter frame 11, input points: 7920, current compute: 26.726 ms, average compute: 31.256 ms
+[INFO] [1793164327.295260898]: Processed dynfilter frame 12, input points: 7920, current compute: 26.763 ms, average compute: 30.910 ms
+[INFO] [1793164327.386861597]: Processed dynfilter frame 13, input points: 7920, current compute: 18.156 ms, average compute: 29.999 ms
+[INFO] [1793164327.495340028]: Processed dynfilter frame 14, input points: 7920, current compute: 26.646 ms, average compute: 29.776 ms
+[INFO] [1793164327.595845987]: Processed dynfilter frame 15, input points: 7920, current compute: 26.769 ms, average compute: 29.588 ms
+[INFO] [1793164327.695575012]: Processed dynfilter frame 16, input points: 7920, current compute: 26.487 ms, average compute: 29.406 ms
+[INFO] [1793164327.796549851]: Processed dynfilter frame 17, input points: 7920, current compute: 27.291 ms, average compute: 29.288 ms
+[INFO] [1793164327.895461236]: Processed dynfilter frame 18, input points: 7920, current compute: 27.138 ms, average compute: 29.175 ms
+[INFO] [1793164327.995107738]: Processed dynfilter frame 19, input points: 7920, current compute: 26.844 ms, average compute: 29.058 ms
+[INFO] [1793164328.096590750]: Processed dynfilter frame 20, input points: 7920, current compute: 27.524 ms, average compute: 28.985 ms
+[INFO] [1793164328.195519967]: Processed dynfilter frame 21, input points: 7920, current compute: 27.188 ms, average compute: 28.904 ms
+[INFO] [1793164328.305721452]: Processed dynfilter frame 22, input points: 7920, current compute: 27.167 ms, average compute: 28.828 ms
+[INFO] [1793164328.378885798]: Processed dynfilter frame 23, input points: 7920, current compute: 11.293 ms, average compute: 28.097 ms
+[INFO] [1793164328.490144447]: Processed dynfilter frame 24, input points: 7920, current compute: 13.275 ms, average compute: 27.505 ms
+[INFO] [1793164328.605553272]: Processed dynfilter frame 25, input points: 7920, current compute: 27.417 ms, average compute: 27.501 ms
+[INFO] [1793164328.705744245]: Processed dynfilter frame 26, input points: 7920, current compute: 26.661 ms, average compute: 27.470 ms
+[INFO] [1793164328.804733183]: Processed dynfilter frame 27, input points: 7920, current compute: 26.559 ms, average compute: 27.438 ms
+[INFO] [1793164328.904824660]: Processed dynfilter frame 28, input points: 7920, current compute: 26.569 ms, average compute: 27.408 ms
+[INFO] [1793164328.997362377]: Processed dynfilter frame 29, input points: 7920, current compute: 28.212 ms, average compute: 27.434 ms
+[INFO] [1793164329.095030321]: Processed dynfilter frame 30, input points: 7920, current compute: 26.044 ms, average compute: 27.390 ms
+[INFO] [1793164329.196651970]: Processed dynfilter frame 31, input points: 7920, current compute: 27.560 ms, average compute: 27.395 ms
+[INFO] [1793164329.295202038]: Processed dynfilter frame 32, input points: 7920, current compute: 26.220 ms, average compute: 27.359 ms
+[INFO] [1793164329.392980488]: Processed dynfilter frame 33, input points: 7920, current compute: 24.159 ms, average compute: 27.265 ms
+[INFO] [1793164329.481200624]: Processed dynfilter frame 34, input points: 7920, current compute: 13.729 ms, average compute: 26.878 ms
+[INFO] [1793164329.598203843]: Processed dynfilter frame 35, input points: 7920, current compute: 29.383 ms, average compute: 26.948 ms
+[INFO] [1793164329.695910648]: Processed dynfilter frame 36, input points: 7920, current compute: 27.023 ms, average compute: 26.950 ms
+[INFO] [1793164329.795873629]: Processed dynfilter frame 37, input points: 7920, current compute: 26.958 ms, average compute: 26.950 ms
+[INFO] [1793164329.895219198]: Processed dynfilter frame 38, input points: 7920, current compute: 26.522 ms, average compute: 26.939 ms
+[INFO] [1793164329.995285869]: Processed dynfilter frame 39, input points: 7920, current compute: 26.608 ms, average compute: 26.931 ms
+[INFO] [1793164330.079835046]: Processed dynfilter frame 40, input points: 7920, current compute: 12.638 ms, average compute: 26.582 ms
+[INFO] [1793164330.182902004]: Processed dynfilter frame 41, input points: 7920, current compute: 15.454 ms, average compute: 26.317 ms
+[INFO] [1793164330.295633776]: Processed dynfilter frame 42, input points: 7920, current compute: 26.812 ms, average compute: 26.329 ms
+[INFO] [1793164330.396267286]: Processed dynfilter frame 43, input points: 7920, current compute: 27.559 ms, average compute: 26.357 ms
+[INFO] [1793164330.495785657]: Processed dynfilter frame 44, input points: 7920, current compute: 26.956 ms, average compute: 26.370 ms
+[INFO] [1793164330.596737354]: Processed dynfilter frame 45, input points: 7920, current compute: 27.829 ms, average compute: 26.402 ms
+[INFO] [1793164330.696424101]: Processed dynfilter frame 46, input points: 7920, current compute: 27.194 ms, average compute: 26.419 ms
+[INFO] [1793164330.795636587]: Processed dynfilter frame 47, input points: 7920, current compute: 27.019 ms, average compute: 26.431 ms
+[INFO] [1793164330.879636081]: Processed dynfilter frame 48, input points: 7920, current compute: 11.998 ms, average compute: 26.137 ms
+[INFO] [1793164330.996460784]: Processed dynfilter frame 49, input points: 7920, current compute: 27.367 ms, average compute: 26.161 ms
+[INFO] [1793164331.095467153]: Processed dynfilter frame 50, input points: 7920, current compute: 26.710 ms, average compute: 26.172 ms
+[INFO] [1793164331.195593084]: Processed dynfilter frame 51, input points: 7920, current compute: 27.011 ms, average compute: 26.188 ms
+[INFO] [1793164331.295985445]: Processed dynfilter frame 52, input points: 7920, current compute: 27.406 ms, average compute: 26.211 ms
+[INFO] [1793164331.378740629]: Processed dynfilter frame 53, input points: 7920, current compute: 11.814 ms, average compute: 25.945 ms
+[INFO] [1793164331.495584162]: Processed dynfilter frame 54, input points: 7920, current compute: 26.881 ms, average compute: 25.962 ms
+[INFO] [1793164331.596532405]: Processed dynfilter frame 55, input points: 7920, current compute: 27.514 ms, average compute: 25.989 ms
+[INFO] [1793164331.696346913]: Processed dynfilter frame 56, input points: 7920, current compute: 27.917 ms, average compute: 26.023 ms
+[INFO] [1793164331.788206925]: Processed dynfilter frame 57, input points: 7920, current compute: 11.510 ms, average compute: 25.773 ms
+[INFO] [1793164331.895247196]: Processed dynfilter frame 58, input points: 7920, current compute: 26.991 ms, average compute: 25.794 ms
+[INFO] [1793164331.994751258]: Processed dynfilter frame 59, input points: 7920, current compute: 26.545 ms, average compute: 25.806 ms
+[INFO] [1793164332.094191367]: Processed dynfilter frame 60, input points: 7920, current compute: 25.853 ms, average compute: 25.807 ms
+[INFO] [1793164332.194955646]: Processed dynfilter frame 61, input points: 7920, current compute: 26.484 ms, average compute: 25.818 ms
+[INFO] [1793164332.294867352]: Processed dynfilter frame 62, input points: 7920, current compute: 26.631 ms, average compute: 25.831 ms
+[INFO] [1793164332.397318800]: Processed dynfilter frame 63, input points: 7920, current compute: 28.419 ms, average compute: 25.871 ms
+[INFO] [1793164332.495166547]: Processed dynfilter frame 64, input points: 7920, current compute: 26.338 ms, average compute: 25.878 ms
+[INFO] [1793164332.595748802]: Processed dynfilter frame 65, input points: 7920, current compute: 26.548 ms, average compute: 25.888 ms
+[INFO] [1793164332.695612552]: Processed dynfilter frame 66, input points: 7920, current compute: 26.561 ms, average compute: 25.898 ms
+[INFO] [1793164332.795802631]: Processed dynfilter frame 67, input points: 7920, current compute: 26.750 ms, average compute: 25.911 ms
+[INFO] [1793164332.880948684]: Processed dynfilter frame 68, input points: 7920, current compute: 12.044 ms, average compute: 25.710 ms
+[INFO] [1793164332.995106984]: Processed dynfilter frame 69, input points: 7920, current compute: 26.370 ms, average compute: 25.719 ms
+[INFO] [1793164333.080325426]: Processed dynfilter frame 70, input points: 7920, current compute: 11.679 ms, average compute: 25.522 ms
+[INFO] [1793164333.195789976]: Processed dynfilter frame 71, input points: 7920, current compute: 26.848 ms, average compute: 25.540 ms
+[INFO] [1793164333.295795734]: Processed dynfilter frame 72, input points: 7920, current compute: 26.924 ms, average compute: 25.559 ms
+[INFO] [1793164333.379314669]: Processed dynfilter frame 73, input points: 7920, current compute: 12.017 ms, average compute: 25.376 ms
+[INFO] [1793164333.494119309]: Processed dynfilter frame 74, input points: 7920, current compute: 25.211 ms, average compute: 25.374 ms
+[INFO] [1793164333.596925466]: Processed dynfilter frame 75, input points: 7920, current compute: 27.958 ms, average compute: 25.408 ms
+[INFO] [1793164333.698479057]: Processed dynfilter frame 76, input points: 7920, current compute: 28.829 ms, average compute: 25.452 ms
+[INFO] [1793164333.797808510]: Processed dynfilter frame 77, input points: 7920, current compute: 28.271 ms, average compute: 25.488 ms
+[INFO] [1793164333.895869092]: Processed dynfilter frame 78, input points: 7920, current compute: 26.844 ms, average compute: 25.506 ms
+[INFO] [1793164333.979610288]: Processed dynfilter frame 79, input points: 7920, current compute: 12.109 ms, average compute: 25.338 ms
+[INFO] [1793164334.098030501]: Processed dynfilter frame 80, input points: 7920, current compute: 29.044 ms, average compute: 25.384 ms
+[INFO] [1793164334.194794570]: Processed dynfilter frame 81, input points: 7920, current compute: 25.860 ms, average compute: 25.390 ms
+[INFO] [1793164334.278716607]: Processed dynfilter frame 82, input points: 7920, current compute: 11.092 ms, average compute: 25.217 ms
+[INFO] [1793164334.394807902]: Processed dynfilter frame 83, input points: 7920, current compute: 25.760 ms, average compute: 25.224 ms
+[INFO] [1793164334.497505107]: Processed dynfilter frame 84, input points: 7920, current compute: 28.238 ms, average compute: 25.259 ms
+[INFO] [1793164334.595029828]: Processed dynfilter frame 85, input points: 7920, current compute: 26.123 ms, average compute: 25.269 ms
+[INFO] [1793164334.695171627]: Processed dynfilter frame 86, input points: 7920, current compute: 26.045 ms, average compute: 25.278 ms
+[INFO] [1793164334.796967343]: Processed dynfilter frame 87, input points: 7920, current compute: 27.849 ms, average compute: 25.308 ms
+[INFO] [1793164334.878428558]: Processed dynfilter frame 88, input points: 7920, current compute: 10.885 ms, average compute: 25.145 ms
+[INFO] [1793164334.994940728]: Processed dynfilter frame 89, input points: 7920, current compute: 25.790 ms, average compute: 25.153 ms
+[INFO] [1793164335.094849784]: Processed dynfilter frame 90, input points: 7920, current compute: 25.691 ms, average compute: 25.159 ms
+[INFO] [1793164335.196587736]: Processed dynfilter frame 91, input points: 7920, current compute: 27.566 ms, average compute: 25.185 ms
+[INFO] [1793164335.295217827]: Processed dynfilter frame 92, input points: 7920, current compute: 26.068 ms, average compute: 25.194 ms
+[INFO] [1793164335.395790983]: Processed dynfilter frame 93, input points: 7920, current compute: 26.875 ms, average compute: 25.212 ms
+[INFO] [1793164335.480512684]: Processed dynfilter frame 94, input points: 7920, current compute: 13.096 ms, average compute: 25.085 ms
+[INFO] [1793164335.580845145]: Processed dynfilter frame 95, input points: 7920, current compute: 13.493 ms, average compute: 24.964 ms
+[INFO] [1793164335.681047124]: Processed dynfilter frame 96, input points: 7920, current compute: 13.800 ms, average compute: 24.849 ms
+[INFO] [1793164335.783406811]: Processed dynfilter frame 97, input points: 7920, current compute: 14.432 ms, average compute: 24.742 ms
+[INFO] [1793164335.879015780]: Processed dynfilter frame 98, input points: 7920, current compute: 11.724 ms, average compute: 24.611 ms
+[INFO] [1793164335.995521484]: Processed dynfilter frame 99, input points: 7920, current compute: 26.489 ms, average compute: 24.630 ms
+[INFO] [1793164336.096867020]: Processed dynfilter frame 100, input points: 7920, current compute: 27.988 ms, average compute: 24.663 ms
+[INFO] [1793164336.197997279]: Processed dynfilter frame 101, input points: 7920, current compute: 28.778 ms, average compute: 24.703 ms
+[INFO] [1793164336.297088275]: Processed dynfilter frame 102, input points: 7920, current compute: 28.249 ms, average compute: 24.738 ms
+[INFO] [1793164336.395805958]: Processed dynfilter frame 103, input points: 7920, current compute: 26.748 ms, average compute: 24.757 ms
+[INFO] [1793164336.490705257]: Processed dynfilter frame 104, input points: 7920, current compute: 22.098 ms, average compute: 24.732 ms
+[INFO] [1793164336.579318926]: Processed dynfilter frame 105, input points: 7920, current compute: 12.008 ms, average compute: 24.612 ms
+[INFO] [1793164336.679338544]: Processed dynfilter frame 106, input points: 7920, current compute: 12.106 ms, average compute: 24.495 ms
+[INFO] [1793164336.779307623]: Processed dynfilter frame 107, input points: 7920, current compute: 12.036 ms, average compute: 24.380 ms
+[INFO] [1793164336.888287967]: Processed dynfilter frame 108, input points: 7920, current compute: 11.485 ms, average compute: 24.261 ms
+[INFO] [1793164336.989172462]: Processed dynfilter frame 109, input points: 7920, current compute: 12.014 ms, average compute: 24.150 ms
+[INFO] [1793164337.089241963]: Processed dynfilter frame 110, input points: 7920, current compute: 12.325 ms, average compute: 24.043 ms
+[INFO] [1793164337.188856857]: Processed dynfilter frame 111, input points: 7920, current compute: 11.990 ms, average compute: 23.936 ms
+[INFO] [1793164337.288835156]: Processed dynfilter frame 112, input points: 7920, current compute: 12.080 ms, average compute: 23.831 ms
+[INFO] [1793164337.389077782]: Processed dynfilter frame 113, input points: 7920, current compute: 12.339 ms, average compute: 23.730 ms
+[INFO] [1793164337.488639997]: Processed dynfilter frame 114, input points: 7920, current compute: 11.784 ms, average compute: 23.626 ms
+[INFO] [1793164337.588851234]: Processed dynfilter frame 115, input points: 7920, current compute: 12.091 ms, average compute: 23.527 ms
+[INFO] [1793164337.688865180]: Processed dynfilter frame 116, input points: 7920, current compute: 12.055 ms, average compute: 23.429 ms
+[INFO] [1793164337.778674914]: Processed dynfilter frame 117, input points: 7920, current compute: 11.741 ms, average compute: 23.330 ms
+[INFO] [1793164337.878420465]: Processed dynfilter frame 118, input points: 7920, current compute: 11.292 ms, average compute: 23.228 ms
+[INFO] [1793164337.978640225]: Processed dynfilter frame 119, input points: 7920, current compute: 11.458 ms, average compute: 23.130 ms
+[INFO] [1793164338.078641016]: Processed dynfilter frame 120, input points: 7920, current compute: 11.608 ms, average compute: 23.035 ms
+[INFO] [1793164338.179360809]: Processed dynfilter frame 121, input points: 7920, current compute: 12.010 ms, average compute: 22.945 ms
+[INFO] [1793164338.285763643]: Processed dynfilter frame 122, input points: 7920, current compute: 18.300 ms, average compute: 22.907 ms
+[INFO] [1793164338.379827315]: Processed dynfilter frame 123, input points: 7920, current compute: 12.569 ms, average compute: 22.824 ms
+[INFO] [1793164338.488891575]: Processed dynfilter frame 124, input points: 7920, current compute: 12.040 ms, average compute: 22.737 ms
+[INFO] [1793164338.579442974]: Processed dynfilter frame 125, input points: 7920, current compute: 12.199 ms, average compute: 22.654 ms
+[INFO] [1793164338.679801137]: Processed dynfilter frame 126, input points: 7920, current compute: 12.455 ms, average compute: 22.573 ms
+[INFO] [1793164338.780057762]: Processed dynfilter frame 127, input points: 7920, current compute: 12.729 ms, average compute: 22.496 ms
+[INFO] [1793164338.887291257]: Processed dynfilter frame 128, input points: 7920, current compute: 19.814 ms, average compute: 22.476 ms
+[INFO] [1793164338.988738019]: Processed dynfilter frame 129, input points: 7920, current compute: 11.938 ms, average compute: 22.395 ms
+[INFO] [1793164339.078349575]: Processed dynfilter frame 130, input points: 7920, current compute: 11.337 ms, average compute: 22.310 ms
+[INFO] [1793164339.179562703]: Processed dynfilter frame 131, input points: 7920, current compute: 12.242 ms, average compute: 22.234 ms
+[INFO] [1793164339.279058093]: Processed dynfilter frame 132, input points: 7920, current compute: 11.704 ms, average compute: 22.155 ms
+[INFO] [1793164339.378693895]: Processed dynfilter frame 133, input points: 7920, current compute: 11.346 ms, average compute: 22.074 ms
+[INFO] [1793164339.479604538]: Processed dynfilter frame 134, input points: 7920, current compute: 12.093 ms, average compute: 22.000 ms
+[INFO] [1793164339.579532071]: Processed dynfilter frame 135, input points: 7920, current compute: 11.897 ms, average compute: 21.926 ms
+[INFO] [1793164339.679125313]: Processed dynfilter frame 136, input points: 7920, current compute: 11.598 ms, average compute: 21.851 ms
+[INFO] [1793164339.779701242]: Processed dynfilter frame 137, input points: 7920, current compute: 12.029 ms, average compute: 21.779 ms
+[INFO] [1793164339.890317105]: Processed dynfilter frame 138, input points: 7920, current compute: 12.619 ms, average compute: 21.713 ms
+[INFO] [1793164339.980357404]: Processed dynfilter frame 139, input points: 7920, current compute: 13.140 ms, average compute: 21.652 ms
+[INFO] [1793164340.078676163]: Processed dynfilter frame 140, input points: 7920, current compute: 11.614 ms, average compute: 21.581 ms
+[INFO] [1793164340.178977296]: Processed dynfilter frame 141, input points: 7920, current compute: 11.924 ms, average compute: 21.513 ms
+[INFO] [1793164340.278903672]: Processed dynfilter frame 142, input points: 7920, current compute: 11.665 ms, average compute: 21.444 ms
+[INFO] [1793164340.378310195]: Processed dynfilter frame 143, input points: 7920, current compute: 11.216 ms, average compute: 21.373 ms
+[INFO] [1793164340.478254469]: Processed dynfilter frame 144, input points: 7920, current compute: 11.203 ms, average compute: 21.303 ms
+[INFO] [1793164340.604638842]: Processed dynfilter frame 145, input points: 7769, current compute: 36.920 ms, average compute: 21.410 ms
+[INFO] [1793164340.756595859]: Processed dynfilter frame 146, input points: 7705, current compute: 88.984 ms, average compute: 21.870 ms
+[INFO] [1793164340.861997510]: Processed [WARN] [1793164341.766815540]: M-detector pending queue is full; dropped the oldest frame. total_dropped=1 capacity=2
+dynfilter frame 147, input points: 7765, current compute: 94.870 ms, average compute: 22.363 ms
+[INFO] [1793164340.947757124]: Processed dynfilter frame 148, input points: 7757, current compute: 80.470 ms, average compute: 22.753 ms
+[INFO] [1793164341.052459598]: Processed dynfilter frame 149, input points: 7762, current compute: 85.069 ms, average compute: 23.168 ms
+[INFO] [1793164341.153166807]: Processed dynfilter frame 150, input points: 7760, current compute: 85.883 ms, average compute: 23.584 ms
+[INFO] [1793164341.247539473]: Processed dynfilter frame 151, input points: 7761, current compute: 80.395 ms, average compute: 23.957 ms
+[INFO] [1793164341.344119617]: Processed dynfilter frame 152, input points: 7762, current compute: 76.779 ms, average compute: 24.303 ms
+[INFO] [1793164341.618670166]: Processed dynfilter frame 153, input points: 7721, current compute: 250.360 ms, average compute: 25.771 ms
+[INFO] [1793164342.079561953]: Processed dynfilter frame 154, input points: 7749, current compute: 460.702 ms, average compute: 28.577 ms
+[INFO] [1793164342.228125406]: Processed dynfilter frame 155, input points: 7883, current compute: 148.375 ms, average compute: 29.344 ms
+[INFO] [1793164342.419771785]: Processed dynfilter frame 156, input points: 7830, current compute: 191.456 ms, average compute: 30.377 ms
+[INFO] [1793164342.571813356]: Processed dynfilter frame 157, input points: 7920, current compute: 151.852 ms, average compute: 31.146 ms
+[INFO] [1793164342.708448003]: Processed dynfilter frame 158, input points: 7920, current compute: 136.438 ms, average compute: 31.808 ms
+[INFO] [1793164342.819253552]: Processed dynfilter frame 159, input points: 7920, current compute: 110.614 ms, average compute: 32.301 ms
+[INFO] [1793164342.945500958]: Processed dynfilter frame 160, input points: 7920, current compute: 126.057 ms, average compute: 32.883 ms
+[INFO] [1793164343.048072205]: Processed dynfilter frame 161, input points: 7920, current compute: 102.378 ms, average compute: 33.312 ms
+[INFO] [1793164343.144417520]: Processed dynfilter frame 162, input points: 7920, current compute: 96.149 ms, average compute: 33.697 ms
+[INFO] [1793164343.240522206]: Processed dynfilter frame 163, input points: 7920, current compute: 95.913 ms, average compute: 34.077 ms
+[INFO] [1793164343.334960887]: Processed dynfilter frame 164, input points: 7920, current compute: 94.234 ms, average compute: 34.441 ms
+[INFO] [1793164343.427561135]: Processed dynfilter frame 165, input points: 7920, current compute: 92.375 ms, average compute: 34.790 ms
+[INFO] [1793164343.522457317]: Processed dynfilter frame 166, input points: 7920, current compute: 94.702 ms, average compute: 35.149 ms
+[INFO] [1793164343.620945324]: Processed dynfilter frame 167, input points: 7920, current compute: 98.295 ms, average compute: 35.525 ms
+[INFO] [1793164343.703660130]: Processed dynfilter frame 168, input points: 7920, current compute: 82.522 ms, average compute: 35.803 ms
+[INFO] [1793164343.777981950]: Processed dynfilter frame 169, input points: 7920, current compute: 74.126 ms, average compute: 36.029 ms
+[INFO] [1793164343.843039827]: Processed dynfilter frame 170, input points: 7920, current compute: 64.843 ms, average compute: 36.197 ms
+[INFO] [1793164343.904423484]: Processed dynfilter frame 171, input points: 7920, current compute: 61.185 ms, average compute: 36.342 ms
+[INFO] [1793164343.967901088]: Processed dynfilter frame 172, input points: 7920, current compute: 63.275 ms, average compute: 36.498 ms
+[INFO] [1793164344.032856843]: Processed dynfilter frame 173, input points: 7920, current compute: 64.765 ms, average compute: 36.660 ms
+[INFO] [1793164344.127985078]: Processed dynfilter frame 174, input points: 7920, current compute: 60.628 ms, average compute: 36.797 ms
+[INFO] [1793164344.224700463]: Processed dynfilter frame 175, input points: 7920, current compute: 57.262 ms, average compute: 36.914 ms
+[INFO] [1793164344.337848337]: Processed dynfilter frame 176, input points: 7920, current compute: 69.443 ms, average compute: 37.097 ms
+[INFO] [1793164344.439046800]: Processed dynfilter frame 177, input points: 7920, current compute: 60.849 ms, average compute: 37.231 ms
+[INFO] [1793164344.516073522]: Processed dynfilter frame 178, input points: 7920, current compute: 39.092 ms, average compute: 37.241 ms
+[INFO] [1793164344.617048253]: Processed dynfilter frame 179, input points: 7920, current compute: 40.009 ms, average compute: 37.257 ms
+[INFO] [1793164344.707655013]: Processed dynfilter frame 180, input points: 7920, current compute: 40.432 ms, average compute: 37.274 ms
+[INFO] [1793164344.824544990]: Processed dynfilter frame 181, input points: 7920, current compute: 56.196 ms, average compute: 37.378 ms
+[INFO] [1793164344.915612323]: Processed dynfilter frame 182, input points: 7920, current compute: 38.508 ms, average compute: 37.384 ms
+[INFO] [1793164344.998654381]: Processed dynfilter frame 183, input points: 7920, current compute: 31.185 ms, average compute: 37.351 ms
+[INFO] [1793164345.099731711]: Processed dynfilter frame 184, input points: 7920, current compute: 31.763 ms, average compute: 37.320 ms
+[INFO] [1793164345.213396777]: Processed dynfilter frame 185, input points: 7920, current compute: 45.123 ms, average compute: 37.362 ms
+[INFO] [1793164345.289822839]: Processed dynfilter frame 186, input points: 7920, current compute: 22.737 ms, average compute: 37.284 ms
+[INFO] [1793164345.409846886]: Processed dynfilter frame 187, input points: 7920, current compute: 41.624 ms, average compute: 37.307 ms
+[INFO] [1793164345.490737916]: Processed dynfilter frame 188, input points: 7920, current compute: 23.665 ms, average compute: 37.235 ms
+[INFO] [1793164345.595934754]: Processed dynfilter frame 189, input points: 7920, current compute: 28.420 ms, average compute: 37.189 ms
+[INFO] [1793164345.700115553]: Processed dynfilter frame 190, input points: 7920, current compute: 23.307 ms, average compute: 37.116 ms
+[INFO] [1793164345.801650536]: Processed dynfilter frame 191, input points: 7920, current compute: 33.374 ms, average compute: 37.097 ms
+[INFO] [1793164345.900003032]: Processed dynfilter frame 192, input points: 7920, current compute: 31.233 ms, average compute: 37.066 ms
+[INFO] [1793164346.003090804]: Processed dynfilter frame 193, input points: 7920, current compute: 34.238 ms, average compute: 37.052 ms
+[INFO] [1793164346.094455243]: Processed dynfilter frame 194, input points: 7920, current compute: 25.524 ms, average compute: 36.992 ms
+[INFO] [1793164346.195061495]: Processed dynfilter frame 195, input points: 7920, current compute: 26.038 ms, average compute: 36.937 ms
+[INFO] [1793164346.294447675]: Processed dynfilter frame 196, input points: 7920, current compute: 25.853 ms, average compute: 36.880 ms
+[INFO] [1793164346.394340019]: Processed dynfilter frame 197, input points: 7920, current compute: 25.845 ms, average compute: 36.825 ms
+[INFO] [1793164346.488369636]: Processed dynfilter frame 198, input points: 7920, current compute: 19.791 ms, average compute: 36.739 ms
+[INFO] [1793164346.578577577]: Processed dynfilter frame 199, input points: 7920, current compute: 11.357 ms, average compute: 36.612 ms
+[INFO] [1793164346.694630690]: Processed dynfilter frame 200, input points: 7920, current compute: 26.067 ms, average compute: 36.560 ms
+[INFO] [1793164346.797144424]: Processed dynfilter frame 201, input points: 7920, current compute: 28.431 ms, average compute: 36.519 ms
+[INFO] [1793164346.895772660]: Processed dynfilter frame 202, input points: 7920, current compute: 27.057 ms, average compute: 36.473 ms
+[INFO] [1793164346.995463045]: Processed dynfilter frame 203, input points: 7920, current compute: 26.721 ms, average compute: 36.425 ms
+[INFO] [1793164347.079246427]: Processed dynfilter frame 204, input points: 7920, current compute: 11.878 ms, average compute: 36.305 ms
+[INFO] [1793164347.179576645]: Processed dynfilter frame 205, input points: 7920, current compute: 11.391 ms, average compute: 36.184 ms
+[INFO] [1793164347.295405085]: Processed dynfilter frame 206, input points: 7920, current compute: 26.575 ms, average compute: 36.138 ms
+[INFO] [1793164347.393331662]: Processed dynfilter frame 207, input points: 7920, current compute: 24.812 ms, average compute: 36.083 ms
+[INFO] [1793164347.479270072]: Processed dynfilter frame 208, input points: 7920, current compute: 12.047 ms, average compute: 35.968 ms
+[INFO] [1793164347.596712066]: Processed dynfilter frame 209, input points: 7920, current compute: 27.836 ms, average compute: 35.930 ms
+[INFO] [1793164347.693754724]: Processed dynfilter frame 210, input points: 7920, current compute: 25.067 ms, average compute: 35.878 ms
+[INFO] [1793164347.778618019]: Processed dynfilter frame 211, input points: 7920, current compute: 11.335 ms, average compute: 35.762 ms
+[INFO] [1793164347.878684705]: Processed dynfilter frame 212, input points: 7920, current compute: 11.432 ms, average compute: 35.648 ms
+[INFO] [1793164347.981761304]: Processed dynfilter frame 213, input points: 7920, current compute: 14.551 ms, average compute: 35.550 ms
+[INFO] [1793164348.096307700]: Processed dynfilter frame 214, input points: 7920, current compute: 27.492 ms, average compute: 35.512 ms
+[INFO] [1793164348.194857343]: Processed dynfilter frame 215, input points: 7920, current compute: 26.222 ms, average compute: 35.469 ms
+[INFO] [1793164348.297470524]: Processed dynfilter frame 216, input points: 7920, current compute: 28.248 ms, average compute: 35.436 ms
+[INFO] [1793164348.380218584]: Processed dynfilter frame 217, input points: 7920, current compute: 12.528 ms, average compute: 35.331 ms
+[INFO] [1793164348.480389879]: Processed dynfilter frame 218, input points: 7920, current compute: 12.430 ms, average compute: 35.226 ms
+[INFO] [1793164348.578781923]: Processed dynfilter frame 219, input points: 7920, current compute: 11.109 ms, average compute: 35.117 ms
+[INFO] [1793164348.694587607]: Processed dynfilter frame 220, input points: 7920, current compute: 25.593 ms, average compute: 35.073 ms
+[INFO] [1793164348.779970417]: Processed dynfilter frame 221, input points: 7920, current compute: 12.337 ms, average compute: 34.971 ms
+[INFO] [1793164348.878982013]: Processed dynfilter frame 222, input points: 7920, current compute: 11.219 ms, average compute: 34.865 ms
+[INFO] [1793164348.983219425]: Processed dynfilter frame 223, input points: 7920, current compute: 14.088 ms, average compute: 34.772 ms
+[INFO] [1793164349.095872272]: Processed dynfilter frame 224, input points: 7920, current compute: 26.728 ms, average compute: 34.736 ms
+[INFO] [1793164349.181943204]: Processed dynfilter frame 225, input points: 7920, current compute: 14.134 ms, average compute: 34.645 ms
+[INFO] [1793164349.295329730]: Processed dynfilter frame 226, input points: 7920, current compute: 26.329 ms, average compute: 34.608 ms
+[INFO] [1793164349.395181519]: Processed dynfilter frame 227, input points: 7920, current compute: 26.020 ms, average compute: 34.571 ms
+[INFO] [1793164349.482105491]: Processed dynfilter frame 228, input points: 7920, current compute: 14.289 ms, average compute: 34.482 ms
+[INFO] [1793164349.582675098]: Processed dynfilter frame 229, input points: 7920, current compute: 14.747 ms, average compute: 34.396 ms
+[INFO] [1793164349.694879955]: Processed dynfilter frame 230, input points: 7920, current compute: 26.428 ms, average compute: 34.362 ms
+[INFO] [1793164349.781627947]: Processed dynfilter frame 231, input points: 7920, current compute: 14.149 ms, average compute: 34.275 ms
+[INFO] [1793164349.895101542]: Processed dynfilter frame 232, input points: 7920, current compute: 26.300 ms, average compute: 34.240 ms
+[INFO] [1793164349.981567096]: Processed dynfilter frame 233, input points: 7920, current compute: 14.191 ms, average compute: 34.155 ms
+[INFO] [1793164350.094691863]: Processed dynfilter frame 234, input points: 7920, current compute: 25.958 ms, average compute: 34.120 ms
+[INFO] [1793164350.194731760]: Processed dynfilter frame 235, input points: 7920, current compute: 25.887 ms, average compute: 34.085 ms
+[INFO] [1793164350.279880508]: Processed dynfilter frame 236, input points: 7920, current compute: 12.241 ms, average compute: 33.993 ms
+[INFO] [1793164350.396132965]: Processed dynfilter frame 237, input points: 7920, current compute: 27.137 ms, average compute: 33.964 ms
+[INFO] [1793164350.478448228]: Processed dynfilter frame 238, input points: 7920, current compute: 10.966 ms, average compute: 33.868 ms
+[INFO] [1793164350.579169890]: Processed dynfilter frame 239, input points: 7920, current compute: 11.632 ms, average compute: 33.775 ms
+[INFO] [1793164350.695425481]: Processed dynfilter frame 240, input points: 7920, current compute: 26.131 ms, average compute: 33.743 ms
+[INFO] [1793164350.781460606]: Processed dynfilter frame 241, input points: 7920, current compute: 13.567 ms, average compute: 33.660 ms
+[INFO] [1793164350.882103716]: Processed dynfilter frame 242, input points: 7920, current compute: 14.251 ms, average compute: 33.580 ms
+[INFO] [1793164350.995727221]: Processed dynfilter frame 243, input points: 7920, current compute: 26.505 ms, average compute: 33.551 ms
+[INFO] [1793164351.079063516]: Processed dynfilter frame 244, input points: 7920, current compute: 11.401 ms, average compute: 33.461 ms
+[INFO] [1793164351.178815874]: Processed dynfilter frame 245, input points: 7920, current compute: 11.429 ms, average compute: 33.371 ms
+[INFO] [1793164351.287782778]: Processed dynfilter frame 246, input points: 7920, current compute: 20.139 ms, average compute: 33.318 ms
+[INFO] [1793164351.383007434]: Processed dynfilter frame 247, input points: 7920, current compute: 14.955 ms, average compute: 33.244 ms
+[INFO] [1793164351.479338515]: Processed dynfilter frame 248, input points: 7920, current compute: 11.807 ms, average compute: 33.157 ms
+[INFO] [1793164351.579199481]: Processed dynfilter frame 249, input points: 7920, current compute: 11.866 ms, average compute: 33.072 ms
+[INFO] [1793164351.688229496]: Processed dynfilter frame 250, input points: 7920, current compute: 11.377 ms, average compute: 32.986 ms
+[INFO] [1793164351.797271407]: Processed dynfilter frame 251, input points: 7920, current compute: 19.690 ms, average compute: 32.933 ms
+[INFO] [1793164351.879822197]: Processed dynfilter frame 252, input points: 7920, current compute: 12.059 ms, average compute: 32.851 ms
+[INFO] [1793164351.996905603]: Processed dynfilter frame 253, input points: 7920, current compute: 27.633 ms, average compute: 32.830 ms
+[INFO] [1793164352.079655342]: Processed dynfilter frame 254, input points: 7920, current compute: 11.881 ms, average compute: 32.748 ms
+[INFO] [1793164352.180404404]: Processed dynfilter frame 255, input points: 7920, current compute: 12.457 ms, average compute: 32.669 ms
+[INFO] [1793164352.279502641]: Processed dynfilter frame 256, input points: 7920, current compute: 11.905 ms, average compute: 32.588 ms
+[INFO] [1793164352.380844297]: Processed dynfilter frame 257, input points: 7920, current compute: 13.143 ms, average compute: 32.512 ms
+[INFO] [1793164352.479157193]: Processed dynfilter frame 258, input points: 7920, current compute: 11.628 ms, average compute: 32.432 ms
+[INFO] [1793164352.582633585]: Processed dynfilter frame 259, input points: 7920, current compute: 15.156 ms, average compute: 32.365 ms
+[INFO] [1793164352.684209572]: Processed dynfilter frame 260, input points: 7920, current compute: 16.611 ms, average compute: 32.305 ms
+[INFO] [1793164352.779640492]: Processed dynfilter frame 261, input points: 7920, current compute: 12.007 ms, average compute: 32.228 ms
+[INFO] [1793164352.879343968]: Processed dynfilter frame 262, input points: 7920, current compute: 11.815 ms, average compute: 32.150 ms
+[INFO] [1793164352.979481838]: Processed dynfilter frame 263, input points: 7920, current compute: 11.932 ms, average compute: 32.073 ms
+[INFO] [1793164353.079842442]: Processed dynfilter frame 264, input points: 7920, current compute: 12.210 ms, average compute: 31.998 ms
+[INFO] [1793164353.179886709]: Processed dynfilter frame 265, input points: 7920, current compute: 12.445 ms, average compute: 31.925 ms
+[INFO] [1793164353.279768258]: Processed dynfilter frame 266, input points: 7920, current compute: 12.300 ms, ave[WARN] [1793164354.167087851]: M-detector pending queue is full; dropped the oldest frame. total_dropped=7 capacity=2
+[WARN] [1793164355.976829817]: M-detector pending queue is full; dropped the oldest frame. total_dropped=15 capacity=2
+[WARN] [1793164357.277095383]: M-detector pending queue is full; dropped the oldest frame. total_dropped=23 capacity=2
+[WARN] [1793164358.376661164]: M-detector pending queue is full; dropped the oldest frame. total_dropped=29 capacity=2
+[WARN] [1793164359.376798738]: M-detector pending queue is full; dropped the oldest frame. total_dropped=36 capacity=2
+rage compute: 31.851 ms
+[INFO] [1793164353.379231905]: Processed dynfilter frame 267, input points: 7920, current compute: 11.759 ms, average compute: 31.776 ms
+[INFO] [1793164353.479220978]: Processed dynfilter frame 268, input points: 7920, current compute: 11.776 ms, average compute: 31.702 ms
+[INFO] [1793164353.580067909]: Processed dynfilter frame 269, input points: 7920, current compute: 12.629 ms, average compute: 31.631 ms
+[INFO] [1793164353.679036932]: Processed dynfilter frame 270, input points: 7920, current compute: 11.587 ms, average compute: 31.557 ms
+[INFO] [1793164353.795452469]: Processed dynfilter frame 271, input points: 7717, current compute: 27.943 ms, average compute: 31.544 ms
+[INFO] [1793164354.375746826]: Processed dynfilter frame 272, input points: 7826, current compute: 508.529 ms, average compute: 33.291 ms
+[INFO] [1793164355.035206070]: Processed dynfilter frame 273, input points: 8171, current compute: 659.263 ms, average compute: 35.576 ms
+[INFO] [1793164355.048731657]: Processed dynfilter frame 274, input points: 7920, current compute: 13.337 ms, average compute: 35.495 ms
+[INFO] [1793164355.106405704]: Processed dynfilter frame 275, input points: 7728, current compute: 57.488 ms, average compute: 35.575 ms
+[INFO] [1793164355.157208916]: Processed dynfilter frame 276, input points: 7775, current compute: 50.614 ms, average compute: 35.629 ms
+[INFO] [1793164355.317543450]: Processed dynfilter frame 277, input points: 7725, current compute: 150.408 ms, average compute: 36.042 ms
+[INFO] [1793164355.400449682]: Processed dynfilter frame 278, input points: 7728, current compute: 82.630 ms, average compute: 36.209 ms
+[INFO] [1793164355.464471248]: Processed dynfilter frame 279, input points: 7770, current compute: 63.828 ms, average compute: 36.308 ms
+[INFO] [1793164355.525629393]: Processed dynfilter frame 280, input points: 7810, current compute: 48.761 ms, average compute: 36.352 ms
+[INFO] [1793164355.657517885]: Processed dynfilter frame 281, input points: 7774, current compute: 80.533 ms, average compute: 36.509 ms
+[INFO] [1793164356.004199014]: Processed dynfilter frame 282, input points: 7753, current compute: 327.187 ms, average compute: 37.536 ms
+[INFO] [1793164356.442288742]: Processed dynfilter frame 283, input points: 7717, current compute: 437.901 ms, average compute: 38.945 ms
+[INFO] [1793164356.938294011]: Processed dynfilter frame 284, input points: 7730, current compute: 495.819 ms, average compute: 40.548 ms
+[INFO] [1793164357.061585548]: Processed dynfilter frame 285, input points: 7690, current compute: 123.103 ms, average compute: 40.837 ms
+[INFO] [1793164357.169573627]: Processed dynfilter frame 286, input points: 7694, current compute: 107.796 ms, average compute: 41.070 ms
+[INFO] [1793164357.355468532]: Processed dynfilter frame 287, input points: 7704, current compute: 185.691 ms, average compute: 41.573 ms
+[INFO] [1793164357.472891552]: Processed dynfilter frame 288, input points: 7694, current compute: 117.234 ms, average compute: 41.834 ms
+[INFO] [1793164357.667679665]: Processed dynfilter frame 289, input points: 7810, current compute: 194.601 ms, average compute: 42.361 ms
+[INFO] [1793164357.907722337]: Processed dynfilter frame 290, input points: 7826, current compute: 239.852 ms, average compute: 43.040 ms
+[INFO] [1793164358.196692582]: Processed dynfilter frame 291, input points: 7947, current compute: 288.780 ms, average compute: 43.881 ms
+[INFO] [1793164358.524377207]: Processed dynfilter frame 292, input points: 7967, current compute: 327.496 ms, average compute: 44.849 ms
+[INFO] [1793164358.831608971]: Processed dynfilter frame 293, input points: 8010, current compute: 307.039 ms, average compute: 45.741 ms
+[INFO] [1793164359.143840768]: Processed dynfilter frame 294, input points: 8148, current compute: 312.042 ms, average compute: 46.644 ms
+[INFO] [1793164359.489277932]: Processed dynfilter frame 295, input points: 9151, current compute: 345.224 ms, average compute: 47.653 ms
+[INFO] [1793164359.835664856]: Processed dynfilter frame 296, input points: 8700, [WARN] [1793164360.576649581]: M-detector pending queue is full; dropped the oldest frame. total_dropped=44 capacity=2
+[WARN] [1793164361.676866071]: M-detector pending queue is full; dropped the oldest frame. total_dropped=51 capacity=2
+[WARN] [1793164362.876676868]: M-detector pending queue is full; dropped the oldest frame. total_dropped=59 capacity=2
+[WARN] [1793164363.876674877]: M-detector pending queue is full; dropped the oldest frame. total_dropped=65 capacity=2
+[WARN] [1793164365.067195912]: M-detector pending queue is full; dropped the oldest frame. total_dropped=72 capacity=2
+[WARN] [1793164366.167283892]: M-detector pending queue is full; dropped the oldest frame. total_dropped=78 capacity=2
+current compute: 346.186 ms, average compute: 48.658 ms
+[INFO] [1793164360.148744080]: Processed dynfilter frame 297, input points: 8111, current compute: 312.843 ms, average compute: 49.544 ms
+[INFO] [1793164360.445371759]: Processed dynfilter frame 298, input points: 7999, current compute: 296.360 ms, average compute: 50.370 ms
+[INFO] [1793164360.719471716]: Processed dynfilter frame 299, input points: 7963, current compute: 273.834 ms, average compute: 51.115 ms
+[INFO] [1793164361.002332750]: Processed dynfilter frame 300, input points: 7945, current compute: 282.664 ms, average compute: 51.884 ms
+[INFO] [1793164361.283176814]: Processed dynfilter frame 301, input points: 7940, current compute: 280.635 ms, average compute: 52.641 ms
+[INFO] [1793164361.555836347]: Processed dynfilter frame 302, input points: 7934, current compute: 272.467 ms, average compute: 53.367 ms
+[INFO] [1793164361.823346707]: Processed dynfilter frame 303, input points: 7931, current compute: 267.313 ms, average compute: 54.071 ms
+[INFO] [1793164362.128603130]: Processed dynfilter frame 304, input points: 7928, current compute: 305.045 ms, average compute: 54.893 ms
+[INFO] [1793164362.413693383]: Processed dynfilter frame 305, input points: 7927, current compute: 284.829 ms, average compute: 55.645 ms
+[INFO] [1793164362.717480491]: Processed dynfilter frame 306, input points: 7925, current compute: 303.591 ms, average compute: 56.453 ms
+[INFO] [1793164362.971642085]: Processed dynfilter frame 307, input points: 7925, current compute: 253.971 ms, average compute: 57.094 ms
+[INFO] [1793164363.230446476]: Processed dynfilter frame 308, input points: 7925, current compute: 258.605 ms, average compute: 57.746 ms
+[INFO] [1793164363.474167651]: Processed dynfilter frame 309, input points: 7924, current compute: 243.521 ms, average compute: 58.345 ms
+[INFO] [1793164363.721777518]: Processed dynfilter frame 310, input points: 7922, current compute: 247.406 ms, average compute: 58.953 ms
+[INFO] [1793164363.973522829]: Processed dynfilter frame 311, input points: 7922, current compute: 251.551 ms, average compute: 59.570 ms
+[INFO] [1793164364.220677231]: Processed dynfilter frame 312, input points: 7922, current compute: 246.957 ms, average compute: 60.169 ms
+[INFO] [1793164364.455986753]: Processed dynfilter frame 313, input points: 7922, current compute: 235.114 ms, average compute: 60.726 ms
+[INFO] [1793164364.685560393]: Processed dynfilter frame 314, input points: 7922, current compute: 229.379 ms, average compute: 61.262 ms
+[INFO] [1793164364.892810120]: Processed dynfilter frame 315, input points: 7922, current compute: 207.043 ms, average compute: 61.723 ms
+[INFO] [1793164365.097207639]: Processed dynfilter frame 316, input points: 7922, current compute: 204.204 ms, average compute: 62.172 ms
+[INFO] [1793164365.302988784]: Processed dynfilter frame 317, input points: 7920, current compute: 205.588 ms, average compute: 62.623 ms
+[INFO] [1793164365.518852819]: Processed dynfilter frame 318, input points: 7920, current compute: 215.668 ms, average compute: 63.103 ms
+[INFO] [1793164365.742430309]: Processed dynfilter frame 319, input points: 7920, current compute: 223.366 ms, average compute: 63.604 ms
+[INFO] [1793164365.968577591]: Processed dynfilter frame 320, input points: 7920, current compute: 225.954 ms, average compute: 64.110 ms
+[INFO] [1793164366.180543104]: Processed dynfilter frame 321, input points: 7920, current compute: 211.774 ms, average compute: 64.568 ms
+[INFO] [1793164366.381920266]: Processed dynfilter frame 322, input points: 7920, current compute: 201.182 ms, average compute: 64.991 ms
+[INFO] [1793164366.594820780]: Processed dynfilter frame 323, input points: 7920, current compute: 212.704 ms, average compute: 65.447 ms
+[INFO] [1793164366.796776393]: Processed dynfilter frame 324, input points: 7920, current compute: 201.742 ms, average compute: 65.867 ms
+[INFO] [1793164366.992068755]: Processed dynfilter frame 325, input points: 7920, current compute: 195.098 ms, average compute: 66.263 ms
+[INFO] [1793164367.181647152]: Process[WARN] [1793164367.367181995]: M-detector pending queue is full; dropped the oldest frame. total_dropped=84 capacity=2
+[WARN] [1793164368.567246541]: M-detector pending queue is full; dropped the oldest frame. total_dropped=89 capacity=2
+[WARN] [1793164370.567423293]: M-detector pending queue is full; dropped the oldest frame. total_dropped=91 capacity=2
+[WARN] [1793164371.767505546]: M-detector pending queue is full; dropped the oldest frame. total_dropped=101 capacity=2
+ed dynfilter frame 326, input points: 7920, current compute: 189.384 ms, average compute: 66.640 ms
+[INFO] [1793164367.371198912]: Processed dynfilter frame 327, input points: 7920, current compute: 189.322 ms, average compute: 67.014 ms
+[INFO] [1793164367.561391350]: Processed dynfilter frame 328, input points: 7920, current compute: 190.001 ms, average compute: 67.387 ms
+[INFO] [1793164367.752660840]: Processed dynfilter frame 329, input points: 7920, current compute: 191.069 ms, average compute: 67.762 ms
+[INFO] [1793164367.927461540]: Processed dynfilter frame 330, input points: 7920, current compute: 174.607 ms, average compute: 68.085 ms
+[INFO] [1793164368.089047576]: Processed dynfilter frame 331, input points: 7920, current compute: 161.394 ms, average compute: 68.366 ms
+[INFO] [1793164368.249984790]: Processed dynfilter frame 332, input points: 7920, current compute: 160.743 ms, average compute: 68.643 ms
+[INFO] [1793164368.408559695]: Processed dynfilter frame 333, input points: 7920, current compute: 158.381 ms, average compute: 68.912 ms
+[INFO] [1793164368.568762623]: Processed dynfilter frame 334, input points: 7920, current compute: 160.020 ms, average compute: 69.184 ms
+[INFO] [1793164368.709675097]: Processed dynfilter frame 335, input points: 7920, current compute: 140.723 ms, average compute: 69.397 ms
+[INFO] [1793164368.845782450]: Processed dynfilter frame 336, input points: 7920, current compute: 135.909 ms, average compute: 69.594 ms
+[INFO] [1793164368.991961885]: Processed dynfilter frame 337, input points: 7920, current compute: 145.984 ms, average compute: 69.820 ms
+[INFO] [1793164369.097480217]: Processed dynfilter frame 338, input points: 7920, current compute: 105.327 ms, average compute: 69.925 ms
+[INFO] [1793164369.191341242]: Processed dynfilter frame 339, input points: 7920, current compute: 93.668 ms, average compute: 69.995 ms
+[INFO] [1793164369.285080379]: Processed dynfilter frame 340, input points: 7920, current compute: 93.549 ms, average compute: 70.064 ms
+[INFO] [1793164369.377489298]: Processed dynfilter frame 341, input points: 7920, current compute: 92.181 ms, average compute: 70.129 ms
+[INFO] [1793164369.469547221]: Processed dynfilter frame 342, input points: 7920, current compute: 91.865 ms, average compute: 70.192 ms
+[INFO] [1793164369.558695949]: Processed dynfilter frame 343, input points: 7920, current compute: 88.961 ms, average compute: 70.247 ms
+[INFO] [1793164369.651892587]: Processed dynfilter frame 344, input points: 7920, current compute: 93.005 ms, average compute: 70.313 ms
+[INFO] [1793164369.741740210]: Processed dynfilter frame 345, input points: 7920, current compute: 89.654 ms, average compute: 70.369 ms
+[INFO] [1793164369.830499071]: Processed dynfilter frame 346, input points: 7920, current compute: 88.567 ms, average compute: 70.421 ms
+[INFO] [1793164369.900812490]: Processed dynfilter frame 347, input points: 7920, current compute: 70.117 ms, average compute: 70.420 ms
+[INFO] [1793164369.971885673]: Processed dynfilter frame 348, input points: 7920, current compute: 70.876 ms, average compute: 70.421 ms
+[INFO] [1793164370.046212514]: Processed dynfilter frame 349, input points: 7920, current compute: 74.132 ms, average compute: 70.432 ms
+[INFO] [1793164370.140310437]: Processed dynfilter frame 350, input points: 7920, current compute: 71.363 ms, average compute: 70.435 ms
+[INFO] [1793164370.287242675]: Processed dynfilter frame 351, input points: 7715, current compute: 118.267 ms, average compute: 70.571 ms
+[INFO] [1793164370.917123263]: Processed dynfilter frame 352, input points: 8185, current compute: 629.683 ms, average compute: 72.154 ms
+[INFO] [1793164371.616369519]: Processed dynfilter frame 353, input points: 8104, current compute: 699.054 ms, average compute: 73.925 ms
+[INFO] [1793164371.795508955]: Processed dynfilter frame 354, input points: 7761, current compute: 178.950 ms, average compute: 74.221 ms
+[INFO] [1793164371.890851440]: Processed dynfilter frame 355, input points: 7772, current compute: 95.118 ms, average compute: 74.280 ms
+[INFO] [WARN] [1793164373.967471550]: M-detector pending queue is full; dropped the oldest frame. total_dropped=104 capacity=2
+[WARN] [1793164375.067613164]: M-detector pending queue is full; dropped the oldest frame. total_dropped=114 capacity=2
+[1793164371.961365767]: Processed dynfilter frame 356, input points: 7794, current compute: 70.126 ms, average compute: 74.268 ms
+[INFO] [1793164372.088671275]: Processed dynfilter frame 357, input points: 7793, current compute: 127.063 ms, average compute: 74.416 ms
+[INFO] [1793164372.235028845]: Processed dynfilter frame 358, input points: 7712, current compute: 146.132 ms, average compute: 74.615 ms
+[INFO] [1793164372.486175824]: Processed dynfilter frame 359, input points: 7662, current compute: 250.763 ms, average compute: 75.105 ms
+[INFO] [1793164372.583662169]: Processed dynfilter frame 360, input points: 7882, current compute: 97.294 ms, average compute: 75.166 ms
+[INFO] [1793164372.680297234]: Processed dynfilter frame 361, input points: 7920, current compute: 96.443 ms, average compute: 75.225 ms
+[INFO] [1793164372.763862317]: Processed dynfilter frame 362, input points: 7920, current compute: 83.372 ms, average compute: 75.247 ms
+[INFO] [1793164372.859573910]: Processed dynfilter frame 363, input points: 7920, current compute: 95.508 ms, average compute: 75.303 ms
+[INFO] [1793164372.942288936]: Processed dynfilter frame 364, input points: 7920, current compute: 82.523 ms, average compute: 75.323 ms
+[INFO] [1793164373.040969395]: Processed dynfilter frame 365, input points: 7920, current compute: 98.485 ms, average compute: 75.386 ms
+[INFO] [1793164373.133590116]: Processed dynfilter frame 366, input points: 7920, current compute: 92.426 ms, average compute: 75.433 ms
+[INFO] [1793164373.207307715]: Processed dynfilter frame 367, input points: 7920, current compute: 73.524 ms, average compute: 75.427 ms
+[INFO] [1793164373.282089068]: Processed dynfilter frame 368, input points: 7920, current compute: 74.583 ms, average compute: 75.425 ms
+[INFO] [1793164373.359490907]: Processed dynfilter frame 369, input points: 7920, current compute: 77.205 ms, average compute: 75.430 ms
+[INFO] [1793164373.438715686]: Processed dynfilter frame 370, input points: 7920, current compute: 71.058 ms, average compute: 75.418 ms
+[INFO] [1793164373.539203663]: Processed dynfilter frame 371, input points: 7920, current compute: 68.673 ms, average compute: 75.400 ms
+[INFO] [1793164373.752320339]: Processed dynfilter frame 372, input points: 7723, current compute: 181.720 ms, average compute: 75.685 ms
+[INFO] [1793164374.436042927]: Processed dynfilter frame 373, input points: 8186, current compute: 683.512 ms, average compute: 77.310 ms
+[INFO] [1793164375.071244097]: Processed dynfilter frame 374, input points: 7923, current compute: 635.021 ms, average compute: 78.797 ms
+[INFO] [1793164375.250003157]: Processed dynfilter frame 375, input points: 7733, current compute: 178.568 ms, average compute: 79.063 ms
+[INFO] [1793164375.389741949]: Processed dynfilter frame 376, input points: 7765, current compute: 139.531 ms, average compute: 79.223 ms
+[INFO] [1793164375.548505419]: Processed dynfilter frame 377, input points: 7795, current compute: 158.570 ms, average compute: 79.433 ms
+[INFO] [1793164375.672017730]: Processed dynfilter frame 378, input points: 7722, current compute: 123.321 ms, average compute: 79.549 ms
+[INFO] [1793164375.800767979]: Processed dynfilter frame 379, input points: 7711, current compute: 128.559 ms, average compute: 79.678 ms
+[INFO] [1793164375.900885961]: Processed dynfilter frame 380, input points: 7820, current compute: 99.930 ms, average compute: 79.731 ms
+[INFO] [1793164375.962249916]: Processed dynfilter frame 381, input points: 7920, current compute: 61.173 ms, average compute: 79.682 ms
+[INFO] [1793164376.043089986]: Processed dynfilter frame 382, input points: 7920, current compute: 80.652 ms, average compute: 79.685 ms
+[INFO] [1793164376.112212862]: Processed dynfilter frame 383, input points: 7920, current compute: 68.933 ms, average compute: 79.657 ms
+[INFO] [1793164376.184675794]: Processed dynfilter frame 384, input points: 7920, current compute: 72.268 ms, average compute: 79.638 ms
+[INFO] [1793164376.263802651]: Processed dynfilter frame 385, input points: 7920, current compute: 78.930 ms, average c[WARN] [1793164376.967371373]: M-detector pending queue is full; dropped the oldest frame. total_dropped=117 capacity=2
+[WARN] [1793164377.967416111]: M-detector pending queue is full; dropped the oldest frame. total_dropped=126 capacity=2
+[WARN] [1793164378.967530943]: M-detector pending queue is full; dropped the oldest frame. total_dropped=131 capacity=2
+[WARN] [1793164380.576919760]: M-detector pending queue is full; dropped the oldest frame. total_dropped=132 capacity=2
+[WARN] [1793164381.676912379]: M-detector pending queue is full; dropped the oldest frame. total_dropped=142 capacity=2
+ompute: 79.636 ms
+[INFO] [1793164376.344611519]: Processed dynfilter frame 386, input points: 7920, current compute: 76.810 ms, average compute: 79.629 ms
+[INFO] [1793164376.446268182]: Processed dynfilter frame 387, input points: 7920, current compute: 78.527 ms, average compute: 79.626 ms
+[INFO] [1793164376.538162634]: Processed dynfilter frame 388, input points: 7920, current compute: 69.010 ms, average compute: 79.599 ms
+[INFO] [1793164376.766354480]: Processed dynfilter frame 389, input points: 7691, current compute: 195.704 ms, average compute: 79.896 ms
+[INFO] [1793164377.405337465]: Processed dynfilter frame 390, input points: 8194, current compute: 638.773 ms, average compute: 81.326 ms
+[INFO] [1793164378.111922665]: Processed dynfilter frame 391, input points: 7926, current compute: 706.386 ms, average compute: 82.920 ms
+[INFO] [1793164378.283718424]: Processed dynfilter frame 392, input points: 7737, current compute: 171.606 ms, average compute: 83.146 ms
+[INFO] [1793164378.391765027]: Processed dynfilter frame 393, input points: 7821, current compute: 107.853 ms, average compute: 83.209 ms
+[INFO] [1793164378.535295070]: Processed dynfilter frame 394, input points: 7794, current compute: 143.337 ms, average compute: 83.361 ms
+[INFO] [1793164378.658929210]: Processed dynfilter frame 395, input points: 7727, current compute: 123.431 ms, average compute: 83.462 ms
+[INFO] [1793164378.992831963]: Processed dynfilter frame 396, input points: 7664, current compute: 333.711 ms, average compute: 84.092 ms
+[INFO] [1793164379.063953890]: Processed dynfilter frame 397, input points: 7920, current compute: 70.927 ms, average compute: 84.059 ms
+[INFO] [1793164379.153747874]: Processed dynfilter frame 398, input points: 7920, current compute: 89.603 ms, average compute: 84.073 ms
+[INFO] [1793164379.245980262]: Processed dynfilter frame 399, input points: 7920, current compute: 92.038 ms, average compute: 84.093 ms
+[INFO] [1793164379.346537143]: Processed dynfilter frame 400, input points: 7920, current compute: 100.365 ms, average compute: 84.134 ms
+[INFO] [1793164379.441459106]: Processed dynfilter frame 401, input points: 7920, current compute: 94.728 ms, average compute: 84.160 ms
+[INFO] [1793164379.535292345]: Processed dynfilter frame 402, input points: 7920, current compute: 93.631 ms, average compute: 84.183 ms
+[INFO] [1793164379.631142110]: Processed dynfilter frame 403, input points: 7920, current compute: 95.647 ms, average compute: 84.212 ms
+[INFO] [1793164379.719314475]: Processed dynfilter frame 404, input points: 7920, current compute: 87.975 ms, average compute: 84.221 ms
+[INFO] [1793164379.824499179]: Processed dynfilter frame 405, input points: 7920, current compute: 104.988 ms, average compute: 84.272 ms
+[INFO] [1793164379.896014360]: Processed dynfilter frame 406, input points: 7920, current compute: 71.322 ms, average compute: 84.240 ms
+[INFO] [1793164379.968148263]: Processed dynfilter frame 407, input points: 7920, current compute: 71.941 ms, average compute: 84.210 ms
+[INFO] [1793164380.048659707]: Processed dynfilter frame 408, input points: 7920, current compute: 80.318 ms, average compute: 84.201 ms
+[INFO] [1793164380.149029978]: Processed dynfilter frame 409, input points: 7920, current compute: 68.736 ms, average compute: 84.163 ms
+[INFO] [1793164380.380531568]: Processed dynfilter frame 410, input points: 7697, current compute: 212.732 ms, average compute: 84.476 ms
+[INFO] [1793164381.029299827]: Processed dynfilter frame 411, input points: 8207, current compute: 648.558 ms, average compute: 85.845 ms
+[INFO] [1793164381.696344343]: Processed dynfilter frame 412, input points: 7942, current compute: 666.680 ms, average compute: 87.251 ms
+[INFO] [1793164381.857629220]: Processed dynfilter frame 413, input points: 7747, current compute: 161.096 ms, average compute: 87.430 ms
+[INFO] [1793164381.974449479]: Processed dynfilter frame 414, input points: 7791, current compute: 116.629 ms, average compute: 87.500 ms
+[INFO] [1793164382.084385025]: Processed dynfilter frame 415, input points: 7817, current [WARN] [1793164383.376684624]: M-detector pending queue is full; dropped the oldest frame. total_dropped=146 capacity=2
+[WARN] [1793164384.477030043]: M-detector pending queue is full; dropped the oldest frame. total_dropped=154 capacity=2
+[WARN] [1793164385.567528097]: M-detector pending queue is full; dropped the oldest frame. total_dropped=159 capacity=2
+[WARN] [1793164386.667523295]: M-detector pending queue is full; dropped the oldest frame. total_dropped=163 capacity=2
+compute: 109.746 ms, average compute: 87.554 ms
+[INFO] [1793164382.230385884]: Processed dynfilter frame 416, input points: 7703, current compute: 145.774 ms, average compute: 87.693 ms
+[INFO] [1793164382.456202923]: Processed dynfilter frame 417, input points: 7672, current compute: 225.628 ms, average compute: 88.023 ms
+[INFO] [1793164382.581882762]: Processed dynfilter frame 418, input points: 7851, current compute: 125.491 ms, average compute: 88.113 ms
+[INFO] [1793164382.655430460]: Processed dynfilter frame 419, input points: 7920, current compute: 73.360 ms, average compute: 88.078 ms
+[INFO] [1793164382.739167824]: Processed dynfilter frame 420, input points: 7920, current compute: 83.541 ms, average compute: 88.067 ms
+[INFO] [1793164382.807970423]: Processed dynfilter frame 421, input points: 7920, current compute: 68.584 ms, average compute: 88.021 ms
+[INFO] [1793164382.872444285]: Processed dynfilter frame 422, input points: 7920, current compute: 64.271 ms, average compute: 87.964 ms
+[INFO] [1793164382.939976204]: Processed dynfilter frame 423, input points: 7920, current compute: 63.140 ms, average compute: 87.906 ms
+[INFO] [1793164383.040254330]: Processed dynfilter frame 424, input points: 7920, current compute: 63.207 ms, average compute: 87.848 ms
+[INFO] [1793164383.421306066]: Processed dynfilter frame 425, input points: 7791, current compute: 344.203 ms, average compute: 88.450 ms
+[INFO] [1793164384.232810723]: Processed dynfilter frame 426, input points: 8665, current compute: 811.296 ms, average compute: 90.142 ms
+[INFO] [1793164384.311790949]: Processed dynfilter frame 427, input points: 7920, current compute: 78.789 ms, average compute: 90.116 ms
+[INFO] [1793164384.535590311]: Processed dynfilter frame 428, input points: 7662, current compute: 223.610 ms, average compute: 90.427 ms
+[INFO] [1793164384.774641892]: Processed dynfilter frame 429, input points: 7746, current compute: 238.861 ms, average compute: 90.772 ms
+[INFO] [1793164384.910854059]: Processed dynfilter frame 430, input points: 7762, current compute: 136.018 ms, average compute: 90.877 ms
+[INFO] [1793164385.047101068]: Processed dynfilter frame 431, input points: 7795, current compute: 136.053 ms, average compute: 90.982 ms
+[INFO] [1793164385.180499011]: Processed dynfilter frame 432, input points: 7747, current compute: 133.206 ms, average compute: 91.079 ms
+[INFO] [1793164385.345013229]: Processed dynfilter frame 433, input points: 7715, current compute: 164.322 ms, average compute: 91.248 ms
+[INFO] [1793164385.610882410]: Processed dynfilter frame 434, input points: 7835, current compute: 265.667 ms, average compute: 91.649 ms
+[INFO] [1793164385.720903334]: Processed dynfilter frame 435, input points: 7920, current compute: 109.820 ms, average compute: 91.691 ms
+[INFO] [1793164385.907294799]: Processed dynfilter frame 436, input points: 7920, current compute: 186.202 ms, average compute: 91.907 ms
+[INFO] [1793164386.022343936]: Processed dynfilter frame 437, input points: 7920, current compute: 114.857 ms, average compute: 91.959 ms
+[INFO] [1793164386.213868533]: Processed dynfilter frame 438, input points: 7920, current compute: 191.329 ms, average compute: 92.186 ms
+[INFO] [1793164386.385689412]: Processed dynfilter frame 439, input points: 7920, current compute: 171.621 ms, average compute: 92.366 ms
+[INFO] [1793164386.530314712]: Processed dynfilter frame 440, input points: 7920, current compute: 144.429 ms, average compute: 92.484 ms
+[INFO] [1793164386.690324894]: Processed dynfilter frame 441, input points: 7920, current compute: 159.814 ms, average compute: 92.637 ms
+[INFO] [1793164386.833899334]: Processed dynfilter frame 442, input points: 7920, current compute: 143.381 ms, average compute: 92.751 ms
+[INFO] [1793164386.976479609]: Processed dynfilter frame 443, input points: 7920, current compute: 142.386 ms, average compute: 92.863 ms
+[INFO] [1793164387.107401927]: Processed dynfilter frame 444, input points: 7920, current compute: 130.729 ms, average compute: 92.948 ms
+[INFO] [1793164387.233272085]: Processed dynfilter fr[WARN] [1793164387.967470585]: M-detector pending queue is full; dropped the oldest frame. total_dropped=166 capacity=2
+ame 445, input points: 7920, current compute: 125.676 ms, average compute: 93.021 ms
+[INFO] [1793164387.360971075]: Processed dynfilter frame 446, input points: 7920, current compute: 127.472 ms, average compute: 93.099 ms
+[INFO] [1793164387.491403251]: Processed dynfilter frame 447, input points: 7920, current compute: 130.238 ms, average compute: 93.181 ms
+[INFO] [1793164387.617027236]: Processed dynfilter frame 448, input points: 7920, current compute: 125.434 ms, average compute: 93.253 ms
+[INFO] [1793164387.741307279]: Processed dynfilter frame 449, input points: 7920, current compute: 124.087 ms, average compute: 93.322 ms
+[INFO] [1793164387.866407021]: Processed dynfilter frame 450, input points: 7920, current compute: 124.904 ms, average compute: 93.392 ms
+[INFO] [1793164387.986519267]: Processed dynfilter frame 451, input points: 7920, current compute: 119.920 ms, average compute: 93.450 ms
+[INFO] [1793164388.098906943]: Processed dynfilter frame 452, input points: 7920, current compute: 112.194 ms, average compute: 93.492 ms
+[INFO] [1793164388.199805711]: Processed dynfilter frame 453, input points: 7920, current compute: 100.694 ms, average compute: 93.508 ms
+[INFO] [1793164388.302967010]: Processed dynfilter frame 454, input points: 7920, current compute: 102.950 ms, average compute: 93.528 ms
+[INFO] [1793164388.404549826]: Processed dynfilter frame 455, input points: 7920, current compute: 101.355 ms, average compute: 93.546 ms
+[INFO] [1793164388.520213643]: Processed dynfilter frame 456, input points: 7920, current compute: 115.470 ms, average compute: 93.594 ms
+[INFO] [1793164388.630639254]: Processed dynfilter frame 457, input points: 7920, current compute: 110.224 ms, average compute: 93.630 ms
+[INFO] [1793164388.737661205]: Processed dynfilter frame 458, input points: 7920, current compute: 106.825 ms, average compute: 93.659 ms
+[INFO] [1793164388.834562076]: Processed dynfilter frame 459, input points: 7920, current compute: 96.703 ms, average compute: 93.665 ms
+[INFO] [1793164388.919825757]: Processed dynfilter frame 460, input points: 7920, current compute: 85.066 ms, average compute: 93.647 ms
+[INFO] [1793164389.001721348]: Processed dynfilter frame 461, input points: 7920, current compute: 81.707 ms, average compute: 93.621 ms
+[INFO] [1793164389.092051959]: Processed dynfilter frame 462, input points: 7920, current compute: 90.137 ms, average compute: 93.613 ms
+[INFO] [1793164389.176774331]: Processed dynfilter frame 463, input points: 7920, current compute: 84.531 ms, average compute: 93.594 ms
+[INFO] [1793164389.266808664]: Processed dynfilter frame 464, input points: 7920, current compute: 89.839 ms, average compute: 93.586 ms
+[INFO] [1793164389.364464311]: Processed dynfilter frame 465, input points: 7920, current compute: 97.439 ms, average compute: 93.594 ms
+[INFO] [1793164389.451149041]: Processed dynfilter frame 466, input points: 7920, current compute: 86.494 ms, average compute: 93.579 ms
+[INFO] [1793164389.546719458]: Processed dynfilter frame 467, input points: 7920, current compute: 95.380 ms, average compute: 93.583 ms
+[INFO] [1793164389.623735989]: Processed dynfilter frame 468, input points: 7920, current compute: 76.824 ms, average compute: 93.547 ms
+[INFO] [1793164389.704664658]: Processed dynfilter frame 469, input points: 7920, current compute: 80.723 ms, average compute: 93.520 ms
+[INFO] [1793164389.789590201]: Processed dynfilter frame 470, input points: 7920, current compute: 84.731 ms, average compute: 93.501 ms
+[INFO] [1793164389.876365040]: Processed dynfilter frame 471, input points: 7920, current compute: 86.584 ms, average compute: 93.486 ms
+[INFO] [1793164389.960965513]: Processed dynfilter frame 472, input points: 7920, current compute: 84.405 ms, average compute: 93.467 ms
+[INFO] [1793164390.053258979]: Processed dynfilter frame 473, input points: 7920, current compute: 85.326 ms, average compute: 93.450 ms
+[INFO] [1793164390.147666852]: Processed dynfilter frame 474, input points: 7920, current compute: 79.769 ms, average compute: 93.421 ms
+[INFO] [1793164390.254458[WARN] [1793164390.667787527]: M-detector pending queue is full; dropped the oldest frame. total_dropped=167 capacity=2
+[WARN] [1793164391.767608448]: M-detector pending queue is full; dropped the oldest frame. total_dropped=176 capacity=2
+[WARN] [1793164393.067193774]: M-detector pending queue is full; dropped the oldest frame. total_dropped=180 capacity=2
+823]: Processed dynfilter frame 475, input points: 7920, current compute: 86.197 ms, average compute: 93.406 ms
+[INFO] [1793164390.453525105]: Processed dynfilter frame 476, input points: 7699, current compute: 185.685 ms, average compute: 93.599 ms
+[INFO] [1793164391.123473766]: Processed dynfilter frame 477, input points: 8209, current compute: 669.748 ms, average compute: 94.805 ms
+[INFO] [1793164391.480234910]: Processed dynfilter frame 478, input points: 7742, current compute: 356.568 ms, average compute: 95.351 ms
+[INFO] [1793164391.799590037]: Processed dynfilter frame 479, input points: 7683, current compute: 319.163 ms, average compute: 95.817 ms
+[INFO] [1793164392.151971055]: Processed dynfilter frame 480, input points: 7653, current compute: 352.182 ms, average compute: 96.350 ms
+[INFO] [1793164392.288735540]: Processed dynfilter frame 481, input points: 7721, current compute: 136.458 ms, average compute: 96.434 ms
+[INFO] [1793164392.408637138]: Processed dynfilter frame 482, input points: 7920, current compute: 119.710 ms, average compute: 96.482 ms
+[INFO] [1793164392.478057479]: Processed dynfilter frame 483, input points: 7920, current compute: 69.225 ms, average compute: 96.425 ms
+[INFO] [1793164392.564096715]: Processed dynfilter frame 484, input points: 7920, current compute: 85.846 ms, average compute: 96.404 ms
+[INFO] [1793164392.656599472]: Processed dynfilter frame 485, input points: 7920, current compute: 92.305 ms, average compute: 96.395 ms
+[INFO] [1793164392.803591329]: Processed dynfilter frame 486, input points: 7920, current compute: 146.784 ms, average compute: 96.499 ms
+[INFO] [1793164392.926522271]: Processed dynfilter frame 487, input points: 7920, current compute: 122.725 ms, average compute: 96.552 ms
+[INFO] [1793164393.069517462]: Processed dynfilter frame 488, input points: 7920, current compute: 142.774 ms, average compute: 96.647 ms
+[INFO] [1793164393.214104446]: Processed dynfilter frame 489, input points: 7920, current compute: 144.393 ms, average compute: 96.744 ms
+[INFO] [1793164393.360903296]: Processed dynfilter frame 490, input points: 7920, current compute: 146.602 ms, average compute: 96.846 ms
+[INFO] [1793164393.471048974]: Processed dynfilter frame 491, input points: 7920, current compute: 109.946 ms, average compute: 96.873 ms
+[INFO] [1793164393.582491172]: Processed dynfilter frame 492, input points: 7920, current compute: 111.240 ms, average compute: 96.902 ms
+[INFO] [1793164393.689479777]: Processed dynfilter frame 493, input points: 7920, current compute: 106.790 ms, average compute: 96.922 ms
+[INFO] [1793164393.795146671]: Processed dynfilter frame 494, input points: 7920, current compute: 105.469 ms, average compute: 96.939 ms
+[INFO] [1793164393.903457299]: Processed dynfilter frame 495, input points: 7920, current compute: 108.090 ms, average compute: 96.961 ms
+[INFO] [1793164394.009410670]: Processed dynfilter frame 496, input points: 7920, current compute: 105.734 ms, average compute: 96.979 ms
+[INFO] [1793164394.119828887]: Processed dynfilter frame 497, input points: 7920, current compute: 110.215 ms, average compute: 97.006 ms
+[INFO] [1793164394.214193686]: Processed dynfilter frame 498, input points: 7920, current compute: 94.170 ms, average compute: 97.000 ms
+[INFO] [1793164394.283108926]: Processed dynfilter frame 499, input points: 7920, current compute: 68.714 ms, average compute: 96.943 ms
+[INFO] [1793164394.354930660]: Processed dynfilter frame 500, input points: 7920, current compute: 71.610 ms, average compute: 96.893 ms
+[INFO] [1793164394.426953730]: Processed dynfilter frame 501, input points: 7920, current compute: 71.815 ms, average compute: 96.843 ms
+[INFO] [1793164394.494656616]: Processed dynfilter frame 502, input points: 7920, current compute: 67.503 ms, average compute: 96.785 ms
+[INFO] [1793164394.559090349]: Processed dynfilter frame 503, input points: 7920, current compute: 64.239 ms, average compute: 96.720 ms
+[INFO] [1793164394.633154000]: Processed dynfilter frame 504, input points: 7920, current compute: 65.665 ms, average compute: 96[WARN] [1793164395.067272072]: M-detector pending queue is full; dropped the oldest frame. total_dropped=182 capacity=2
+[WARN] [1793164396.267248128]: M-detector pending queue is full; dropped the oldest frame. total_dropped=191 capacity=2
+[WARN] [1793164397.267269502]: M-detector pending queue is full; dropped the oldest frame. total_dropped=194 capacity=2
+[WARN] [1793164398.967205934]: M-detector pending queue is full; dropped the oldest frame. total_dropped=195 capacity=2
+[WARN] [1793164399.967212321]: M-detector pending queue is full; dropped the oldest frame. total_dropped=204 capacity=2
+.659 ms
+[INFO] [1793164394.732923823]: Processed dynfilter frame 505, input points: 7920, current compute: 65.446 ms, average compute: 96.597 ms
+[INFO] [1793164395.189305868]: Processed dynfilter frame 506, input points: 7759, current compute: 421.682 ms, average compute: 97.238 ms
+[INFO] [1793164395.691536358]: Processed dynfilter frame 507, input points: 7790, current compute: 502.032 ms, average compute: 98.035 ms
+[INFO] [1793164396.140888989]: Processed dynfilter frame 508, input points: 7776, current compute: 449.163 ms, average compute: 98.725 ms
+[INFO] [1793164396.286816320]: Processed dynfilter frame 509, input points: 7822, current compute: 145.738 ms, average compute: 98.817 ms
+[INFO] [1793164396.444203119]: Processed dynfilter frame 510, input points: 7738, current compute: 157.185 ms, average compute: 98.931 ms
+[INFO] [1793164396.542473294]: Processed dynfilter frame 511, input points: 7769, current compute: 98.078 ms, average compute: 98.929 ms
+[INFO] [1793164396.635838323]: Processed dynfilter frame 512, input points: 7820, current compute: 93.170 ms, average compute: 98.918 ms
+[INFO] [1793164396.707708217]: Processed dynfilter frame 513, input points: 7795, current compute: 71.675 ms, average compute: 98.865 ms
+[INFO] [1793164396.854342901]: Processed dynfilter frame 514, input points: 7727, current compute: 146.445 ms, average compute: 98.958 ms
+[INFO] [1793164397.055727768]: Processed dynfilter frame 515, input points: 7673, current compute: 201.194 ms, average compute: 99.156 ms
+[INFO] [1793164397.287014103]: Processed dynfilter frame 516, input points: 7903, current compute: 231.085 ms, average compute: 99.411 ms
+[INFO] [1793164397.374403142]: Processed dynfilter frame 517, input points: 7920, current compute: 87.191 ms, average compute: 99.387 ms
+[INFO] [1793164397.475590669]: Processed dynfilter frame 518, input points: 7920, current compute: 100.995 ms, average compute: 99.390 ms
+[INFO] [1793164397.584731048]: Processed dynfilter frame 519, input points: 7920, current compute: 108.948 ms, average compute: 99.409 ms
+[INFO] [1793164397.683080643]: Processed dynfilter frame 520, input points: 7920, current compute: 98.155 ms, average compute: 99.406 ms
+[INFO] [1793164397.788457320]: Processed dynfilter frame 521, input points: 7920, current compute: 105.157 ms, average compute: 99.417 ms
+[INFO] [1793164397.884951519]: Processed dynfilter frame 522, input points: 7920, current compute: 96.298 ms, average compute: 99.411 ms
+[INFO] [1793164397.980940527]: Processed dynfilter frame 523, input points: 7920, current compute: 95.795 ms, average compute: 99.405 ms
+[INFO] [1793164398.071186195]: Processed dynfilter frame 524, input points: 7920, current compute: 90.050 ms, average compute: 99.387 ms
+[INFO] [1793164398.142973153]: Processed dynfilter frame 525, input points: 7920, current compute: 71.586 ms, average compute: 99.334 ms
+[INFO] [1793164398.223047744]: Processed dynfilter frame 526, input points: 7920, current compute: 79.878 ms, average compute: 99.297 ms
+[INFO] [1793164398.294734007]: Processed dynfilter frame 527, input points: 7920, current compute: 71.490 ms, average compute: 99.244 ms
+[INFO] [1793164398.370116007]: Processed dynfilter frame 528, input points: 7920, current compute: 75.185 ms, average compute: 99.199 ms
+[INFO] [1793164398.445294772]: Processed dynfilter frame 529, input points: 7920, current compute: 74.980 ms, average compute: 99.153 ms
+[INFO] [1793164398.540732292]: Processed dynfilter frame 530, input points: 7920, current compute: 71.524 ms, average compute: 99.101 ms
+[INFO] [1793164398.807760241]: Processed dynfilter frame 531, input points: 7690, current compute: 237.087 ms, average compute: 99.360 ms
+[INFO] [1793164399.454687198]: Processed dynfilter frame 532, input points: 8213, current compute: 646.727 ms, average compute: 100.387 ms
+[INFO] [1793164400.117777123]: Processed dynfilter frame 533, input points: 7944, current compute: 662.885 ms, average compute: 101.441 ms
+[INFO] [1793164400.298888890]: Processed dynfilter frame 534, input points: 7740, current compute: [WARN] [1793164401.967431001]: M-detector pending queue is full; dropped the oldest frame. total_dropped=209 capacity=2
+[WARN] [1793164403.367194729]: M-detector pending queue is full; dropped the oldest frame. total_dropped=219 capacity=2

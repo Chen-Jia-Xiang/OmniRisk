@@ -343,7 +343,7 @@ void NetworkControl::timerCallback(const ros::TimerEvent &)
     takeoff_cmd_init_ = true;
 }
 
-void NetworkControl::takeoff_land_thread(quadrotor_msgs::SetTakeoffLand::Request &req)
+void NetworkControl::takeoff_land_thread(quadrotor_msgs::SetTakeoffLand::Request req)
 {
     mutex_.lock();
     float takeoff_altitude = req.takeoff_altitude;
