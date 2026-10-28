@@ -35,6 +35,8 @@ parser.add_argument('--lead-time', type=float, default=2.5)
 parser.add_argument('--duration', type=float, default=30)
 parser.add_argument('--lidar-fps', type=float, default=20)
 parser.add_argument('--port', type=int, default=11321)
+parser.add_argument('--rviz', action='store_true',
+                    help='open RViz with drone, dynamic balls, point cloud and selected trajectory')
 args = parser.parse_args()
 temporary = tempfile.TemporaryDirectory(prefix='omnirisk-simulation-')
 out = Path(temporary.name)
@@ -204,6 +206,14 @@ try:
         start('detector', 'exec '+shlex.quote(str(ROOT/'ros_ws/devel/lib/m_detector/dynfilter')))
     start('policy', 'source ../ros_ws/devel/setup.bash\nexec ../omnirisk_env/bin/python -u omnirisk_node.py --trial 1 --epoch 60 --simulation --flight_mode nav', ROOT/'OmniRisk')
     wait_for(lambda: 'OmniRisk Node Ready!' in (out/'policy.log').read_text(), 50, 'policy')
+    if args.rviz:
+        start('rviz', 'source Controller/devel/setup.bash\nexec rviz -d ' +
+              shlex.quote(str(ROOT/'experiments/simulation/rviz.yaml')) +
+              ' __name:=simulation_rviz')
+        def rviz_ready():
+            subscribers = dict(master.getSystemState('/simulation_validation')[2][1])
+            return '/simulation_rviz' in subscribers.get('/sim/dynamic_obstacle_markers', [])
+        wait_for(rviz_ready, 30, 'RViz displays')
     wait_for(lambda: goal_pub.get_num_connections()>0 and trigger_pub.get_num_connections()>0, 10, 'subscribers')
     time.sleep(3)
     goal = PoseStamped()
@@ -234,7 +244,7 @@ try:
     summary['passed'] = summary['collision_count']==0 and summary['arrived'] and summary['final_goal_error_m']<2 and dynamic_verified and not state['bridge_errors']
     event('complete', **summary)
 except BaseException as error:
-    for name in ('policy', 'detector', 'sensor'):
+    for name in ('policy', 'detector', 'sensor', 'rviz'):
         path = out/(name+'.log')
         if path.exists():
             print(name + ': ' + '\n'.join(path.read_text(errors='replace').splitlines()[-6:]), flush=True)

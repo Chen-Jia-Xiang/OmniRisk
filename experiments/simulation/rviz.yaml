@@ -1,0 +1,96 @@
+# RViz accepts YAML configuration regardless of filename extension.
+Panels:
+  - Class: rviz/Displays
+    Name: Displays
+  - Class: rviz/Views
+    Name: Views
+Preferences:
+  PromptSaveOnExit: false
+Visualization Manager:
+  Class: ""
+  Global Options:
+    Background Color: 35; 38; 42
+    Fixed Frame: world
+    Frame Rate: 20
+  Displays:
+    - Class: rviz/Grid
+      Name: Grid
+      Enabled: true
+      Cell Size: 1
+      Plane Cell Count: 40
+      Color: 100; 100; 100
+    - Class: rviz/PointCloud2
+      Name: LiDAR
+      Enabled: true
+      Topic: /lidar_points
+      Queue Size: 1
+      Decay Time: 0.1
+      Position Transformer: XYZ
+      Color Transformer: AxisColor
+      Axis: Z
+      Style: Points
+      Size (Pixels): 2
+      Alpha: 0.6
+    - Class: rviz/Marker
+      Name: Drone
+      Enabled: true
+      Marker Topic: /quadrotor_simulator_so3/uav
+      Queue Size: 1
+    - Class: rviz/MarkerArray
+      Name: Dynamic balls
+      Enabled: true
+      Marker Topic: /sim/dynamic_obstacle_markers
+      Queue Size: 1
+    - Class: rviz/MarkerArray
+      Name: Static environment
+      Enabled: true
+      Marker Topic: /sim/static_obstacle_markers
+      Queue Size: 1
+    - Class: rviz/Marker
+      Name: Collision count
+      Enabled: true
+      Marker Topic: /sim/collision_counter
+      Queue Size: 1
+    - Class: rviz/PointCloud2
+      Name: Selected trajectory
+      Enabled: true
+      Topic: /omnirisk/best_traj_visual
+      Queue Size: 1
+      Position Transformer: XYZ
+      Color Transformer: FlatColor
+      Color: 50; 255; 100
+      Style: Points
+      Size (Pixels): 5
+      Alpha: 1
+      Decay Time: 0
+    - Class: rviz/Odometry
+      Name: Drone position
+      Enabled: true
+      Topic: /sim/odom
+      Keep: 1
+      Shape: Axes
+  Tools:
+    - Class: rviz/Interact
+    - Class: rviz/MoveCamera
+    - Class: rviz/Select
+    - Class: rviz/SetGoal
+      Topic: /move_base_simple/goal
+    - Class: rviz/PublishPoint
+      Topic: /clicked_point
+      Single click: true
+  Views:
+    Current:
+      Class: rviz/Orbit
+      Target Frame: world
+      Distance: 23
+      Pitch: 0.9
+      Yaw: 0.9
+      Focal Point:
+        X: 6
+        Y: 0
+        Z: 2
+Window Geometry:
+  Width: 1280
+  Height: 800
+  X: 40
+  Y: 40

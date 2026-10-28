@@ -189,6 +189,9 @@ Then run with `--trial 1 --epoch 60` (`trt_transfer.py` uses this checkpoint by 
 <summary><b>Simulation</b></summary>
 <br>
 
+中文完整操作说明（启动顺序、命令作用、RViz 交互及故障排查）：
+[仿真复现流程（中文版）](docs/仿真复现流程_中文版.md)。
+
 On branch `simulation-reproduction`, run a complete headless check from the
 repository root using the existing `omnirisk_env` environment:
 
@@ -196,7 +199,17 @@ repository root using the existing `omnirisk_env` environment:
 source ros_ws/devel/setup.bash
 omnirisk_env/bin/python experiments/simulation/run.py --scenario head_on --speed 2
 # Other scenarios: --scenario side --speed 2, or --scenario multi
+# Open RViz with the same automatic goal and obstacle trigger:
+omnirisk_env/bin/python experiments/simulation/run.py --scenario head_on --speed 2 --rviz
 ```
+
+The runner is an additional validation tool introduced on this branch; it is
+not the original author's launch procedure. It uses the same simulator,
+detector, planner and controller, but selects an arena map and 20 Hz LiDAR,
+applies simulation parameters, and automates goal/ball triggering. The original
+README starts these components in separate terminals and opens RViz separately.
+`--rviz` shows the drone, dynamic balls, LiDAR, selected trajectory and collision
+count; the window closes when the automatic check ends.
 
 This starts an isolated ROS master on port 11321, the simulator, M-detector and
 the pretrained planner. It sends a navigation goal and launches dynamic balls,
