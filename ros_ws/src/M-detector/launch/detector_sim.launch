@@ -1,0 +1,5 @@
+<launch>
+  <rosparam command="load" file="$(find m_detector)/config/mid360/mid360.yaml" />
+  <rosparam command="load" file="$(find m_detector)/config/simulation.yaml" />
+  <node pkg="m_detector" type="dynfilter" name="dynfilter" output="screen" />
+</launch>

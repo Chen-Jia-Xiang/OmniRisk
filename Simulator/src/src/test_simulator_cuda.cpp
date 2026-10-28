@@ -27,7 +27,10 @@ using namespace raycast;
 class SensorSimulator {
 public:
     SensorSimulator(ros::NodeHandle &nh) : nh_(nh) {
-        YAML::Node config = YAML::LoadFile(CONFIG_FILE_PATH);
+        ros::NodeHandle private_nh("~");
+        std::string config_path;
+        private_nh.param<std::string>("config_file", config_path, CONFIG_FILE_PATH);
+        YAML::Node config = YAML::LoadFile(config_path);
         // load camera params
         camera = new CameraParams();
         camera->fx = config["camera"]["fx"].as<float>();

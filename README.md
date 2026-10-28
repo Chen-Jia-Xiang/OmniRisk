@@ -189,6 +189,31 @@ Then run with `--trial 1 --epoch 60` (`trt_transfer.py` uses this checkpoint by 
 <summary><b>Simulation</b></summary>
 <br>
 
+On branch `simulation-reproduction`, run a complete headless check from the
+repository root using the existing `omnirisk_env` environment:
+
+```bash
+source ros_ws/devel/setup.bash
+omnirisk_env/bin/python experiments/simulation/run.py --scenario head_on --speed 2
+# Other scenarios: --scenario side --speed 2, or --scenario multi
+```
+
+This starts an isolated ROS master on port 11321, the simulator, M-detector and
+the pretrained planner. It sends a navigation goal and launches dynamic balls,
+then checks collision count, confirmed tracks, DODGE activation and goal arrival
+(the planner's existing 2 m arrival radius). Nodes stop and temporary logs are
+deleted at exit; no trajectory data or rosbag is retained. This is a functional
+check, not a reproduction of the paper's statistical benchmarks.
+`--perception truth` is a planner/control diagnostic only, bypassing M-detector.
+
+For RTX 2060 with CUDA 12.8, rebuild the sensor simulator with
+`catkin_make -j2 -DOMNIRISK_CUDA_ARCH=7.5` inside `Simulator` after sourcing ROS.
+Rebuild `Controller` and `ros_ws` with `catkin_make -j2` after changing their sources.
+The simulation detector overlay uses constant-velocity tracking to match the
+simulator's balls and adjusts target filters for their size and flight height.
+
+For an interactive session, start each terminal at the repository root:
+
 ```bash
 # T1 Dynamics
 source Controller/devel/setup.bash
@@ -200,17 +225,17 @@ rosrun sensor_simulator sensor_simulator_cuda
 
 # T3 M-detector
 source ros_ws/devel/setup.bash
-roslaunch m_detector detector_mid360.launch points_topic:=/lidar_points points_in_world_frame:=false odom_topic:=/sim/odom
+roslaunch m_detector detector_sim.launch
 
-# T4 OmniRisk (add --flight_mode nav, then set the goal with RViz 2D Nav Goal)
+# T4 OmniRisk (set the goal with RViz 2D Nav Goal)
 source ros_ws/devel/setup.bash && source omnirisk_env/bin/activate
-cd OmniRisk && python omnirisk_node.py --trial <n> --epoch <k> --odom_topic /sim/odom --lidar_topic /lidar_points
+cd OmniRisk && python omnirisk_node.py --trial 1 --epoch 60 --simulation --flight_mode nav
 
 # T5 RViz
 source ros_ws/devel/setup.bash
 rviz -d OmniRisk/omnirisk.rviz
 
-# T6 Joystick goal
+# T6 Optional joystick goal (requires a connected /dev/input/js0)
 source ros_ws/devel/setup.bash
 cd OmniRisk && python3 rc_goal_teleop.py _odom_topic:=/sim/odom
 ```

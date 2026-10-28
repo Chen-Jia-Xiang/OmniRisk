@@ -1,0 +1,13 @@
+# Overlay for the simulator's constant-velocity, radius-0.2 m spheres.
+dyn_obj:
+  points_topic: /lidar_points
+  points_in_world_frame: false
+  odom_topic: /sim/odom
+  frame_id: world
+  points_num_perframe: 40000
+  tracker:
+    ballistic_model_en: false
+    target_origin_bbox_filter_en: false
+    target_min_world_z: 0.3
+    target_max_bbox_volume: 0.2
+    target_min_speed: 0.5

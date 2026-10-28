@@ -258,7 +258,8 @@ class OmniRiskNode:
         if self.config.get('use_lidar', False):
             self.track_prediction_horizon = float(
                 rospy.get_param('/dyn_obj/tracker/max_prediction_horizon'))
-        self.track_ballistic_model = bool(self.config.get('track_ballistic_model', True))
+        self.track_ballistic_model = bool(rospy.get_param(
+            '/dyn_obj/tracker/ballistic_model_en', self.config.get('track_ballistic_model', True)))
         self.track_gravity = np.asarray(
             self.config.get('track_gravity_world', [0.0, 0.0, -9.81]), dtype=np.float32)
         self.dynamic_sphere_radius_min = float(
@@ -2291,6 +2292,8 @@ def parser():
                          help="explicit checkpoint path, overrides --trial/--epoch")
     parser.add_argument("--flight_mode", type=str, default=None, choices=["dodge", "nav"],
                          help="override the default flight_mode in settings")
+    parser.add_argument("--simulation", action="store_true",
+                        help="body-frame /lidar_points, /sim/odom, 2 m navigation height; controller owns takeoff")
     parser.add_argument("--tracks_topic", type=str, default=None,
                          help="override the default /m_detector/confirmed_tracks")
     parser.add_argument("--odom_topic", type=str, default=None,
@@ -2385,4 +2388,14 @@ if __name__ == "__main__":
         settings['odom_topic'] = args.odom_topic
     if args.lidar_topic is not None:
         settings['lidar_topic'] = args.lidar_topic
+    if args.simulation:
+        settings.update(odom_topic=args.odom_topic or '/sim/odom',
+                        lidar_topic=args.lidar_topic or '/lidar_points',
+                        lidar_points_in_world_frame=False, hover_height=2.0,
+                        goal=[0, 0, 2.0], auto_takeoff=False,
+                        static_fallback_tolerance=0.0)
+        # Small preprocessing arrays suffer from CPU thread oversubscription
+        # when ROS, the simulator and PyTorch share the same workstation.
+        torch.set_num_threads(1)
+        cv2.setNumThreads(1)
     OmniRiskNode(settings, weight)

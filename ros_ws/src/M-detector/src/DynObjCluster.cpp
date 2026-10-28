@@ -238,8 +238,29 @@ void DynObjCluster::PubClusterResult_voxel(std::vector<int> &dyn_tag, std_msgs::
         index_bbox[i] = i;
     }
     ScopedTiming bbox_expand_timer("cpu_cluster_bbox_build");
-    std::vector<std::unordered_set<int>> used_map_set_vec(bbox.Center.size());
-    std::for_each(std::execution::par, index_bbox.begin(), index_bbox.end(), [&](const int &bbox_i) {
+    // Empty cells cannot contribute to point assignment or region growth.
+    // Visit occupied raw-cloud cells, with deterministic ownership for overlaps.
+    const auto raw_voxel_index = [&](const PointType &point) {
+        const Eigen::Vector3i cell(
+            static_cast<int>(std::floor((point.x - xyz_origin.x()) * inv_voxel_resolution)),
+            static_cast<int>(std::floor((point.y - xyz_origin.y()) * inv_voxel_resolution)),
+            static_cast<int>(std::floor((point.z - xyz_origin.z()) * inv_voxel_resolution)));
+        if (cell.x() < 0 || cell.x() >= GridMapedgesize_xy ||
+            cell.y() < 0 || cell.y() >= GridMapedgesize_xy ||
+            cell.z() < 0 || cell.z() >= GridMapedgesize_z) return -1;
+        return cell.x() * GridMapedgesize_xy * GridMapedgesize_z +
+               cell.y() * GridMapedgesize_z + cell.z();
+    };
+    std::unordered_set<int> raw_voxel_set;
+    std::vector<int> raw_voxels;
+    raw_voxels.reserve(raw_point.size());
+    for (size_t i = 0; i < raw_point.size(); ++i) {
+        if (dyn_tag[i] == -1) continue;
+        const int voxel = raw_voxel_index(raw_point[i]);
+        if (voxel >= 0 && umap[voxel].points_num == 0 && raw_voxel_set.insert(voxel).second)
+            raw_voxels.push_back(voxel);
+    }
+    for (const int bbox_i : index_bbox) {
         PointType center;
         float x_size = bbox.Center[bbox_i].pose.covariance[3*6+3];
         float y_size = bbox.Center[bbox_i].pose.covariance[4*6+4];
@@ -258,44 +279,34 @@ void DynObjCluster::PubClusterResult_voxel(std::vector<int> &dyn_tag, std_msgs::
         int n_x = static_cast<int>(std::max(1.0f, x_size) * inv_voxel_resolution);
         int n_y = static_cast<int>(std::max(1.0f, y_size) * inv_voxel_resolution);
         int n_z = static_cast<int>(std::max(1.0f, z_size) * inv_voxel_resolution);
-        int voxel_center = static_cast<int>(std::floor((center.x - xyz_origin(0)) * inv_voxel_resolution)) * GridMapedgesize_xy * GridMapedgesize_z
-                         + static_cast<int>(std::floor((center.y - xyz_origin(1)) * inv_voxel_resolution)) * GridMapedgesize_z
-                         + static_cast<int>(std::floor((center.z - xyz_origin(2)) * inv_voxel_resolution));
-        int ii = 0;
+        const Eigen::Vector3i center_cell(
+            static_cast<int>(std::floor((center.x - xyz_origin.x()) * inv_voxel_resolution)),
+            static_cast<int>(std::floor((center.y - xyz_origin.y()) * inv_voxel_resolution)),
+            static_cast<int>(std::floor((center.z - xyz_origin.z()) * inv_voxel_resolution)));
         Eigen::Vector3f xyz;
-        for (int i = 0; i <= 2 * n_x +1; i++)
-        {   
-            ii += (i%2 ? 1:-1) * i;
-            int jj = 0;
-            for (int j = 0; j <= 2 * n_y +1; j++)
-            {   
-                jj += (j%2 ? 1:-1) * j;
-                int kk = 0;
-                for (int k = 0; k <= 2 * n_z +1; k++)
-                {    
-                    kk += (k%2 ? 1:-1) * k;
-                    int voxel = voxel_center + ii * GridMapedgesize_xy * GridMapedgesize_z + jj * GridMapedgesize_z + kk;
-                    if(voxel < 0 || voxel >= GridMapsize) continue;
-                    XYZExtract(voxel, xyz);
-                    Eigen::Vector3f voxel_loc(xyz(0) + 0.5f * Voxel_revolusion, xyz(1) + 0.5f * Voxel_revolusion, xyz(2) + 0.5f * Voxel_revolusion);
-                    if (umap[voxel].points_num == 0 && !((voxel_loc(0) > min.x && voxel_loc(0) < max.x) && (voxel_loc(1) > min.y && voxel_loc(1) < max.y) && (voxel_loc(2) > min.z && voxel_loc(2) < max.z)))
-                    {
-                        umap_ground[voxel].bbox_index = bbox_i;
-                        used_map_set_vec[bbox_i].insert(voxel);
-                        bbox.Ground_voxels_set[bbox_i].emplace(voxel);
-                        bbox.Ground_voxels_vec[bbox_i].push_back(voxel);
-                    }
-                    else if (umap[voxel].points_num == 0 && (voxel_loc(0) > min.x && voxel_loc(0) < max.x) && (voxel_loc(1) > min.y && voxel_loc(1) < max.y) && (voxel_loc(2) > min.z && voxel_loc(2) < max.z))
-                    {
-                        umap_insidebox[voxel].bbox_index = bbox_i;
-                        used_map_set_vec[bbox_i].insert(voxel);
-                    }
-                }
+        for (const int voxel : raw_voxels) {
+            const Eigen::Vector3i cell(
+                voxel / (GridMapedgesize_xy * GridMapedgesize_z),
+                (voxel / GridMapedgesize_z) % GridMapedgesize_xy,
+                voxel % GridMapedgesize_z);
+            const Eigen::Vector3i offset = cell - center_cell;
+            if (offset.x() < -n_x || offset.x() > n_x + 1 ||
+                offset.y() < -n_y || offset.y() > n_y + 1 ||
+                offset.z() < -n_z || offset.z() > n_z + 1) continue;
+            XYZExtract(voxel, xyz);
+            const Eigen::Vector3f loc = xyz + Eigen::Vector3f::Constant(0.5f * Voxel_revolusion);
+            const bool inside = loc.x() > min.x && loc.x() < max.x &&
+                                loc.y() > min.y && loc.y() < max.y &&
+                                loc.z() > min.z && loc.z() < max.z;
+            if (inside) {
+                umap_insidebox[voxel].bbox_index = bbox_i;
+            } else {
+                umap_ground[voxel].bbox_index = bbox_i;
+                bbox.Ground_voxels_set[bbox_i].emplace(voxel);
+                bbox.Ground_voxels_vec[bbox_i].push_back(voxel);
             }
-        } });
-
-    for (int bbox_i = 0; bbox_i < bbox.Center.size(); bbox_i++) {
-        used_map_set.merge(used_map_set_vec[bbox_i]);
+            used_map_set.insert(voxel);
+        }
     }
     bbox_expand_timer.stop();
 
@@ -303,10 +314,9 @@ void DynObjCluster::PubClusterResult_voxel(std::vector<int> &dyn_tag, std_msgs::
     for (int ite = 0; ite < raw_point.size(); ite++) {
         if (dyn_tag[ite] == -1)
             continue;
-        int voxel = static_cast<int>(std::floor((raw_point[ite].x - xyz_origin(0)) * inv_voxel_resolution)) * GridMapedgesize_xy * GridMapedgesize_z
-                  + static_cast<int>(std::floor((raw_point[ite].y - xyz_origin(1)) * inv_voxel_resolution)) * GridMapedgesize_z
-                  + static_cast<int>(std::floor((raw_point[ite].z - xyz_origin(2)) * inv_voxel_resolution));
-        if (voxel < 0 || voxel >= GridMapsize) {
+        const int voxel = raw_voxel_index(raw_point[ite]);
+        if (voxel < 0) {
+            dyn_tag[ite] = 0;
             continue;
         }
         if (umap_ground[voxel].bbox_index > -1) {
