@@ -1,0 +1,54 @@
+TABLE I
+                                                                  INPUT REPRESENTATION ABLATION (𝑛= 50 TRIALS PER CELL)
+
+                                                                                                        Static     Head-on    Crossing     Rear       Avg.
+                                                               Method       SR ↑     SR ↑     SR ↑     SR ↑    DCR ↓
+                                                                    Depth-Only    96.0%     62.0%     22.0%     26.0%     47.3%
+                                                              Depth+Mask   96.0%     88.0%     30.0%     34.0%     36.7%
+                                                            Ours        98.0%    96.0%    92.0%    94.0%     4.0%
+
+Fig. 4.  Quadrotor platform: (1) Livox Mid-360 LiDAR, (2) NVIDIA Jetson
+Orin NX, (3) NxtPX4v2 flight controller.                                (velocity channels omitted), and our  full planning input
+                                                                tensor (Table I). While Depth-Only navigates static corridors
+D. Online Selection                                                 reliably, it experiences severe collisions during crossing en-
+  At runtime, the two heads evaluate all 𝑁candidate prim-   counters (22.0% SR) and rear pursuits (26.0% SR), yielding
+itives in a single forward pass, selecting the candidate index   an average dynamic collision rate (DCR, the fraction of trials
+𝑖∗according to                                             with a dynamic collision) of 47.3%. Adding the dynamic
+                                                 mask partially improves success in head-on encounters but         𝑖∗= arg min                                       ,        (11)                                      𝑖   ˆ𝐽𝑠,𝑖+ 𝜆ˆ𝐽𝑑,𝑖+ Rcon(𝑖)                remains largely ineffective against lateral threats (30.0% SR).
+where 𝜆scales dynamic risk and Rcon(𝑖) enforces temporal   In contrast, our full tensor achieves success rates of at leastcontinuity and switching hysteresis to suppress trajectory   92.0% across all geometries, reducing the average DCR to
+chattering. Selection is O(𝑁) in 𝑁but O(1) with respect   4.0%.to dynamic obstacle count because 𝑁= 36 is fixed. Here,      This gap arises because range data alone cannot reveal
+ˆ𝐽𝑠,𝑖absorbs 𝐽prog, 𝐽smooth, and static clearance cost, while    lateral motion. Between sparse sweeps, range signatures from
+𝜆ˆ𝐽𝑑,𝑖instantiates 𝐽risk in (2). The polynomial coefficients of   a crossing obstacle closely resemble those of thin  static
+𝝅∗= 𝝅𝑖∗are then computed in closed form and mapped to    clutter, causing depth-only models to respond to the threat
+attitude-thrust setpoints for tracking.                         only after the viable reaction window has already closed.
+                                                     While the dynamic mask confirms cluster association, it lacks           VI. EXPERIMENTAL VALIDATION
+                                                             metric kinematic cues. Encoding Cartesian surface velocities
+  We systematically evaluate the proposed framework across                                                                   into the tensor makes lateral relative motion directly observ-
+simulated and real-world environments.                                                                    able, enabling timely evasive maneuvers perpendicular to the
+A. Protocol and Baselines                                      obstacle’s path.
+  Each trial requires the quadrotor to navigate from a fixed                                                         C. Dynamic Risk Field Ablation
+start to a goal through static clutter and dynamic projectiles.
+                                                    To isolate the constituent mechanisms of the asymmetricA trial is counted as successful only if the vehicle reaches the
+                                                     dynamic risk field (Sec. V-B), we evaluate four ablationsgoal collision-free within the allotted time; physical contact
+                                                                against simulated future-collision ground truth: No Dynamicand kinodynamic infeasibility are recorded as failures. Given
+                                                               Supervision, No Future Prediction, Isotropic Fieldour 20 Hz replanning loop, we define a deadline miss as any                                    (𝜎∥=
+cycle in which planning latency exceeds the timing budget   𝜎⊥), and Symmetric Field (the causal gate 𝒗⊤ rel𝒏𝑜removed,
+                                                                the forecast retained). Approaching-versus-receding (A–R)Δ𝑇budget = 50 ms, forcing the low-level controller to continue
+                                                           accuracy (Table II) compares the maximum candidate risktracking the previously committed  trajectory; misses are
+                                                       between velocity-reversed frame pairs, labeled by the signcounted per cycle and do not by themselves  fail a  trial.
+                                                               of the current Euclidean range rate. Omitting the directionalPlanning latency  is measured from planning-input arrival
+                                                                projection degrades A–R accuracy to 51.8% and inflates theto trajectory commitment, covering tensor rasterization and
+                                      DCR to 34.0%; we attribute this to residual penalties behindnetwork inference; upstream sensing, detection, and track
+                                                                obstacles that have already passed, which prolong evasiveconfirmation are shared by all methods and excluded. Closed-
+                                                       maneuvering against cleared obstacles. Similarly, omittingloop simulations run in real time, and  all methods share
+50 paired evaluation seeds per condition, disjoint from the    constant-velocity horizon prediction severely degrades risk
+                                                                 discrimination, reducing the area under the receiver operatingtraining seeds; key success rates (SR) are reported with
+                                                                    characteristic curve (AUC) for future-collision prediction toWilson 95% confidence intervals (CIs). The entire pipeline
+                                                              0.735. In contrast, our full formulation combines along-trackruns onboard an NVIDIA Jetson Orin NX under realistic
+                                                              elongation of the risk field with monotonic risk decay formulti-process resource contention on the custom quadrotor
+                                                            receding obstacles, achieving 96.2% directional accuracy andshown in Fig. 4. We supply identical synchronized inputs to
+                                                            reducing the DCR to 4.0%.the state-of-the-art baselines FAPP [3] and SIMP [2].
+B. Input Representation Ablation                         D. Computational Scalability
+  To evaluate whether spatial depth alone can resolve dy-    We benchmark computational scalability on the NVIDIA
+namic threats under sparse sensing, we benchmark three   Jetson Orin NX with  |O𝑡| ∈{1, 4, 6} simultaneous dy-input variants under identical architectures and training bud-   namic obstacles (Table III). Benefiting from its lightweight
+gets: Depth-Only (mask and velocity zeroed), Depth+Mask    analytical formulation, FAPP achieves the lowest planning

@@ -1,0 +1,45 @@
+penalized mainly before  its closest approach; deceleration
+                                                              or re-approach violates the constant-velocity forecast and is
+                                                                    reflected only after the tracked velocity is updated.
+                                                                 4) Directed Path Integral: The dynamic risk of candidate
+                                                                 primitive 𝝅𝑖aggregates the pointwise risk:
+
+                                                              𝐾
+                                                                 𝐽𝑑,𝑖=         𝑟𝑜  𝒒(𝜏𝑗), 𝒗rel(𝜏𝑗)   .          (9)                                                   ∑︁                                                                                            𝑗=1 𝑜∈O𝑡 ∑︁
+                                                     With uniform  𝜏𝑗, 𝐽𝑑,𝑖is a Riemann sum of  the time-
+                                                                 integrated risk scaled by 𝐾/𝑇, a constant absorbed into 𝑤scale.                                                           Since the quadrotor and each obstacle are evaluated at the
+                                                   same instants 𝜏𝑗, 𝐽𝑑,𝑖mainly penalizes candidate primitives
+                                                    on a collision course.
+
+                                                         C. Dual-Branch Network Distillation
+
+                                                                 1) Network  Architecture: A dual-branch  circular con-
+                                                                volutional network evaluates terminal boundary states and
+                                                     dynamic risks in a single forward pass. The static branch
+Fig. 3.  Asymmetric dynamic risk field in the horizontal plane. The quadro-    applies a convolutional backbone to the range panorama
+tor at the origin (velocity 𝒗0, blue) targets the goal (green), encountering an   𝑫𝑡to extract environmental geometry, while the dynamic
+obstacle (velocity 𝒗𝑜, red) at 𝑑= 2.2 m. Background: pointwise dynamic
+risk 𝑟𝑜under relative obstacle motion. Candidate primitives are colored by   branch processes [𝑴𝑡, 𝑽𝑡] to capture the Cartesian motiondynamic risk 𝐽𝑑,𝑖(9).                                                       field. Convolutions are circularly padded along the azimuth
+                                                        dimension  to preserve 360◦continuity across coordinate
+deficiencies motivate an obstacle-velocity-aligned, causally   seams. Both heads also receive (𝒗0, 𝒂0) and the goal 𝒈in
+asymmetric risk field that provides dense, continuous super-   P𝑡, with 𝒈rescaled to at most unit length. The static headvision over relative obstacle motion.                          uses only the 𝑫𝑡feature to infer terminal boundary states
+  2) Anisotropic Relative Metric: To evaluate interaction    𝒙(𝑖) 𝑓  and static costs  ˆ𝐽𝑠,𝑖, while the dynamic head adds the
+kinematics over the horizon, we express the relationship                                                                           feature to predict dynamic risks ˆ𝐽𝑑,𝑖.between candidate  primitive       and  obstacle  𝑜, with   [𝑴𝑡, 𝑽𝑡]                                𝝅𝑖(𝑡)                              2) Head Isolation: Candidate primitive geometry is gen-
+synchronized state (𝒄𝑟 𝑜, 𝒗𝑟 𝑜), in relative coordinates:            erated exclusively by the static head; the dynamic head only
+      𝒒(𝑡) = 𝝅𝑖(𝑡) −(𝒄𝑟 𝑜+ 𝒗𝑟 𝑜𝑡),   𝒗rel(𝑡) = ¤𝝅𝑖(𝑡) −𝒗𝑟 𝑜.   (6)    evaluates  it. Since 𝒙(𝑖) 𝑓  depends only on 𝑫𝑡, (𝒗0, 𝒂0), and
+A constant-velocity forecast enables closed-form evaluation,   𝒈and its objective excludes dynamic risk, [𝑴𝑡, 𝑽𝑡] cannot
+and the  spatial metric aligns with the  travel axis 𝒆𝑜=    alter candidate primitive geometry; the dynamic loss reaches
+𝒗𝑟                where 𝜖𝑣> 0 prevents numerical sin-    the shared 𝑫𝑡encoder only through  ˆ𝐽𝑑,𝑖. This isolation 𝑜/max(∥𝒗𝑟 𝑜∥2, 𝜖𝑣),gularity. The anisotropic metric tensor is formulated as        suppresses high-frequency trajectory chattering and promotes
+       𝑨𝑜= 𝜎−2                        𝑜,          (7)    spatial consistency across consecutive replanning cycles.               ⊥𝑰3×3 + (𝜎−2 ∥ −𝜎−2 ⊥)𝒆𝑜𝒆⊤                   3) Training  Objective:  Terminal  boundary  states  are
+where lateral scale 𝜎⊥reflects obstacle geometry and longi-    trained by directly minimizing smoothness, static clearance
+tudinal scale 𝜎∥expands with speed ∥𝒗𝑟 𝑜∥2. This yields an    cost (5), anchor alignment, and acceleration effort, excluding
+anisotropic Gaussian base 𝜙𝑜(𝒒) = exp(−𝒒⊤𝑨𝑜𝒒), elongat-   dynamic risk. The static head regresses the total static costing along-track clearance while preserving lateral bounds.                                                                                 𝐽𝑠,𝑖, which replaces anchor alignment with goal progress,
+  3) Softplus Causal Gate: Although anisotropic, 𝜙𝑜(𝒒) is   using a smooth-𝐿1 loss. The dynamic head is trained in a
+symmetric (𝜙𝑜(𝒒) = 𝜙𝑜(−𝒒)): at the same relative position   compressed logarithmic domain:it cannot distinguish approaching from receding obstacles;
+the horizon sum (9) separates the two only through future           1 𝑁                                              =         𝑙smooth-𝐿1  ˆ𝐽𝑑,𝑖, sg                                 ,  (10)distances. To enforce causal asymmetry,  relative velocity      Lrisk  𝑁                      ln(1 + 𝑤scale𝐽𝑑,𝑖)                                                                                      𝑖=1is projected onto 𝒏𝑜=                   where 𝒈𝑜=          ∑︁                      𝒈𝑜/max(∥𝒈𝑜∥2, 𝜖𝑔),               where 𝑤scale balances dynamic penalties. Logarithmic scal-
+∇𝒒𝜙𝑜= −2𝜙𝑜𝑨𝑜𝒒is the inward normal of the iso-risk   ing compresses orders-of-magnitude risk variations acrossellipsoid and 𝜖𝑔> 0 again prevents numerical singularity.
+                                                                diverse velocities, preventing near-miss extremes from dom-With 𝑧𝑜= 𝛼𝒗⊤ rel𝒏𝑜(𝛼> 0), the pointwise risk is                                                                  inating gradients. The three losses are summed with equal
+  𝑟𝑜(𝒒, 𝒗rel) = 𝜙𝑜(𝒒) softplus(𝑧𝑜) = 𝜙𝑜(𝒒) ln(1 + 𝑒𝑧𝑜).   (8)   weights and optimized jointly without freezing either head.
+Since ¤𝒒= 𝒗rel, 𝑧𝑜> 0 exactly when 𝒒⊤𝑨𝑜𝒒decreases, which   Each minibatch recomputes 𝐽𝑠,𝑖and 𝐽𝑑,𝑖on the current
+agrees with the sign of the Euclidean range rate if 𝜎∥= 𝜎⊥or   candidate primitives from the privileged ESDF and ground-
+𝒒∥𝒆𝑜or 𝒒⊥𝒆𝑜. Approaching risk is amplified and receding    truth tracks, and the stop-gradient sg[·] blocks gradientsrisk decays toward zero (Fig. 3), so a crossing obstacle is   through both targets.

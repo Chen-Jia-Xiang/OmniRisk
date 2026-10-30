@@ -1,0 +1,18 @@
+{
+  "validated_at": "2026-10-29",
+  "validator": "paper-deep-reader/scripts/validate_report.py",
+  "mode": "explain",
+  "strict": true,
+  "errors": 0,
+  "warnings": 0,
+  "report_sha256": "1d579676cd4e4bed46dabf6128bb28a32e1eb1857d676b915279ea90c33ffad0",
+  "key_visuals_explained": 9,
+  "numbered_visuals_inventoried": 11,
+  "manual_review": [
+    "PDF numbers and source anchors checked against pages 3–8",
+    "Risk equations checked against rendered PDF p.5",
+    "All 9 selected crops directly viewed; Table VI title recropped and rechecked",
+    "Teaching values and proposed experiments labeled",
+    "No performance reproduction claimed"
+  ]
+}

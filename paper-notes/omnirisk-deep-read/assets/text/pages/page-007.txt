@@ -1,0 +1,31 @@
+Fig. 5.  Real-world multi-threat trial in the cluttered indoor flight hall. (a) Three obstacles O1–O3 thrown in sequence; the executed quadrotor trajectory
+is colored by flight time, with closest-approach events 1–3 marked. (b) Surface-to-surface clearance 𝑑⊥(𝑡) to each obstacle over time (accounting forplatform and obstacle radii); the vehicle maintains a safe positive margin throughout, reaching a worst-case clearance of 0.24 m.
+
+                     TABLE II                                             TABLE III
+    DYNAMIC RISK FIELD ABLATION (AVG. DCR AS IN TABLE I)                     PLANNING LATENCY SCALABILITY
+
+                     A–R          Collision        Avg.                     P95 latency (ms) ↓                                          | O|=6
+Variant                     Acc. ↑      AUC ↑      DCR ↓       Method                          Max (ms)      Miss (%)                                                                                                                                                                                             | O|=1           | O|=4           | O|=6             ↓            ↓
+No Dynamic Supervision     58.4%          0.612        42.0%                                                        SIMP      1445.8    1861.5    2110.9       3237.5          96.3
+No Future Prediction        71.2%          0.735        28.0%                                                        FAPP       18.3       16.6       17.6         22.3             0.0
+Isotropic Field             86.5%          0.814        18.0%                                                                   Ours        45.8       42.2       45.6         50.9             3.0
+Symmetric Field            51.8%          0.648        34.0%
+Ours                   96.2%          0.946        4.0%
+                                                                  {2.0, 6.0, 10.0} m/s (Table IV). While numerical baselines
+latency (∼17 ms at the 95th percentile, P95) with zero   perform reliably in sparse, low-speed regimes, their safetydeadline misses. In comparison, our dual-branch circular   degrades sharply as scene density and encounter speeds
+convolutional network and tensor processing incur a higher    increase. Under the most adversarial condition with |O| = 6
+fixed computational overhead under onboard multi-process   and ∥𝒗𝑜∥= 10 m/s (Table V), FAPP’s mean clearance fallscontention, exhibiting P95 latencies between 42.2 ms and    to 0.12 m and its DCR reaches 86.0%, although  it incurs
+45.8 ms and a 3.0% deadline-miss rate at |O𝑡| = 6. These   no deadline misses in the latency benchmark (Table  III).misses are marginal: the worst case (50.9 ms) exceeds the  We attribute this to local refinement of a single trajectory,
+budget by only 0.9 ms, while the controller keeps track-   which limits the available evasive alternatives when multiple
+ing the previously committed trajectory. Network inference    fast threats converge. In contrast, by scoring every candidate
+remains nearly constant (20.0–20.5 ms P95); the residual    primitive with offline-distilled risk, our framework maintains
+variation comes from rasterization, not inference. Nonethe-   a 0.46 m mean clearance and an 84.0% SR (CI [71.5, 91.7]
+less, while SIMP  suffers severe combinatorial explosion    vs. [3.2, 18.8] for FAPP).
+with latencies exceeding 1400 ms (96.3% misses), our P95                                                                        F. Real-World Flight Performance
+latency stays within 45.8 ms. Although slower than FAPP,
+                                         We deploy the trained policy with frozen weights acrossour planner spends this latency on scoring every candidate
+                                                    two novel environments—a cluttered indoor flight hall and anprimitive, whose safety benefit is evaluated in Sec. VI-E.
+                                                           outdoor field—against unseen physical projectiles (a tennis
+E. Multi-Threat Closed-Loop Safety                                ball, a foam basketball, and a plush toy) at relative encounter
+  We evaluate closed-loop flight safety in simulation across   speeds up to 15 m/s (Table VI). Fig. 5 demonstrates continu-
+obstacle  counts  |O|  ∈   {1, 4, 6}  and  speeds  ∥𝒗𝑜∥  ∈   ous evasive maneuvers against three sequentially thrown dy-

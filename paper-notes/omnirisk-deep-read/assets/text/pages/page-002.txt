@@ -1,0 +1,49 @@
+surface-velocity channels; and reaches the goal along a time-   of fragile online optimization or symmetric pointwise poten-
+colored quintic trajectory without replanning stalls. A single     tials, we formulate an obstacle-velocity-aligned asymmetric
+forward pass jointly accounts for static clearance, dynamic   dynamic risk field evaluated via discretized path integrals
+evasion, and goal progress.                                          offline, converting predicted relative motion into continuous
+  This paper makes three contributions:                         training labels for a feed-forward network.
+   A  unified  planning  input  tensor  coupling a  metric   •                                                         C. Learning-Based Low-Latency Avoidance    range panorama, a binary dynamic mask, and Carte-
+     sian surface-velocity channels, making obstacle motion      Learning-based planners circumvent iterative online op-
+     directly observable under sparse LiDAR returns and    timization, yet agile dynamic evasion simultaneously de-
+     enabling zero-shot deployment.                      mands metric  spatial reasoning, kinodynamically feasible
+   An obstacle-velocity-aligned asymmetric dynamic risk    outputs, and computational complexity decoupled from ob-   •
+      field, continuous in the relative state, penalizing closing    stacle count. Existing frameworks satisfy only subsets of
+     threats while attenuating the penalty on receding obsta-    these requirements. Imitation learning pipelines [14] dis-
+     cles.                                                                                till trajectories from computationally prohibitive numerical
+   A  trajectory-risk learning paradigm replacing online    experts, inheriting the shortcomings of expert demonstra-   •
+    numerical optimization with offline distillation, scoring    tions while enforcing kinodynamic  limits solely through
+      all candidate primitives in a single forward pass with    soft penalties. Alternative approaches rely on forward-facing
+    O(1) complexity in dynamic obstacle count |O𝑡| while   depth [15] or sector-partitioned range inputs [16] that lack     retaining high avoidance success in dense, high-speed    explicit  surface-velocity  channels,  yielding unconstrained
+     encounters.                                                 single-step reactive actions [17], [18] without explicit metric
+                                                                 safety margins. In  contrast, our framework  unifies  static                        II. RELATED WORK
+                                                       geometry and Cartesian surface velocities within a metric
+A. Omnidirectional Perception and the Planning Interfaces                                                           planning input tensor, evaluating candidate primitives over a
+  Existing dynamic  avoidance frameworks  rely  primar-    fixed omnidirectional anchor lattice in a single forward pass
+ily on spatiotemporal corridors or time-indexed occupancy    to generate minimum-jerk primitives with kinodynamically
+grids [2], [4]–[7], yet the cost of constructing these structures   bounded terminal states.
+grows with obstacle density, so planning latency rises with
+scene complexity. While omnidirectional LiDAR systems [8]     III. PROBLEM FORMULATION AND SYSTEM OVERVIEW
+mitigate sensor blind spots, passing raw occupancy grids and                                                            A. Problem Formulation
+bounding-box lists downstream forces planners to reconstruct
+                                                                 1) Reformulation: High-speed evasion is governed by acollision geometry online. Conversely, event-based avoidance
+                                                                              strict timing budget: to prevent execution lag and collision,methods [9]–[11] achieve microsecond sensing latency but
+                                                                the local planner must commit a dynamically feasible tra-generate unconstrained single-step reflexes that lack metric
+                                                                  jectory before the current replanning cycle ends. Numericalscale and dynamically feasible planning horizons. To resolve
+                                                             planners struggle to reconcile this budget with safety: fullthis trade-off, we consolidate omnidirectional metric range,
+                                                             spatiotemporal constraints incur runtimes  that grow withdynamic cluster masking, and Cartesian surface velocities
+                                                     dynamic obstacle count      whereas lightweight local re-into a fixed-dimensional planning input tensor, yielding a                                                                                                   |O𝑡|,                                                           finement remains  fast but degrades in dense, high-speedmetric-scale input whose size  is independent of dynamic
+                                                            encounters (Sec. I). Rather than accelerating either form ofobstacle count.
+                                                                        iterative optimization, we recast real-time avoidance as a
+B. Spatiotemporal Risk Fields and Trajectory Optimization    feed-forward evaluation over a pre-defined omnidirectional
+  Lightweight penalty formulations [3] remain fast but refine   anchor  lattice, shifting spatiotemporal risk integration en-
+a single  trajectory  locally; in our benchmark  this  limits    tirely into offline training. A single forward pass then scores
+success in dense, high-speed encounters (Sec. VI-E). Formu-   every candidate primitive: trajectory-risk evaluation becomes
+lations that enforce full spatiotemporal safety through per-   independent of  |O𝑡|, selection no longer depends on oneobstacle constraints or safe-interval search [1], [2] instead    locally refined trajectory, and planning latency follows a
+incur costs that scale with obstacle count, risking deadline    fixed-size forward pass, not |O𝑡|.
+misses. Analytical collision metrics such as closest point of      2) Notation: Let W denote the inertial world frame and
+approach (CPA) and time to collision (TTC) attempt to alle-   P𝑡the gravity-aligned local planning frame anchored at theviate this burden, yet evaluating exact clearance along high-    vehicle at perception time 𝑡. The platform state is defined
+order polynomials lacks closed-form solutions, forcing frag-   as 𝒙0 = ( 𝒑0, 𝒗0, 𝒂0)⊤∈X ⊂R9, bounded by kinodynamic
+ile online numerical root finding over crude spherical bounds.    limits ∥𝒗0∥2 ≤𝑣max and ∥𝒂0∥2 ≤𝑎max. Given a navigationFurthermore, while velocity-dependent potential fields and   goal  𝒈, the perception front-end streams a non-repetitive
+motion-shaped rewards [12], [13] modulate repulsive forces,  LiDAR point set L𝑡, an odometric state estimate 𝒙𝑡, an accu-they remain causally symmetric—penalizing receding obsta-   mulated static background, and a set of confirmed dynamic
+cles identically to closing threats—or only adjust the current    obstacle tracks O𝑡= {(𝒄𝑜, 𝒗𝑜, 𝒔𝑜, 𝜄𝑜)}| 𝑜=1, O𝑡| where each trackcontrol step without anticipating future interactions. Instead    is parameterized by centroid 𝒄𝑜, metric velocity 𝒗𝑜, bounding

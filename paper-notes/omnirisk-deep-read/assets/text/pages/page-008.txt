@@ -1,0 +1,70 @@
+TABLE IV
+             CLOSED-LOOP SUCCESS RATE (%) UNDER OBSTACLE COUNT  | O| AND SPEED ∥𝒗𝑜∥IN M/S, 𝑛= 50 TRIALS PER CELL
+                                                              | O|=1                                                                                       | O|=4                                                                                      | O|=6
+Method       2            6            10            2            6            10            2            6            10
+SIMP†        98.0            0.0             0.0            82.0            0.0             0.0            66.0            0.0             0.0
+FAPP        100.0           90.0           74.0           88.0           62.0           26.0           74.0           40.0            8.0
+Ours        100.0           98.0           96.0           98.0           94.0           88.0           96.0           90.0           84.0
+†SIMP failed all trials when ∥𝒗𝑜∥∈{6.0, 10.0} m/s due to optimization infeasibility at high closing speeds.
+                     TABLE V
+                                                               REFERENCES
+  ADVERSARIAL-REGIME AVOIDANCE (| O|=6, ∥𝒗𝑜∥=10 M/S, 𝑛= 50)                                                                                     [1]  J. Tordesillas and J. P. How, “PANTHER: Perception-aware trajectory
+Method    SR ↑      DCR ↓        Other ↓    Mean clearance ↑          planner 22 677, 2022. in dynamic environments,” IEEE Access, vol. 10, pp. 22 662–
+FAPP       8.0%        86.0%        6.0%           0.12 m            [2]  S. Huang et  al., “Safe interval motion planning for quadrotors in
+Ours      84.0%       12.0%       4.0%           0.46 m             dynamic environments,” in 2025 IEEE International Conference on
+Other: remaining failures (static contact, infeasibility, or timeout).                  Robotics and Automation (ICRA).  IEEE, 2025, pp. 2780–2786.
+                                                                                     [3] M. Lu  et  al., “FAPP: Fast and adaptive perception and planning
+                     TABLE VI                                            for UAVs in dynamic cluttered environments,” IEEE Transactions on
+ ZERO-SHOT REAL-WORLD PERFORMANCE (𝑛= 50 TRIALS PER CELL)            Robotics, vol. 41, pp. 871–886, 2025.
+                                                                                     [4] Y. Wang et al., “Autonomous flights in dynamic environments with
+                                                                          onboard  vision,”  in 2021 IEEE/RSJ  International Conference onMetric                      Indoor                  Outdoor
+                                                                                             Intelligent Robots and Systems (IROS).  IEEE, 2021, pp. 1966–1973.
+Tennis SR ↑              94.0%                  90.0%                [5]  F. Kong, W. Xu, and F. Zhang, “Avoiding dynamic small obstacles with
+Foam Ball SR ↑           86.0%                  82.0%                 onboard sensing and computation on aerial robots,” IEEE Robotics and
+Plush SR ↑               92.0%                  88.0%                 Automation Letters, vol. 6, no. 4, pp. 7869–7876, 2021.                                                                                     [6] M. Lu, H. Chen, and P. Lu, “Perception and avoidance of multiple
+All-types SR ↑           90.7%                86.7%                  small fast moving objects for quadrotors with only low-cost RGBD
+Mean clearance ↑            0.42 m                    0.38 m                  camera,” IEEE Robotics and Automation Letters, vol. 7, no. 4, pp.
+                                                                      11 657–11 664, 2022.
+namic obstacles. The weakly reflective foam basketball poses      [7]  J. Zhong et al., “A safer vision-based autonomous planning system
+                                                                                          for quadrotor UAVs with dynamic obstacle trajectory prediction and
+the greatest challenge, inducing delayed track confirmation             its application with LLMs,” in 2024 IEEE/CVF Winter Conference on
+and tracking dropouts, and yields the lowest success rates          Applications of Computer Vision Workshops (WACVW).  IEEE, 2024,
+(86.0% indoor, 82.0% outdoor). We attribute the successful          pp. 920–929.
+                                                                                     [8] H. Wu et al., “Flying through cluttered and dynamic environments
+trials against  it  to the  spatial margins embedded  in the         with LiDAR,” arXiv preprint arXiv:2504.17569, 2025.
+dynamic risk field, which absorb perception uncertainty, and      [9] B. He et al., “FAST-Dynamic-Vision: Detection and tracking dynamic
+to simulation mask corruption (Sec. IV-C.2), which reduces          objects with event and depth sensing,” in 2021 IEEE/RSJ International
+                                                                            Conference on Intelligent Robots and Systems (IROS).  IEEE, 2021,
+reliance on the binary mask under tracking dropouts. In the          pp. 3071–3078.
+trial of Fig. 5, the quadrotor sustained a minimum clearance    [10] D. Falanga, K. Kleber, and D. Scaramuzza, “Dynamic obstacle avoid-
+of 0.24 m, indicating that the policy transfers zero-shot by         ance for quadrotors with event cameras,” Science Robotics, vol. 5,
+                                                                                    no. 40, p. eaaz9712, 2020.
+relying on metric relative motion.                                     [11] N. J. Sanket et al., “EVDodgeNet: Deep dynamic obstacle dodging
+                                                                              with event cameras,”  in 2020 IEEE International Conference on
+                  VII. CONCLUSION                                 Robotics and Automation (ICRA).  IEEE, 2020, pp. 10 651–10 657.
+  This paper presented a trajectory-risk learning framework    [12] M. Ginesi et al., “Dynamic movement primitives: Volumetric obstacle
+                                                                              avoidance using dynamic potential functions,” Journal of Intelligent
+that enables agile quadrotors to evade fast-moving dynamic     & Robotic Systems, vol. 101, no. 4, p. 79, 2021.
+obstacles using purely onboard sensing and computation. By    [13] B. Xu et al., “Flow-aided flight through dynamic clutters from point
+consolidating metric range panoramas, dynamic masks, and           to motion,” IEEE Robotics and Automation Letters, vol. 11, no. 1, pp.
+                                                                          218–225, 2026.
+Cartesian surface velocities into a unified planning input    [14]  J.  Tordesillas and  J.  P. How, “Deep-PANTHER: Learning-based
+tensor, the framework evaluates  relative obstacle motion         perception-aware trajectory planner in dynamic environments,” IEEE
+via an obstacle-velocity-aligned asymmetric dynamic risk         Robotics and Automation Letters, vol. 8, no. 3, pp. 1399–1406, 2023.
+                                                                              [15]  J. Lu et al., “You only plan once: A learning-based one-stage planner
+field. Shifting risk evaluation and terminal-state optimization         with guidance  learning,” IEEE Robotics and Automation  Letters,
+offline into a dual-branch  circular convolutional network           vol. 9, no. 7, pp. 6083–6090, 2024.
+reduces online planning to a single forward pass over an    [16] G. Xu et al., “Flying on point clouds with reinforcement learning,”
+                                                                                         in 2025 IEEE/RSJ International Conference on Intelligent Robots and
+omnidirectional anchor lattice. The resulting P95 planning         Systems (IROS).  IEEE, 2025, pp. 7231–7238.
+latency remains below the 50 ms control budget across    [17] X. Fan et al., “Flying in highly dynamic environments with end-to-end
+obstacle counts, and scoring every candidate primitive sus-          learning approach,” IEEE Robotics and Automation Letters, vol. 10,
+                                                                                    no. 4, pp. 3851–3858, 2025.
+tains avoidance success in dense, high-speed encounters.    [18] Y. Zhang et al., “Threat-aware UAV dodging of human-thrown projec-
+Physical flight experiments confirmed zero-shot transfer with            tiles with an RGB-D camera,” IEEE Robotics and Automation Letters,
+frozen weights, demonstrating continuous evasion against           vol. 11, no. 2, pp. 1178–1185, 2026.
+                                                                              [19] W. Xu et  al., “FAST-LIO2: Fast direct LiDAR-inertial odometry,”
+unseen projectiles at relative speeds up to 15 m/s. Extending        IEEE Transactions on Robotics, vol. 38, no. 4, pp. 2053–2073, 2022.
+this offline risk distillation paradigm to decentralized multi-    [20] H. Wu et al., “Moving event detection from LiDAR point streams,”
+agent cooperative avoidance represents a promising future         Nature Communications, vol. 15, no. 1, p. 345, 2024.
+direction.

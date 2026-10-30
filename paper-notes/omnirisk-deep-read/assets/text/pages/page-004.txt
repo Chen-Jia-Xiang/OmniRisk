@@ -1,0 +1,41 @@
+tional network, and an SO(3) geometric tracking controller.   where superscripts 𝑚and 𝑟denote raw and synchronizedAt each cycle, the front-end integrates streaming LiDAR    states, respectively, and 𝒈accounts for vertical gravitational
+points L𝑡and confirmed dynamic tracks O𝑡into 𝑰𝑡at 20 Hz.    acceleration during the latency interval.Synchronized to this representation, the static and dynamic     These synchronized states are subsequently mapped into
+heads score the candidate primitives Π in parallel at 20 Hz,    the dynamic mask 𝑴𝑡and velocity channels 𝑽𝑡of 𝑰𝑡.
+selecting 𝝅∗via  (2). Concurrently, the SO(3)  controller   C. Domain Invariance and Sim-to-Real Transfertracks 𝝅∗at 50 Hz. Owing to this asynchronous decoupling,
+a delayed planning cycle does not stall control; the controller      1) Channel Alignment: To maintain a consistent interface
+continues tracking the previously committed trajectory.       between Dsim and Dreal, the perception front-end keeps all                                                                       five channels numerically and geometrically consistent. Both
+ IV. OMNIDIRECTIONAL PERCEPTION REPRESENTATION    domains share identical spherical discretization (𝐻× 𝑊),                                                                    circular boundary conditions across the azimuthal seam,
+A. Spherical Projection and the Metric Range Panorama                                                      and matched background accumulation windows. Crucially,
+  1) Range Panorama Construction: FAST-LIO2 [19] pro-   depth completion is restricted exclusively to the range chan-
+vides LiDAR–inertial odometry and motion compensation.    nel 𝑫𝑡, preventing spatial dilation from corrupting the binary
+To structure unorganized point clouds while preserving full   dynamic mask 𝑴𝑡or Cartesian surface-velocity channels 𝑽𝑡.
+360◦spatial coverage, raw returns L𝑡are projected onto   This consistency ensures that 𝑰𝑡encodes the same geometric
+a sphere  centered  at  the  origin  of  P𝑡. Each 3D  point    quantities in both domains, enabling zero-shot policy deploy-
+𝒑=  (𝑥, 𝑦, 𝑧)⊤∈L𝑡is mapped to spherical coordinates   ment.
+(𝜃, 𝜙, 𝑟), where azimuth 𝜃= atan2(𝑦, 𝑥) ∈[−𝜋, 𝜋), elevation      2) Mask-Channel Corruption: During simulation training,
+𝜙= arcsin(𝑧/∥𝒑∥2) ∈[−𝜙min, 𝜙max], and Euclidean range    stochastic noise is introduced into the dynamic mask 𝑴𝑡via
+𝑟= ∥𝒑∥2. Discretizing azimuth and elevation into an 𝐻×𝑊   independent false-positive (𝑝fp) and false-negative (𝑝fn) per-
+grid yields the metric range panorama 𝑫𝑡∈R𝐻×𝑊×1, with    turbations. Spurious mask regions are assigned zero velocity
+each  cell  (𝑢, 𝑣) recording the minimum measured range    in 𝑽𝑡, whereas unmasked dynamic surfaces retain their metricalong that bearing:                                                  velocities. This decoupling discourages the policy from rely-
+                                                             ing solely on binary occupancy cues, guiding the network to
+           𝑫𝑡(𝑢, 𝑣) =      min       ∥𝒑∥2,          (3)    evaluate trajectory risk primarily through Cartesian surface                         {𝒑∈L𝑡|⌊𝜅(𝒑)⌋=(𝑢,𝑣)}                                                              kinematics.
+where 𝜅: R3 →[0, 𝐻−1]×[0, 𝑊−1] denotes the continuousspherical-to-pixel projection operator.                            V. TRAJECTORY PLANNING AND RISK LEARNING
+  2) Temporal Depth Completion: To mitigate the angular   A. Static Clearance Cost
+sparsity inherent in non-repetitive scanning LiDARs, the                                                           Within the privileged simulation domain       the staticfront-end maintains a sliding temporal buffer of motion-                                            Dsim,                                                              clearance cost is evaluated against an analytical Euclidean
+compensated sweeps over Δ𝑡acc. Unobserved rays in 𝑫𝑡are                                                            signed distance field (ESDF) in the local planning framecompleted via edge-preserving nearest-neighbor propagation                                                          P𝑡.                                                    Each candidate primitive is sampled at 𝐾uniform collocation
+capped at 𝑟max. This produces a dense, metrically consistent                              𝑗                                                                points 𝜏𝑗= 𝐾𝑇, yieldingdepth panorama capturing both thin obstacles and free-space
+boundaries with negligible computational overhead.                                                                  1 𝐾                                                                            exp             −𝑑safe   ,        (5)                                                                 𝐽𝑐,𝑖=                                                  𝐾        −𝑑(𝝅𝑖(𝜏𝑗)) 𝜎static                                                                                             𝑗=1B. Dynamic Masking and Velocity Rasterization                      ∑︁
+                                                     where 𝑑(·) denotes the distance to the nearest static bound-  To maintain spatial and temporal consistency with offline                                                                       ary, 𝑑safe is the target clearance, and 𝜎static scales the decay.
+training supervision, dynamic tracking estimates obstacle                                                           This exponential penalty maintains non-vanishing repulsive
+positions and velocities at the planning time within the local                                                                gradients within nominally safe margins, biasing trajectory
+frame                                                                  selection toward wider corridors.      P𝑡.  M-detector  [20], an event-based point-stream  detector,
+segments moving returns from the accumulated static back-   B. Asymmetric Dynamic Risk Field
+ground. The resulting dynamic clusters are associated across      1) Limitations of Proximity Metrics: Dynamic avoidance
+successive frames via the Hungarian algorithm based on   formulations that evaluate collision risk primarily through
+Euclidean centroid distances, maintaining a six-dimensional   instantaneous spatial proximity or isotropic inflation [3], [4],
+state (𝒄𝑜, 𝒗𝑜) ∈R6 per track. A track hypothesis is confirmed   [10] suffer from three fundamental kinematic limitations.after consistent temporal associations over a lifespan 𝜏track,    First, they are causally symmetric, penalizing receding ob-
+with extrapolation bounded within 𝜏pred.                         stacles identically to closing threats, so the penalty persists
+  Given measurement delivery latency Δ𝑡= 𝑡plan −𝑡meas, a   behind already-cleared obstacles. Second, they are isotropic,closed-form ballistic model propagates each measured state    failing to elongate along-track safety margins proportionally
+to the planning time:                                             to obstacle speed. Third, rigid distance thresholds produce
+                      1                                      step-like collision labels whose gradients vanish almost ev-
+        𝒄𝑟 𝑜= 𝒄𝑚  𝒗𝑚       𝒈Δ𝑡2,   𝒗𝑟 𝑜= 𝒗𝑚   𝒈Δ𝑡,     (4)   erywhere, destabilizing network regression. These structural        𝑜+ 𝑜Δ𝑡+ 2        𝑜+

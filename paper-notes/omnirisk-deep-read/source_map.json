@@ -1,0 +1,210 @@
+{
+  "schema_version": 5,
+  "paper": {
+    "title": "OmniRisk: Omnidirectional Trajectory-Risk Learning for Agile Quadrotor Dynamic Avoidance",
+    "authors": [
+      "Yifan He",
+      "Yang Liu",
+      "Wenhao Zhao",
+      "Hai Lin",
+      "Deping Zhang",
+      "Mingze Ma",
+      "Xin Zhou",
+      "Fei Gao",
+      "Huan Yu",
+      "Zipeng Dai",
+      "Ziming Ding"
+    ],
+    "identifier": "arXiv:2609.18191v2",
+    "version_date_as_printed": "2026-09-20",
+    "page_convention": "1-based PDF pages, 8 pages total",
+    "sources": [
+      {
+        "kind": "user-local-pdf",
+        "path": "../../OmniRisk/2609.18191v2.pdf",
+        "sha256": "fd3783c07d7d3f02c5ca30d59a129635e26104fdd875e09396d836e3ab95ba01"
+      },
+      {
+        "kind": "local-code-read-only",
+        "commit": "94fabb25b2aad6a324e7ca81c87f1b5e704cc151",
+        "scope": [
+          "OmniRisk/policy/network.py",
+          "OmniRisk/policy/trainer.py",
+          "OmniRisk/loss/safety_loss.py",
+          "OmniRisk/config/traj_opt.yaml",
+          "OmniRisk/trajectory_selection.py"
+        ],
+        "limitation": "Current working tree is not certified as paper experiment configuration."
+      }
+    ]
+  },
+  "reader_profile": {
+    "domain": "engineering-systems",
+    "audience": "broad-to-expert",
+    "goal": "understand",
+    "depth": "deep",
+    "language": "zh-CN",
+    "selected_lenses": [
+      "method-model",
+      "engineering-systems"
+    ],
+    "delivery": "explain",
+    "entry_level": "novice",
+    "technical_ceiling": "doctoral"
+  },
+  "explanation": {
+    "strategy": "intuition-to-precision",
+    "define_terms_on_first_use": true,
+    "report_structure": "six-section",
+    "key_visual_policy": "all-key-visuals"
+  },
+  "visual_coverage": {
+    "total_numbered": 11,
+    "key": 9,
+    "key_explained": 9
+  },
+  "execution": {
+    "visual_mode": "visual",
+    "visual_verification": "complete",
+    "text_evidence_sources": [
+      "user PDF text layer",
+      "pdftotext layout",
+      "current local source code",
+      "external bibliographic records and YOPO authors README"
+    ],
+    "skills": [
+      "paper-reading-zh",
+      "paper-deep-reader"
+    ],
+    "experiments_run": false
+  },
+  "claims": [
+    {
+      "id": "C1",
+      "claim": "规划输入由距离、动态掩码与三维速度组成。",
+      "status": "strong",
+      "evidence": [
+        "PDF p.3, Eq.1",
+        "PDF p.4, Sec.IV"
+      ]
+    },
+    {
+      "id": "C2",
+      "claim": "N=36，候选由静态头生成，动态头只评分。",
+      "status": "strong",
+      "evidence": [
+        "PDF p.3, Sec.III-A.4",
+        "PDF p.5, Sec.V-C.2"
+      ]
+    },
+    {
+      "id": "C3",
+      "claim": "风险门控依据椭球风险梯度与相对速度投影。",
+      "status": "strong",
+      "evidence": [
+        "PDF p.5, Eq.6–9"
+      ]
+    },
+    {
+      "id": "C4",
+      "claim": "显式速度输入显著改善作者测试的动态场景成功率。",
+      "status": "partial",
+      "evidence": [
+        "PDF p.6, Table I"
+      ]
+    },
+    {
+      "id": "C5",
+      "claim": "完整风险场优于列出的消融版本。",
+      "status": "partial",
+      "evidence": [
+        "PDF p.7, Table II"
+      ]
+    },
+    {
+      "id": "C6",
+      "claim": "网络推理P95约20.0–20.5ms；规划P95约42–46ms。",
+      "status": "partial",
+      "evidence": [
+        "PDF p.7, Sec.VI-D, Table III"
+      ]
+    },
+    {
+      "id": "C7",
+      "claim": "六障碍10m/s时作者报告84%对FAPP的8%成功率。",
+      "status": "partial",
+      "evidence": [
+        "PDF p.8, Table IV–V",
+        "PDF p.7, Sec.VI-E"
+      ]
+    },
+    {
+      "id": "C8",
+      "claim": "冻结权重的室内/室外汇总SR为90.7%/86.7%。",
+      "status": "partial",
+      "evidence": [
+        "PDF p.8, Table VI"
+      ]
+    },
+    {
+      "id": "C9",
+      "claim": "全系统严格O(1)、所有周期不超时和无碰撞保证。",
+      "status": "unsupported",
+      "evidence": [
+        "PDF p.7, Table III reports 3% misses",
+        "PDF p.8, Table V reports dynamic collisions"
+      ]
+    },
+    {
+      "id": "C10",
+      "claim": "相同候选解析评分和候选覆盖测试是有价值的强对照。",
+      "status": "weak",
+      "evidence": [
+        "本文实验提议；论文未提供相应对照"
+      ]
+    },
+    {
+      "id": "C11",
+      "claim": "锚点、预测偏移与评分、轨迹代价梯度学习已有YOPO基础。",
+      "status": "strong",
+      "evidence": [
+        "YOPO authors README Introduction",
+        "https://doi.org/10.1109/LRA.2024.3399589"
+      ]
+    }
+  ],
+  "external_sources": [
+    {
+      "title": "YOPO authors repository",
+      "url": "https://github.com/TJU-Aerial-Robotics/YOPO",
+      "accessed": "2026-10-29",
+      "verified_scope": "README Introduction: anchor primitives, offsets/scores, direct cost gradients; version updates not attributed to original paper."
+    },
+    {
+      "title": "YOPO bibliographic record",
+      "url": "https://doi.org/10.1109/LRA.2024.3399589",
+      "verified_scope": "Crossref title, DOI, date"
+    },
+    {
+      "title": "Deep-PANTHER bibliographic record",
+      "url": "https://doi.org/10.1109/LRA.2023.3235678",
+      "verified_scope": "Crossref title, DOI, date; full method described only as summarized in local OmniRisk paper"
+    },
+    {
+      "title": "FAPP bibliographic record",
+      "url": "https://doi.org/10.1109/TRO.2024.3522187",
+      "verified_scope": "Crossref title, DOI, date; no independent baseline execution"
+    },
+    {
+      "title": "RSS 2024 awards finalists",
+      "url": "https://roboticsconference.org/2024/program/awards/",
+      "verified_scope": "Official finalist titles; not an award-rubric claim"
+    }
+  ],
+  "limitations": [
+    "No training or closed-loop performance reproduction was executed.",
+    "PDF results are author reported and not independently authenticated.",
+    "Research history is reconstructed, not a verified chronology.",
+    "Proposed alternative methods and follow-up ideas remain untested; novelty not established."
+  ]
+}

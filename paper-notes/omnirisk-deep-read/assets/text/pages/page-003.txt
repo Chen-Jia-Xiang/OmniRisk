@@ -1,0 +1,54 @@
+Simulation source     Shared trunk · identical in both domains     C2 · Asymmetric dynamic risk field                   training-time only
+    inverse-CPA sampling
+                     C1 · Unified planning input tensor              amplified                  decays
+                                         five channels · one H×W grid                      ahead                     behind
+
+
+
+
+
+                                                                                          velocity-aligned, causally asymmetric           directed path integral
+                                                                                             closing amplified · receding → 0                 one scalar per primitive
+
+   Real-world source                                       C3 · Online stage                          no online optimization
+   MID-360 · FAST-LIO2
+                          Dual-branch CNN · one forward pass
+
+                                                                         Score fusion
+                                              Static                                         head                       S = Sstatic + λ Sdyn                                        36 endpoints
+
+                                   Dynamic head                         36 scores fused        endpoint committed            quintic · 50 Hz
+                                                          risk scores only
+                             backbone                                        O(N) selection       20 ms inference      15 m/s zero-shot
+
+                                                            data flow            analytic supervision, training only
+
+Fig. 2.  System architecture. Offline, the candidate primitives Π are supervised by the static clearance cost and the asymmetric dynamic risk field (C2,
+dashed arrows). Online, streaming perception is rasterized into the unified planning input tensor 𝑰𝑡(C1); a single forward pass over the omnidirectional
+anchor lattice A scores all candidate primitives for 20 Hz trajectory commitment without online optimization (C3).
+extent 𝒔𝑜= (𝑑𝑜,𝑥, 𝑑𝑜,𝑦, 𝑑𝑜,𝑧) ∈R3, and persistent tracking    primitives violating the kinodynamic limits ∥𝒗(𝑡)∥2 ≤𝑣max
+identity 𝜄𝑜.                                                    or ∥𝒂(𝑡)∥2 ≤𝑎max  are marked  infeasible and excluded
+  3) Planning Input Tensor:  Privileged simulation Dsim   during selection, while the network output remains fixed atprovides  ground-truth  states  and  future  trajectory  risk,   𝑁candidates.
+whereas real deployment Dreal does not. The policy therefore      5) Online Objective: Conditioned on the planning inputreceives only a calibrated planning input tensor in both    tensor 𝑰𝑡and navigation goal 𝒈, trajectory selection reduces
+domains:                                                         to  identifying the  selected candidate  primitive 𝝅∗ ∈Π
+           𝑰𝑡=     𝑴𝑡,                              (1)   minimizing a composite objective:                  [𝑫𝑡,    𝑽𝑡] ∈R𝐻×𝑊×5,                                               𝝅∗= arg minthereby strictly isolating all privileged simulation labels from                             𝐽prog(𝝅𝑖, 𝒈) + 𝜆𝑠𝐽smooth(𝝅𝑖)                                                                              𝝅𝑖∈Π                                     (2)
+deployment. Over an 𝐻× 𝑊spherical grid, 𝑰𝑡concatenates                                                                     ,a metric range panorama                 recording nearest                  + 𝐽risk(𝝅𝑖, 𝑰𝑡)                𝑫𝑡∈R𝐻×𝑊×1                  where 𝐽prog penalizes goal displacement and 𝐽smooth regulates
+surface distances, a binary dynamic mask 𝑴𝑡∈{0, 1}𝐻×𝑊×1    control effort via integrated squared jerk; both admit closed-
+identifying returns assigned to dynamic tracks O𝑡, and Carte-   form evaluation. Crucially, 𝐽risk is a learned surrogate evalu-
+sian surface-velocity channels 𝑽𝑡∈R𝐻×𝑊×3 encoding metric   ated via feed-forward inference. It estimates the accumulatedobstacle velocities 𝒗𝑜on dynamic pixels and zeros elsewhere.
+                                                             spatiotemporal risk of the asymmetric dynamic field directlyThis fixed-dimensional tensor decouples representation com-
+                                                      from 𝑰𝑡, bypassing iterative online optimization.plexity from raw point-cloud density and dynamic obstacle
+count |O𝑡|, with cross-domain channel invariance detailed in   B. System FrameworkSec. IV-C.                                                                 1) Offline Stage:  Fig. 2 summarizes the resulting two-
+  4) Action Space: The action space  is built on an om-                                                               stage architecture. The offline phase constructs the super-
+nidirectional anchor lattice A =  { ˆ𝒂𝑖}𝑁 𝑖=1, a fixed set of    vision needed to bypass real-time numerical optimization.
+𝑁= 36 unit-direction anchors expressed in P𝑡. A comprises   Within the privileged simulation domain        the train-12 azimuth bins that uniformly partition the full 360◦and                                            Dsim,                                                             ing pipeline samples randomized dynamic obstacle encoun-
+three elevation bands that span the sensor field of view.                                                                        ters and accumulates collision risk along candidate primi-
+Omnidirectional here refers to full 360◦azimuthal coverage,                                                                          tives. Specifically, inverse-CPA sampling first draws a target
+the property exploited by the circular convolutions of Sec. V-                                                              closest-approach distance and time (𝑑CPA, 𝑡CPA) and back-
+C.1. Neither the anchors nor their count 𝑁varies at runtime.                                                      computes the obstacle’s initial state, concentrating training
+                                                                𝑖=1   samples in near-collision regimes. A compact neural networkAnchored to A are the candidate primitives Π = {𝝅𝑖}𝑁defined over a planning horizon 𝑇. Each candidate primitive                                                                              is trained via supervised regression to predict this continuous
+𝝅𝑖(𝑡)  : [0,𝑇] →R3  is parameterized as a minimum-jerk    trajectory risk directly from the synthesized planning inputquintic polynomial uniquely determined by the initial state                                                                tensor 𝑰𝑡, embedding non-convex collision reasoning into the
+                                                                                                    𝑓  =   network weights prior to deployment and eliminating online𝒙0 =  ( 𝒑0, 𝒗0, 𝒂0)⊤and a terminal boundary state 𝒙(𝑖)
+( 𝒑(𝑖)  𝑓, 𝒗(𝑖) 𝑓, 𝒂(𝑖) 𝑓)⊤confined to the angular cell of anchor  ˆ𝒂𝑖.   numerical integration.
+A thus fixes the anchors and 𝑁, while the terminal boundary      2) Online Stage: The onboard framework comprises threestate within each angular cell adapts to the observed static   asynchronously decoupled modules: an omnidirectional per-
+geometry through the static head of Sec. V-C.2. Candidate   ception front-end, the trained dual-branch circular convolu-

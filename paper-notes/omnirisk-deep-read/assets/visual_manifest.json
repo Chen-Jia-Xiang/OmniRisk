@@ -1,0 +1,550 @@
+{
+  "schema_version": 4,
+  "generated_at": "2026-10-29T02:06:17.436841+00:00",
+  "source_pdf": "/home/cjx/OmniRisk/OmniRisk/2609.18191v2.pdf",
+  "source_sha256": "fd3783c07d7d3f02c5ca30d59a129635e26104fdd875e09396d836e3ab95ba01",
+  "page_count": 8,
+  "render_dpi": 150,
+  "selected_pages": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+  ],
+  "analysis_mode": "visual",
+  "text_layer_available": true,
+  "text_layer_characters": 56617,
+  "automatic_crops_are_unverified": true,
+  "selection_policy": "all-key-visuals-in-explain-and-audit",
+  "pages": [
+    {
+      "page": 1,
+      "width_pixels": 1275,
+      "height_pixels": 1650,
+      "width_points": 612.0,
+      "height_points": 792.0,
+      "image": "pages/page-001.png",
+      "text": "text/pages/page-001.txt",
+      "text_characters": 6196,
+      "caption_count": 1
+    },
+    {
+      "page": 2,
+      "width_pixels": 1275,
+      "height_pixels": 1650,
+      "width_points": 612.0,
+      "height_points": 792.0,
+      "image": "pages/page-002.png",
+      "text": "text/pages/page-002.txt",
+      "text_characters": 7474,
+      "caption_count": 0
+    },
+    {
+      "page": 3,
+      "width_pixels": 1275,
+      "height_pixels": 1650,
+      "width_points": 612.0,
+      "height_points": 792.0,
+      "image": "pages/page-003.png",
+      "text": "text/pages/page-003.txt",
+      "text_characters": 7384,
+      "caption_count": 1
+    },
+    {
+      "page": 4,
+      "width_pixels": 1275,
+      "height_pixels": 1650,
+      "width_points": 612.0,
+      "height_points": 792.0,
+      "image": "pages/page-004.png",
+      "text": "text/pages/page-004.txt",
+      "text_characters": 7391,
+      "caption_count": 0
+    },
+    {
+      "page": 5,
+      "width_pixels": 1275,
+      "height_pixels": 1650,
+      "width_points": 612.0,
+      "height_points": 792.0,
+      "image": "pages/page-005.png",
+      "text": "text/pages/page-005.txt",
+      "text_characters": 6838,
+      "caption_count": 1
+    },
+    {
+      "page": 6,
+      "width_pixels": 1275,
+      "height_pixels": 1650,
+      "width_points": 612.0,
+      "height_points": 792.0,
+      "image": "pages/page-006.png",
+      "text": "text/pages/page-006.txt",
+      "text_characters": 7722,
+      "caption_count": 1
+    },
+    {
+      "page": 7,
+      "width_pixels": 1275,
+      "height_pixels": 1650,
+      "width_points": 612.0,
+      "height_points": 792.0,
+      "image": "pages/page-007.png",
+      "text": "text/pages/page-007.txt",
+      "text_characters": 4378,
+      "caption_count": 1
+    },
+    {
+      "page": 8,
+      "width_pixels": 1275,
+      "height_pixels": 1650,
+      "width_points": 612.0,
+      "height_points": 792.0,
+      "image": "pages/page-008.png",
+      "text": "text/pages/page-008.txt",
+      "text_characters": 9234,
+      "caption_count": 0
+    }
+  ],
+  "visuals": [
+    {
+      "id": "figure-1-p001",
+      "label": "Figure 1",
+      "kind": "figure",
+      "number": "1",
+      "page": 1,
+      "caption": "Real-world static–dynamic avoidance trial: a thrown ball crosses the quadrotor’s route through rock-shaped static obstacles. The trajectory is colored by flight time; the inset marks the closest-approach distance 𝑑min.",
+      "raw_text": "Fig. 1. Real-world static–dynamic avoidance trial: a thrown ball crosses the quadrotor’s route through rock-shaped static obstacles. The trajectory is colored by flight time; the inset marks the closest-approach distance 𝑑min.",
+      "caption_bbox_points": [
+        313.2,
+        346.585,
+        558.002,
+        374.865
+      ],
+      "caption_bbox_pixels": [
+        653,
+        722,
+        1163,
+        781
+      ],
+      "suggested_crop_bbox_points": [
+        303.2,
+        195.503,
+        568.002,
+        384.865
+      ],
+      "suggested_crop_bbox_pixels": [
+        632,
+        407,
+        1183,
+        802
+      ],
+      "candidate_crop": "crops/figure-1-p001.png",
+      "selected_asset": null,
+      "candidate_crop_size_pixels": [
+        553,
+        395
+      ],
+      "source_page_image": "pages/page-001.png",
+      "source_page_text": "text/pages/page-001.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": true,
+      "visual_verification": "not-performed",
+      "review_notes": "不作为关键视觉证据嵌入；理由见classification_reason。",
+      "key": false,
+      "classification_reason": "场景示意，静动结合的具体任务在正文说明；图5更完整提供连续实机轨迹和净空证据。",
+      "selected_for_report": false,
+      "report_role": null,
+      "selection_reason": "",
+      "claim_ids": [],
+      "text_asset": "text/visuals/figure-1-p001.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text",
+        "body-references"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      }
+    },
+    {
+      "id": "figure-2-p003",
+      "label": "Figure 2",
+      "kind": "figure",
+      "number": "2",
+      "page": 3,
+      "caption": "System architecture. Offline, the candidate primitives Π are supervised by the static clearance cost and the asymmetric dynamic risk field (C2, dashed arrows). Online, streaming perception is rasterized into the unified planning input tensor 𝑰𝑡(C1); a single forward pass over the omnidirectional anchor lattice A scores all candidate primitives for 20 Hz trajectory commitment without online optimization (C3).",
+      "raw_text": "Fig. 2. System architecture. Offline, the candidate primitives Π are supervised by the static clearance cost and the asymmetric dynamic risk field (C2, dashed arrows). Online, streaming perception is rasterized into the unified planning input tensor 𝑰𝑡(C1); a single forward pass over the omnidirectional anchor lattice A scores all candidate primitives for 20 Hz trajectory commitment without online optimization (C3).",
+      "caption_bbox_points": [
+        54.0,
+        257.25,
+        558.001,
+        290.07
+      ],
+      "caption_bbox_pixels": [
+        113,
+        536,
+        1163,
+        604
+      ],
+      "suggested_crop_bbox_points": [
+        50,
+        52,
+        563,
+        292
+      ],
+      "suggested_crop_bbox_pixels": [
+        92,
+        84,
+        1183,
+        625
+      ],
+      "candidate_crop": "crops/figure-2-p003.png",
+      "selected_asset": "crops/figure-2-p003.png",
+      "candidate_crop_size_pixels": [
+        1093,
+        543
+      ],
+      "source_page_image": "pages/page-003.png",
+      "source_page_text": "text/pages/page-003.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "2026-10-29 直接查看原页与250%渲染裁图，核查编号、图注、坐标、单位、表头、数值与脚注；表VI补裁标题后再次检查。",
+      "key": true,
+      "classification_reason": "定义输入、训练监督与在线部署的核心架构。",
+      "selected_for_report": true,
+      "report_role": "mechanism",
+      "selection_reason": "定义输入、训练监督与在线部署的核心架构。",
+      "claim_ids": [],
+      "text_asset": "text/visuals/figure-2-p003.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text",
+        "body-references"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      }
+    },
+    {
+      "id": "figure-3-p005",
+      "label": "Figure 3",
+      "kind": "figure",
+      "number": "3",
+      "page": 5,
+      "caption": "Asymmetric dynamic risk field in the horizontal plane. The quadro- tor at the origin (velocity 𝒗0, blue) targets the goal (green), encountering an obstacle (velocity 𝒗𝑜, red) at 𝑑= 2.2 m. Background: pointwise dynamic risk 𝑟𝑜under relative obstacle motion. Candidate primitives are colored by dynamic risk 𝐽𝑑,𝑖(9).",
+      "raw_text": "Fig. 3. Asymmetric dynamic risk field in the horizontal plane. The quadro- tor at the origin (velocity 𝒗0, blue) targets the goal (green), encountering an obstacle (velocity 𝒗𝑜, red) at 𝑑= 2.2 m. Background: pointwise dynamic risk 𝑟𝑜under relative obstacle motion. Candidate primitives are colored by dynamic risk 𝐽𝑑,𝑖(9).",
+      "caption_bbox_points": [
+        54.0,
+        284.911,
+        298.804,
+        330.642
+      ],
+      "caption_bbox_pixels": [
+        112,
+        594,
+        623,
+        689
+      ],
+      "suggested_crop_bbox_points": [
+        50,
+        44,
+        302,
+        334
+      ],
+      "suggested_crop_bbox_pixels": [
+        59,
+        66,
+        656,
+        710
+      ],
+      "candidate_crop": "crops/figure-3-p005.png",
+      "selected_asset": "crops/figure-3-p005.png",
+      "candidate_crop_size_pixels": [
+        599,
+        644
+      ],
+      "source_page_image": "pages/page-005.png",
+      "source_page_text": "text/pages/page-005.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "2026-10-29 直接查看原页与250%渲染裁图，核查编号、图注、坐标、单位、表头、数值与脚注；表VI补裁标题后再次检查。",
+      "key": true,
+      "classification_reason": "解释各向异性方向风险如何评价不同候选。",
+      "selected_for_report": true,
+      "report_role": "mechanism",
+      "selection_reason": "解释各向异性方向风险如何评价不同候选。",
+      "claim_ids": [],
+      "text_asset": "text/visuals/figure-3-p005.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text",
+        "body-references"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      }
+    },
+    {
+      "id": "figure-4-p006",
+      "label": "Figure 4",
+      "kind": "figure",
+      "number": "4",
+      "page": 6,
+      "caption": "Quadrotor platform: (1) Livox Mid-360 LiDAR, (2) NVIDIA Jetson Orin NX, (3) NxtPX4v2 flight controller.",
+      "raw_text": "Fig. 4. Quadrotor platform: (1) Livox Mid-360 LiDAR, (2) NVIDIA Jetson Orin NX, (3) NxtPX4v2 flight controller.",
+      "caption_bbox_points": [
+        54.0,
+        140.402,
+        298.802,
+        158.972
+      ],
+      "caption_bbox_pixels": [
+        113,
+        293,
+        623,
+        331
+      ],
+      "suggested_crop_bbox_points": [
+        44.0,
+        40.083,
+        308.802,
+        168.972
+      ],
+      "suggested_crop_bbox_pixels": [
+        92,
+        84,
+        643,
+        352
+      ],
+      "candidate_crop": "crops/figure-4-p006.png",
+      "selected_asset": null,
+      "candidate_crop_size_pixels": [
+        553,
+        270
+      ],
+      "source_page_image": "pages/page-006.png",
+      "source_page_text": "text/pages/page-006.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "不作为关键视觉证据嵌入；理由见classification_reason。",
+      "key": false,
+      "classification_reason": "硬件外观不承担方法或性能论证，平台型号和预算已在正文交代。",
+      "selected_for_report": false,
+      "report_role": null,
+      "selection_reason": "",
+      "claim_ids": [],
+      "text_asset": "text/visuals/figure-4-p006.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text",
+        "body-references"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      }
+    },
+    {
+      "id": "figure-5-p007",
+      "label": "Figure 5",
+      "kind": "figure",
+      "number": "5",
+      "page": 7,
+      "caption": "Real-world multi-threat trial in the cluttered indoor flight hall. (a) Three obstacles O1–O3 thrown in sequence; the executed quadrotor trajectory is colored by flight time, with closest-approach events 1–3 marked. (b) Surface-to-surface clearance 𝑑⊥(𝑡) to each obstacle over time (accounting for platform and obstacle radii); the vehicle maintains a safe positive margin throughout, reaching a worst-case clearance of 0.24 m.",
+      "raw_text": "Fig. 5. Real-world multi-threat trial in the cluttered indoor flight hall. (a) Three obstacles O1–O3 thrown in sequence; the executed quadrotor trajectory is colored by flight time, with closest-approach events 1–3 marked. (b) Surface-to-surface clearance 𝑑⊥(𝑡) to each obstacle over time (accounting for platform and obstacle radii); the vehicle maintains a safe positive margin throughout, reaching a worst-case clearance of 0.24 m.",
+      "caption_bbox_points": [
+        54.0,
+        351.346,
+        558.0,
+        378.883
+      ],
+      "caption_bbox_pixels": [
+        113,
+        732,
+        1162,
+        789
+      ],
+      "suggested_crop_bbox_points": [
+        50,
+        48,
+        562,
+        380
+      ],
+      "suggested_crop_bbox_pixels": [
+        92,
+        84,
+        1183,
+        810
+      ],
+      "candidate_crop": "crops/figure-5-p007.png",
+      "selected_asset": "crops/figure-5-p007.png",
+      "candidate_crop_size_pixels": [
+        1093,
+        728
+      ],
+      "source_page_image": "pages/page-007.png",
+      "source_page_text": "text/pages/page-007.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "2026-10-29 直接查看原页与250%渲染裁图，核查编号、图注、坐标、单位、表头、数值与脚注；表VI补裁标题后再次检查。",
+      "key": true,
+      "classification_reason": "提供实机连续避障和逐时刻净空证据。",
+      "selected_for_report": true,
+      "report_role": "evidence",
+      "selection_reason": "提供实机连续避障和逐时刻净空证据。",
+      "claim_ids": [],
+      "text_asset": "text/visuals/figure-5-p007.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text",
+        "body-references"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      }
+    },
+    {
+      "id": "table-I-p006",
+      "label": "Table I",
+      "kind": "table",
+      "number": "I",
+      "page": 6,
+      "caption": "TABLE I\nINPUT REPRESENTATION ABLATION (𝑛= 50 TRIALS PER CELL)\nMethod\nStatic\nSR ↑\nHead-on\nSR ↑\nCrossing\nSR ↑\nRear\nSR ↑\nAvg.\nDCR ↓\nDepth-Only\n96.0%\n62.0%\n22.0%\n26.0%\n47.3%\nDepth+Mask\n96.0%\n88.0%\n30.0%\n34.0%\n36.7%\nOurs\n98.0%\n96.0%\n92.0%\n94.0%\n4.0%\n",
+      "candidate_crop": "crops/table-I-p006.png",
+      "selected_asset": "crops/table-I-p006.png",
+      "key": true,
+      "selected_for_report": true,
+      "classification_reason": "隔离显式运动输入的收益。",
+      "visual_verification": "complete",
+      "crop_review_required": false,
+      "claim_ids": [],
+      "report_role": "comparison",
+      "selection_reason": "隔离显式运动输入的收益。",
+      "review_notes": "2026-10-29 直接查看原页与250%渲染裁图，核查编号、图注、坐标、单位、表头、数值与脚注；表VI补裁标题后再次检查。"
+    },
+    {
+      "id": "table-II-p007",
+      "label": "Table II",
+      "kind": "table",
+      "number": "II",
+      "page": 7,
+      "caption": "TABLE II\nDYNAMIC RISK FIELD ABLATION (AVG. DCR AS IN TABLE I)\nVariant\nA–R\nAcc. ↑\nCollision\nAUC ↑\nAvg.\nDCR ↓\nNo Dynamic Supervision\n58.4%\n0.612\n42.0%\nNo Future Prediction\n71.2%\n0.735\n28.0%\nIsotropic Field\n86.5%\n0.814\n18.0%\nSymmetric Field\n51.8%\n0.648\n34.0%\nOurs\n96.2%\n0.946\n4.0%\n",
+      "candidate_crop": "crops/table-II-p007.png",
+      "selected_asset": "crops/table-II-p007.png",
+      "key": true,
+      "selected_for_report": true,
+      "classification_reason": "隔离未来预测、非对称门控和各向异性。",
+      "visual_verification": "complete",
+      "crop_review_required": false,
+      "claim_ids": [],
+      "report_role": "comparison",
+      "selection_reason": "隔离未来预测、非对称门控和各向异性。",
+      "review_notes": "2026-10-29 直接查看原页与250%渲染裁图，核查编号、图注、坐标、单位、表头、数值与脚注；表VI补裁标题后再次检查。"
+    },
+    {
+      "id": "table-III-p007",
+      "label": "Table III",
+      "kind": "table",
+      "number": "III",
+      "page": 7,
+      "caption": "TABLE III\nPLANNING LATENCY SCALABILITY\nP95 latency (ms) ↓\n| O|=6\nMethod\n| O|=1\n| O|=4\n| O|=6\nMax (ms) ↓\nMiss (%) ↓\nSIMP\n1445.8\n1861.5\n2110.9\n3237.5\n96.3\nFAPP\n18.3\n16.6\n17.6\n22.3\n0.0\nOurs\n45.8\n42.2\n45.6\n50.9\n3.0\n",
+      "candidate_crop": "crops/table-III-p007.png",
+      "selected_asset": "crops/table-III-p007.png",
+      "key": true,
+      "selected_for_report": true,
+      "classification_reason": "限定延迟、扩展性和截止时间主张。",
+      "visual_verification": "complete",
+      "crop_review_required": false,
+      "claim_ids": [],
+      "report_role": "boundary",
+      "selection_reason": "限定延迟、扩展性和截止时间主张。",
+      "review_notes": "2026-10-29 直接查看原页与250%渲染裁图，核查编号、图注、坐标、单位、表头、数值与脚注；表VI补裁标题后再次检查。"
+    },
+    {
+      "id": "table-IV-p008",
+      "label": "Table IV",
+      "kind": "table",
+      "number": "IV",
+      "page": 8,
+      "caption": "TABLE IV\nCLOSED-LOOP SUCCESS RATE (%) UNDER OBSTACLE COUNT | O| AND SPEED ∥𝒗𝑜∥IN M/S, 𝑛= 50 TRIALS PER CELL\n| O|=1\n| O|=4\n| O|=6\nMethod\n2\n6\n10\n2\n6\n10\n2\n6\n10\nSIMP†\n98.0\n0.0\n0.0\n82.0\n0.0\n0.0\n66.0\n0.0\n0.0\nFAPP\n100.0\n90.0\n74.0\n88.0\n62.0\n26.0\n74.0\n40.0\n8.0\nOurs\n100.0\n98.0\n96.0\n98.0\n94.0\n88.0\n96.0\n90.0\n84.0\n†SIMP failed all trials when ∥𝒗𝑜∥∈{6.0, 10.0} m/s due to optimization infeasibility at high closing speeds.\n",
+      "candidate_crop": "crops/table-IV-p008.png",
+      "selected_asset": "crops/table-IV-p008.png",
+      "key": true,
+      "selected_for_report": true,
+      "classification_reason": "支撑多威胁高速闭环任务的成功率。",
+      "visual_verification": "complete",
+      "crop_review_required": false,
+      "claim_ids": [],
+      "report_role": "evidence",
+      "selection_reason": "支撑多威胁高速闭环任务的成功率。",
+      "review_notes": "2026-10-29 直接查看原页与250%渲染裁图，核查编号、图注、坐标、单位、表头、数值与脚注；表VI补裁标题后再次检查。"
+    },
+    {
+      "id": "table-V-p008",
+      "label": "Table V",
+      "kind": "table",
+      "number": "V",
+      "page": 8,
+      "caption": "TABLE V\nADVERSARIAL-REGIME AVOIDANCE (| O|=6, ∥𝒗𝑜∥=10 M/S, 𝑛= 50)\nMethod\nSR ↑\nDCR ↓\nOther ↓\nMean clearance ↑\nFAPP\n8.0%\n86.0%\n6.0%\n0.12 m\nOurs\n84.0%\n12.0%\n4.0%\n0.46 m\nOther: remaining failures (static contact, infeasibility, or timeout).\n",
+      "candidate_crop": "crops/table-V-p008.png",
+      "selected_asset": "crops/table-V-p008.png",
+      "key": true,
+      "selected_for_report": true,
+      "classification_reason": "区分失败类型并限定安全性收益。",
+      "visual_verification": "complete",
+      "crop_review_required": false,
+      "claim_ids": [],
+      "report_role": "boundary",
+      "selection_reason": "区分失败类型并限定安全性收益。",
+      "review_notes": "2026-10-29 直接查看原页与250%渲染裁图，核查编号、图注、坐标、单位、表头、数值与脚注；表VI补裁标题后再次检查。"
+    },
+    {
+      "id": "table-VI-p008",
+      "label": "Table VI",
+      "kind": "table",
+      "number": "VI",
+      "page": 8,
+      "caption": "ZERO-SHOT REAL-WORLD PERFORMANCE (𝑛= 50 TRIALS PER CELL)\nMetric\nIndoor\nOutdoor\nTennis SR ↑\n94.0%\n90.0%\nFoam Ball SR ↑\n86.0%\n82.0%\nPlush SR ↑\n92.0%\n88.0%\nAll-types SR ↑\n90.7%\n86.7%\nMean clearance ↑\n0.42 m\n0.38 m\n",
+      "candidate_crop": "crops/table-VI-p008.png",
+      "selected_asset": "crops/table-VI-p008.png",
+      "key": true,
+      "selected_for_report": true,
+      "classification_reason": "支撑冻结权重迁移的实机汇总结果。",
+      "visual_verification": "complete",
+      "crop_review_required": false,
+      "claim_ids": [],
+      "report_role": "evidence",
+      "selection_reason": "支撑冻结权重迁移的实机汇总结果。",
+      "review_notes": "2026-10-29 直接查看原页与250%渲染裁图，核查编号、图注、坐标、单位、表头、数值与脚注；表VI补裁标题后再次检查。"
+    }
+  ],
+  "manual_inventory_notes": "自动清单仅识别5幅图；依据PDF p.6–8人工补入6个罗马编号表，共11个编号对象。"
+}
