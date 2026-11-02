@@ -1,0 +1,196 @@
+{
+  "delivery": "targeted",
+  "focus": "paper-and-code-project-framework",
+  "analysis_date": "2026-11-02",
+  "visual_mode": "visual",
+  "paper": {
+    "path": "OmniRisk/2609.18191v2.pdf",
+    "title": "OmniRisk: Omnidirectional Trajectory-Risk Learning for Agile Quadrotor Dynamic Avoidance",
+    "version": "2609.18191v2",
+    "pages": 8,
+    "sha256": "fd3783c07d7d3f02c5ca30d59a129635e26104fdd875e09396d836e3ab95ba01",
+    "sources": [
+      {
+        "type": "local_pdf",
+        "path": "OmniRisk/2609.18191v2.pdf",
+        "sha256": "fd3783c07d7d3f02c5ca30d59a129635e26104fdd875e09396d836e3ab95ba01"
+      }
+    ],
+    "page_convention": "PDF p.N，1-based physical pages"
+  },
+  "code_commit": "a0a89a4d29bf8bf778f9ed47c439441f57b80638",
+  "anchors": [
+    {
+      "claim": "five-channel representation and 36 anchors",
+      "paper": "p.3 Eq.(1), §III-A.3–4",
+      "code": [
+        "OmniRisk/config/traj_opt.yaml",
+        "OmniRisk/policy/primitive.py",
+        "OmniRisk/dynamic_inputs.py"
+      ]
+    },
+    {
+      "claim": "shared depth encoder, isolated dynamic feature, tensor dimensions",
+      "paper": "p.5 §V-C.1–2",
+      "code": [
+        "OmniRisk/policy/network.py:47",
+        "OmniRisk/policy/models/backbone.py",
+        "OmniRisk/policy/models/head.py",
+        "OmniRisk/policy/state_transform.py"
+      ]
+    },
+    {
+      "claim": "analytic supervision and detached targets",
+      "paper": "p.4–5 Eq.(5)–(10), §V-C.3",
+      "code": [
+        "OmniRisk/loss/safety_loss.py",
+        "OmniRisk/loss/loss_function.py",
+        "OmniRisk/policy/trainer.py:169"
+      ]
+    },
+    {
+      "claim": "asynchronous runtime and selection",
+      "paper": "p.4 §III-B.2; p.6 Eq.(11)",
+      "code": [
+        "OmniRisk/perception_sync.py",
+        "OmniRisk/runtime_modes.py",
+        "OmniRisk/trajectory_selection.py",
+        "OmniRisk/omnirisk_node.py:1507",
+        "OmniRisk/omnirisk_node.py:1896"
+      ]
+    },
+    {
+      "claim": "current control integration",
+      "paper": "p.4 §III-B.2",
+      "code": [
+        "ros_ws/src/px4ctrl/launch/run_ctrl.launch",
+        "Controller/src/so3_control/src/NetworkControl.cpp"
+      ]
+    },
+    {
+      "claim": "paper-reported results, not reproduced here",
+      "paper": "p.6–8 Tables I–VI",
+      "code": []
+    }
+  ],
+  "visuals": [
+    {
+      "id": "Figure 2",
+      "page": 3,
+      "asset": "assets/paper-figure-2.png",
+      "role": "mechanism",
+      "visual_verification": "complete",
+      "notes": "Opened and checked full architecture/caption: offline supervision, shared inputs, heads and online fusion."
+    },
+    {
+      "id": "Figure 3",
+      "page": 5,
+      "asset": "assets/paper-figure-3.png",
+      "role": "mechanism",
+      "visual_verification": "complete",
+      "notes": "Opened and checked horizontal axes in metres, velocity arrows, risk colourbar and caption."
+    }
+  ],
+  "scope_notes": [
+    "Targeted architecture deliverable; experimental tables are textually cited, not a full paper visual audit.",
+    "Existing paper figure crops reused after visual check and source SHA-256 match.",
+    "No changes to runtime code; no training, ROS execution or flight validation performed."
+  ],
+  "claims": [
+    {
+      "id": "C1",
+      "claim": "five-channel representation and 36 anchors",
+      "status": "strong",
+      "evidence": [
+        {
+          "paper_anchor": "p.3 Eq.(1), §III-A.3–4",
+          "code_anchors": [
+            "OmniRisk/config/traj_opt.yaml",
+            "OmniRisk/policy/primitive.py",
+            "OmniRisk/dynamic_inputs.py"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "C2",
+      "claim": "shared depth encoder, isolated dynamic feature, tensor dimensions",
+      "status": "strong",
+      "evidence": [
+        {
+          "paper_anchor": "p.5 §V-C.1–2",
+          "code_anchors": [
+            "OmniRisk/policy/network.py:47",
+            "OmniRisk/policy/models/backbone.py",
+            "OmniRisk/policy/models/head.py",
+            "OmniRisk/policy/state_transform.py"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "C3",
+      "claim": "analytic supervision and detached targets",
+      "status": "strong",
+      "evidence": [
+        {
+          "paper_anchor": "p.4–5 Eq.(5)–(10), §V-C.3",
+          "code_anchors": [
+            "OmniRisk/loss/safety_loss.py",
+            "OmniRisk/loss/loss_function.py",
+            "OmniRisk/policy/trainer.py:169"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "C4",
+      "claim": "asynchronous runtime and selection",
+      "status": "strong",
+      "evidence": [
+        {
+          "paper_anchor": "p.4 §III-B.2; p.6 Eq.(11)",
+          "code_anchors": [
+            "OmniRisk/perception_sync.py",
+            "OmniRisk/runtime_modes.py",
+            "OmniRisk/trajectory_selection.py",
+            "OmniRisk/omnirisk_node.py:1507",
+            "OmniRisk/omnirisk_node.py:1896"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "C5",
+      "claim": "current control integration",
+      "status": "strong",
+      "evidence": [
+        {
+          "paper_anchor": "p.4 §III-B.2",
+          "code_anchors": [
+            "ros_ws/src/px4ctrl/launch/run_ctrl.launch",
+            "Controller/src/so3_control/src/NetworkControl.cpp"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "C6",
+      "claim": "paper-reported results, not reproduced here",
+      "status": "partial",
+      "evidence": [
+        {
+          "paper_anchor": "p.6–8 Tables I–VI",
+          "code_anchors": []
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "figure_generation": "passed",
+    "report_local_links": "passed",
+    "diagram_text_bounds": "passed",
+    "network_forward": "not-run: default Python environment lacks ruamel.yaml; import failed before model construction",
+    "ros_and_flight": "not-run"
+  }
+}

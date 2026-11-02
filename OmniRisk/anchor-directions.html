@@ -1,0 +1,95 @@
+<div id="omni-anchor-directions">
+  <h3>36 个方向锚点与终点角度范围</h3>
+  <div class="viz-controls">
+    <label class="form-label">水平锚点 <select class="form-select" id="oa-yaw"></select></label>
+    <label class="form-label">垂直锚点 <select class="form-select" id="oa-pitch"></select></label>
+  </div>
+  <svg id="oa-chart" role="img" aria-label="横轴是方位角，纵轴是仰角。36个圆点为锚点，矩形为终点角度允许范围，菱形为调整后的终点方向。"></svg>
+  <div class="viz-row text-small"><span>● 锚点</span><span>浅色矩形：可偏移范围</span><span>◆ 终点方向</span></div>
+  <div class="viz-controls">
+    <label class="form-label">水平偏移 <span id="oa-yaw-value" class="tabular-nums"></span><input class="form-range" id="oa-dyaw" type="range" min="-0.99" max="0.99" step="0.01" value="0.45"></label>
+    <label class="form-label">垂直偏移 <span id="oa-pitch-value" class="tabular-nums"></span><input class="form-range" id="oa-dpitch" type="range" min="-0.99" max="0.99" step="0.01" value="-0.35"></label>
+  </div>
+  <div id="oa-detail" class="text-small tabular-nums" aria-live="polite"></div>
+</div>
+<style>
+  #omni-anchor-directions {color:var(--foreground);}
+  #omni-anchor-directions #oa-chart {width:100%;display:block;overflow:visible;}
+  #omni-anchor-directions .viz-controls > label {flex:1 1 180px;min-width:0;}
+  #omni-anchor-directions svg text {fill:var(--foreground);}
+</style>
+<script>
+(() => {
+  const root=document.getElementById('omni-anchor-directions');
+  const svg=root.querySelector('#oa-chart');
+  const yawSelect=root.querySelector('#oa-yaw');
+  const pitchSelect=root.querySelector('#oa-pitch');
+  const dyaw=root.querySelector('#oa-dyaw');
+  const dpitch=root.querySelector('#oa-dpitch');
+  for(let j=0;j<12;j++) {
+    const option=document.createElement('option');option.value=j;
+    option.textContent=`${-165+30*j}°`;yawSelect.appendChild(option);
+  }
+  for(let i=0;i<3;i++) {
+    const option=document.createElement('option');option.value=i;
+    option.textContent=`${(22.5+(i-1)*59/3).toFixed(2)}°`;pitchSelect.appendChild(option);
+  }
+  function restore(state) {
+    const s=state?.modelContent;
+    yawSelect.value=String(Number.isInteger(s?.column)&&s.column>=0&&s.column<12?s.column:6);
+    pitchSelect.value=String(Number.isInteger(s?.band)&&s.band>=0&&s.band<3?s.band:1);
+    dyaw.value=Number.isFinite(s?.u0)?s.u0:0.45;
+    dpitch.value=Number.isFinite(s?.u1)?s.u1:-0.35;
+  }
+  restore(window.openai?.widgetState);
+  function draw() {
+    const width=Math.max(280,root.getBoundingClientRect().width);
+    const height=275,left=65,right=23,top=20,bottom=52;
+    svg.setAttribute('viewBox',`0 0 ${width} ${height}`);
+    svg.replaceChildren();
+    function el(name,attrs,text) {
+      const n=document.createElementNS('http://www.w3.org/2000/svg',name);
+      Object.entries(attrs).forEach(([k,v])=>n.setAttribute(k,v));
+      if(text!==undefined)n.textContent=text;svg.appendChild(n);return n;
+    }
+    const x=a=>left+(a+180)/360*(width-left-right);
+    const y=b=>top+(54-b)/63*(height-top-bottom);
+    const column=Number(yawSelect.value),band=Number(pitchSelect.value);
+    const a=-165+30*column,b=22.5+(band-1)*59/3;
+    const da=Number(dyaw.value)*15,db=Number(dpitch.value)*10;
+    const xa=x(a+da),yb=y(b+db);
+    for(let i=0;i<3;i++)for(let j=0;j<12;j++) {
+      const aa=-165+30*j,bb=22.5+(i-1)*59/3;
+      el('rect',{x:x(aa-15),y:y(bb+10),width:x(aa+15)-x(aa-15),height:y(bb-10)-y(bb+10),fill:'none',stroke:'var(--border)','stroke-width':0.7});
+    }
+    el('rect',{x:x(a-15),y:y(b+10),width:x(a+15)-x(a-15),height:y(b-10)-y(b+10),fill:'var(--viz-series-1)','fill-opacity':0.14,stroke:'none'});
+    for(let i=0;i<3;i++)for(let j=0;j<12;j++) {
+      const selected=i===band&&j===column;
+      el('circle',{cx:x(-165+30*j),cy:y(22.5+(i-1)*59/3),r:selected?4:2.5,fill:selected?'var(--viz-series-1)':'var(--muted-foreground)'});
+    }
+    el('line',{x1:x(a),y1:y(b),x2:xa,y2:yb,stroke:'var(--viz-series-1)','stroke-width':1.5});
+    el('path',{d:`M ${xa} ${yb-6} L ${xa+6} ${yb} L ${xa} ${yb+6} L ${xa-6} ${yb} Z`,fill:'var(--viz-series-2)'});
+    for(const tick of [-180,0,180])el('text',{x:x(tick),y:height-bottom+22,'text-anchor':tick===-180?'start':tick===180?'end':'middle'},`${tick}°`);
+    for(let i=0;i<3;i++) {
+      const bb=22.5+(i-1)*59/3;
+      el('text',{x:left-10,y:y(bb)+4,'text-anchor':'end'},`${bb.toFixed(2)}°`);
+    }
+    el('text',{x:left,y:13},'仰角');
+    el('text',{x:(left+width-right)/2,y:height-4,'text-anchor':'middle'},'方位角（展开一整圈）');
+    root.querySelector('#oa-yaw-value').textContent=`${da.toFixed(2)}°`;
+    root.querySelector('#oa-pitch-value').textContent=`${db.toFixed(2)}°`;
+    root.querySelector('#oa-detail').textContent=`锚点 (${a}°, ${b.toFixed(2)}°) → 终点方向 (${(a+da).toFixed(2)}°, ${(b+db).toFixed(2)}°)`;
+  }
+  function changed() {
+    draw();
+    const modelContent={column:Number(yawSelect.value),band:Number(pitchSelect.value),u0:Number(dyaw.value),u1:Number(dpitch.value)};
+    if(window.openai?.setWidgetState)window.openai.setWidgetState({modelContent,privateContent:null}).catch(()=>{});
+  }
+  [yawSelect,pitchSelect,dyaw,dpitch].forEach(control=>control.addEventListener('input',changed));
+  window.addEventListener('openai:set_globals',event=>{
+    if(event.detail?.globals?.widgetState){restore(event.detail.globals.widgetState);draw();}
+  });
+  new ResizeObserver(draw).observe(root);
+  draw();
+})();
+</script>

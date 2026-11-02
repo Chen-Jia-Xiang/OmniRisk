@@ -1,0 +1,49 @@
+flowchart TB
+  subgraph OFF[离线训练：仿真真值提供解析监督]
+    SIM[静态地图与逆 CPA 动态场景采样] --> DATA[距离 / 物体 ID / 位姿 / 速度]
+    DATA --> TRAIN[Dataset 与当前网络生成的 36 个候选]
+    TRAIN --> LABEL[静态 ESDF 与平滑代价 / 非对称动态风险累加]
+    LABEL --> LOSS[终端状态损失 / 静态评分回归 / log1p 动态评分回归]
+    LOSS --> WEIGHT[联合训练权重 .pth / 可选 TensorRT]
+  end
+  subgraph ONLINE[在线：感知、规划、控制闭环]
+    LIDAR[MID-360 + IMU] --> LIO[FAST-LIO：定位、补偿、注册云]
+    LIO --> DET[M-detector：静态背景与 confirmed tracks]
+    LIO --> EKF[EKF：融合 MAVROS IMU]
+    LIO --> SYNC[最新完整帧 / 里程计插值 / 动态状态对时]
+    DET --> SYNC
+    EKF --> SYNC
+    SYNC --> INPUT[球面投影 / 动态栅格化 / 仅距离补洞]
+    INPUT --> DEPTH[距离 D]
+    INPUT --> MOTION[掩码 M + 速度 V]
+    EKF --> OBS[归一化 v / a / 相对目标；转换到各基元系]
+    GOAL[RViz / RC 目标] --> OBS
+    DEPTH --> SHARED[共享距离编码器：ResNet-18]
+    MOTION --> DYNENC[动态编码器：ResNet-18]
+    SHARED --> STATIC[静态头：36 终端状态 + 36 静态评分]
+    SHARED --> DYNAMIC[动态头：36 动态评分]
+    DYNENC --> DYNAMIC
+    OBS --> STATIC
+    OBS --> DYNAMIC
+    STATIC --> SELECT[静态 + λ × 动态 / 连续性代价与切换滞回]
+    DYNAMIC --> SELECT
+    MODE[HOVER / CRUISE / DODGE] --> SELECT
+    SELECT --> POLY[终端状态解码 / 所选五次多项式闭式重建]
+    POLY --> CMD[50 Hz PositionCommand：p / v / a / jerk / yaw]
+    CMD --> CTRL[实机 px4ctrl 或仿真 NetworkControl]
+    EKF --> CTRL
+    CTRL --> UAV[实机 PX4 或仿真刚体动力学]
+    UAV --> LIDAR
+  end
+  WEIGHT -.训练权重.-> SHARED
+  WEIGHT -.训练权重.-> DYNENC
+  WEIGHT -.训练权重.-> STATIC
+  WEIGHT -.训练权重.-> DYNAMIC
+  classDef offline fill:#fff4e6,stroke:#c46b28,color:#172b43;
+  classDef geometry fill:#edf5ff,stroke:#2876b8,color:#172b43;
+  classDef dynamic fill:#fff4e6,stroke:#c46b28,color:#172b43;
+  classDef runtime fill:#edfafa,stroke:#087f83,color:#172b43;
+  class SIM,DATA,TRAIN,LABEL,LOSS,WEIGHT offline;
+  class DEPTH,SHARED,STATIC,POLY,CMD geometry;
+  class MOTION,DYNENC,DYNAMIC dynamic;
+  class LIDAR,LIO,DET,EKF,SYNC,INPUT,OBS,GOAL,SELECT,MODE,CTRL,UAV runtime;
